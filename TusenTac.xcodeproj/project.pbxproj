@@ -25,6 +25,7 @@
 		5F39E3E21C240DE700133C86 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E11C240DE700133C86 /* WelcomeViewController.swift */; };
 		5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E31C240E0400133C86 /* SettingsViewController.swift */; };
 		5F39E3E61C240E2400133C86 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E51C240E2400133C86 /* TaskListViewController.swift */; };
+		5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		5F39E3E11C240DE700133C86 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		5F39E3E31C240E0400133C86 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		5F39E3E51C240E2400133C86 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		5F39E3E81C241DF400133C86 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 			children = (
 				5F39E3D61C240D2100133C86 /* Constants.swift */,
 				5F39E3D81C240D2B00133C86 /* Identifiers.swift */,
+				5F39E3E81C241DF400133C86 /* StringExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
+				5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */,
 				5F39E3D71C240D2100133C86 /* Constants.swift in Sources */,
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,
 				5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */,

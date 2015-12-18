@@ -11,11 +11,9 @@ class WelcomeViewController: UIViewController {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    @IBOutlet weak var motningTimePicker: UIDatePicker!
     @IBOutlet weak var nightTimePicker: UIDatePicker!
     @IBOutlet weak var dosageLabel: UITextField!
-    
-    
+    @IBOutlet weak var morningDayPicker: UIDatePicker!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueShowTaskList" {

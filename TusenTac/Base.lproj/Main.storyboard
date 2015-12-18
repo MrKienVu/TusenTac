@@ -107,7 +107,7 @@
                     </view>
                     <connections>
                         <outlet property="dosageLabel" destination="oev-O7-hUI" id="dwi-DK-WGv"/>
-                        <outlet property="motningTimePicker" destination="s51-2D-vlB" id="WIK-EV-346"/>
+                        <outlet property="morningDayPicker" destination="s51-2D-vlB" id="ytA-J0-KeD"/>
                         <outlet property="nightTimePicker" destination="NXe-om-29T" id="Zu2-kX-brm"/>
                         <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskList" id="nkI-21-nqr"/>
                     </connections>
@@ -132,7 +132,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Pn-hu-fz1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Default" id="4Pn-hu-fz1">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Pn-hu-fz1" id="6qQ-mo-KAr">
