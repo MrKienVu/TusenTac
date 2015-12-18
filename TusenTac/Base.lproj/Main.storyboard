@@ -168,7 +168,80 @@
                     <view key="view" contentMode="scaleToFill" id="yO1-P0-KoY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeg ønsker å ta den første pillen klokken:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jic-JR-Fdn">
+                                <rect key="frame" x="114" y="79" width="372" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeg ønsker å ta den andre pillen klokken:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCq-7f-J16">
+                                <rect key="frame" x="113" y="250" width="374" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nXD-vs-9hz">
+                                <rect key="frame" x="140" y="113" width="320" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="HhG-QP-32b"/>
+                                    <constraint firstAttribute="height" constant="120" id="W7m-j2-jGP"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="472127733.61959797">
+                                    <!--2015-12-18 10:35:33 +0000-->
+                                </date>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4dS-ri-Pks">
+                                <rect key="frame" x="140" y="291" width="320" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="RPU-qi-HP1"/>
+                                    <constraint firstAttribute="width" constant="320" id="gwC-Mh-rzN"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="472127740.57945198">
+                                    <!--2015-12-18 10:35:40 +0000-->
+                                </date>
+                            </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbS-EE-K28">
+                                <rect key="frame" x="199" y="425" width="203" height="33"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Min dose:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUQ-gJ-57b">
+                                        <rect key="frame" x="0.0" y="5" width="94" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9BP-fi-NL5">
+                                        <rect key="frame" x="94" y="0.0" width="65" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gix-A9-geY">
+                                        <rect key="frame" x="167" y="-2" width="36" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Zzk-aB-bUc"/>
+                                    <constraint firstAttribute="width" constant="203" id="zks-a3-eWQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4dS-ri-Pks" firstAttribute="centerX" secondItem="yO1-P0-KoY" secondAttribute="centerX" id="Ops-GD-V0M"/>
+                            <constraint firstItem="mCq-7f-J16" firstAttribute="top" secondItem="nXD-vs-9hz" secondAttribute="bottom" constant="17" id="U7A-AB-zMj"/>
+                            <constraint firstItem="GbS-EE-K28" firstAttribute="top" secondItem="4dS-ri-Pks" secondAttribute="bottom" constant="14" id="X5t-DX-We4"/>
+                            <constraint firstItem="nXD-vs-9hz" firstAttribute="top" secondItem="jic-JR-Fdn" secondAttribute="bottom" constant="8" id="bGJ-NV-9tv"/>
+                            <constraint firstItem="4dS-ri-Pks" firstAttribute="top" secondItem="mCq-7f-J16" secondAttribute="bottom" constant="14" id="bbJ-Mw-vDm"/>
+                            <constraint firstItem="nXD-vs-9hz" firstAttribute="centerX" secondItem="yO1-P0-KoY" secondAttribute="centerX" id="eN1-AY-Jbo"/>
+                            <constraint firstItem="GbS-EE-K28" firstAttribute="centerX" secondItem="yO1-P0-KoY" secondAttribute="centerX" id="oq4-qJ-TG5"/>
+                            <constraint firstItem="mCq-7f-J16" firstAttribute="centerX" secondItem="yO1-P0-KoY" secondAttribute="centerX" id="r9M-Jv-1s3"/>
+                            <constraint firstItem="jic-JR-Fdn" firstAttribute="top" secondItem="Zem-06-T7E" secondAttribute="bottom" constant="15" id="u2Z-BN-l5i"/>
+                            <constraint firstItem="jic-JR-Fdn" firstAttribute="centerX" secondItem="yO1-P0-KoY" secondAttribute="centerX" id="yfO-cX-p3W"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OlS-bh-6yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
