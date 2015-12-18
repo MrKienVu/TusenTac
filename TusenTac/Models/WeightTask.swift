@@ -13,11 +13,18 @@ public var WeightTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
     
-    // INSTRUCTION STEP
-    let instructionStep = ORKInstructionStep(identifier: Identifier.WeightStep.rawValue)
-    instructionStep.title = "SURVEY_INTR_TITLE".localized
-    instructionStep.text = "SURVEY_INTR_TEXT".localized
-    steps += [instructionStep]
+    
+    // This answer format will display a unit in-line with the numeric entry field.
+    //husk å legg inn localized strenger
+    let localizedQuestionStep1AnswerFormatUnit = NSLocalizedString("WEIGHT_UNIT".localized, comment: "")
+    let questionStep1AnswerFormat = ORKAnswerFormat.decimalAnswerFormatWithUnit(localizedQuestionStep1AnswerFormatUnit)
+    
+    let questionStep1 = ORKQuestionStep(identifier: String(Identifier.WeightStep), title: "Registrer vekt", answer: questionStep1AnswerFormat)
+    
+    questionStep1.text = "Registrer vekt"
+    questionStep1.placeholder = NSLocalizedString("Forrige vekt", comment: "")
+    
+    steps += [questionStep1]
     
     return ORKOrderedTask(identifier: Identifier.WeightTask.rawValue, steps: steps)
     

@@ -35,24 +35,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s51-2D-vlB">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s51-2D-vlB">
                                 <rect key="frame" x="140" y="107" width="320" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BNE-nU-4vQ"/>
                                     <constraint firstAttribute="height" constant="120" id="Y8b-6F-mYJ"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="472126652.018978">
-                                    <!--2015-12-18 10:17:32 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="472118400.018978">
+                                    <!--2015-12-18 08:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXe-om-29T">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXe-om-29T">
                                 <rect key="frame" x="140" y="287" width="320" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="N1B-oW-Lg5"/>
                                     <constraint firstAttribute="width" constant="320" id="kmg-L8-Ybj"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="472126659.69976401">
-                                    <!--2015-12-18 10:17:39 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="472161600.69976401">
+                                    <!--2015-12-18 20:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P72-1G-g7r">
@@ -85,6 +85,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgm-z6-g8Y">
                                 <rect key="frame" x="275" y="550" width="51" height="30"/>
                                 <state key="normal" title="Bli med"/>
+                                <connections>
+                                    <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskTable" id="nz0-3F-VI7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -109,7 +112,6 @@
                         <outlet property="dosageLabel" destination="oev-O7-hUI" id="dwi-DK-WGv"/>
                         <outlet property="morningDayPicker" destination="s51-2D-vlB" id="ytA-J0-KeD"/>
                         <outlet property="nightTimePicker" destination="NXe-om-29T" id="Zu2-kX-brm"/>
-                        <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskList" id="nkI-21-nqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -152,6 +154,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="PrQ-DB-9e1" id="fb9-b9-VNk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZ9-RX-6FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -181,24 +186,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nXD-vs-9hz">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXD-vs-9hz">
                                 <rect key="frame" x="140" y="113" width="320" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="HhG-QP-32b"/>
                                     <constraint firstAttribute="height" constant="120" id="W7m-j2-jGP"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="472127733.61959797">
-                                    <!--2015-12-18 10:35:33 +0000-->
-                                </date>
-                            </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4dS-ri-Pks">
-                                <rect key="frame" x="140" y="291" width="320" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="RPU-qi-HP1"/>
-                                    <constraint firstAttribute="width" constant="320" id="gwC-Mh-rzN"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="472127740.57945198">
-                                    <!--2015-12-18 10:35:40 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="472118400.61959797">
+                                    <!--2015-12-18 08:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbS-EE-K28">
@@ -228,6 +223,16 @@
                                     <constraint firstAttribute="width" constant="203" id="zks-a3-eWQ"/>
                                 </constraints>
                             </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dS-ri-Pks">
+                                <rect key="frame" x="140" y="291" width="320" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="RPU-qi-HP1"/>
+                                    <constraint firstAttribute="width" constant="320" id="gwC-Mh-rzN"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="472161600.57945198">
+                                    <!--2015-12-18 20:00:00 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
