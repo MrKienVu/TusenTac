@@ -31,6 +31,7 @@
 		5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
 		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
 		5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D85751C27F2EA001CBEB6 /* hideSections.js */; };
+		5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85791C281150001CBEB6 /* PillTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStep.swift; sourceTree = "<group>"; };
 		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
 		5F3D85751C27F2EA001CBEB6 /* hideSections.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hideSections.js; sourceTree = "<group>"; };
+		5F3D85791C281150001CBEB6 /* PillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 				5F39E3DD1C240D6C00133C86 /* SideEffectTask.swift */,
 				5F39E3DF1C240DA500133C86 /* TaskListRow.swift */,
 				5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */,
+				5F3D85791C281150001CBEB6 /* PillTask.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				5F39E3D71C240D2100133C86 /* Constants.swift in Sources */,
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,
 				5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */,
+				5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */,
 				5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */,
 				5F39E3E61C240E2400133C86 /* TaskListViewController.swift in Sources */,
 			);
