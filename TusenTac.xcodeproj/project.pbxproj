@@ -32,6 +32,7 @@
 		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
 		5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D85751C27F2EA001CBEB6 /* hideSections.js */; };
 		5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85791C281150001CBEB6 /* PillTask.swift */; };
+		5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
 		5F3D85751C27F2EA001CBEB6 /* hideSections.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hideSections.js; sourceTree = "<group>"; };
 		5F3D85791C281150001CBEB6 /* PillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillTask.swift; sourceTree = "<group>"; };
+		5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalPillTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 				5F39E3DF1C240DA500133C86 /* TaskListRow.swift */,
 				5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */,
 				5F3D85791C281150001CBEB6 /* PillTask.swift */,
+				5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				5F37F9E21C240968000ABF26 /* ViewController.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
+				5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
 				5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */,
 				5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */,
