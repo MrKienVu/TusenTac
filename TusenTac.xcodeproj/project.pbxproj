@@ -26,6 +26,11 @@
 		5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E31C240E0400133C86 /* SettingsViewController.swift */; };
 		5F39E3E61C240E2400133C86 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E51C240E2400133C86 /* TaskListViewController.swift */; };
 		5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* StringExtensions.swift */; };
+		5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */; };
+		5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */; };
+		5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
+		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
+		5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D85751C27F2EA001CBEB6 /* hideSections.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +110,11 @@
 		5F39E3E31C240E0400133C86 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		5F39E3E51C240E2400133C86 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		5F39E3E81C241DF400133C86 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaHandler.swift; sourceTree = "<group>"; };
+		5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaView.swift; sourceTree = "<group>"; };
+		5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStep.swift; sourceTree = "<group>"; };
+		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
+		5F3D85751C27F2EA001CBEB6 /* hideSections.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hideSections.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +179,7 @@
 				5F37F9E61C240968000ABF26 /* Assets.xcassets */,
 				5F37F9E81C240968000ABF26 /* LaunchScreen.storyboard */,
 				5F37F9EB1C240968000ABF26 /* Info.plist */,
+				5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */,
 			);
 			path = TusenTac;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 				5F39E3D61C240D2100133C86 /* Constants.swift */,
 				5F39E3D81C240D2B00133C86 /* Identifiers.swift */,
 				5F39E3E81C241DF400133C86 /* StringExtensions.swift */,
+				5F3D85751C27F2EA001CBEB6 /* hideSections.js */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -224,6 +236,7 @@
 				5F39E3E11C240DE700133C86 /* WelcomeViewController.swift */,
 				5F39E3E31C240E0400133C86 /* SettingsViewController.swift */,
 				5F39E3E51C240E2400133C86 /* TaskListViewController.swift */,
+				5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,6 +251,7 @@
 		5F39E3CA1C240AB200133C86 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +262,7 @@
 				5F39E3DB1C240D6100133C86 /* WeightTask.swift */,
 				5F39E3DD1C240D6C00133C86 /* SideEffectTask.swift */,
 				5F39E3DF1C240DA500133C86 /* TaskListRow.swift */,
+				5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -385,6 +400,7 @@
 				5F37FA0E1C24099D000ABF26 /* .gitignore in Resources */,
 				5F37F9EA1C240968000ABF26 /* LaunchScreen.storyboard in Resources */,
 				5F37F9E71C240968000ABF26 /* Assets.xcassets in Resources */,
+				5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */,
 				5F37F9E51C240968000ABF26 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,15 +427,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F39E3DE1C240D6C00133C86 /* SideEffectTask.swift in Sources */,
+				5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */,
+				5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */,
 				5F39E3E21C240DE700133C86 /* WelcomeViewController.swift in Sources */,
 				5F37F9E21C240968000ABF26 /* ViewController.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
+				5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */,
 				5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */,
 				5F39E3D71C240D2100133C86 /* Constants.swift in Sources */,
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,
 				5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */,
+				5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */,
 				5F39E3E61C240E2400133C86 /* TaskListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

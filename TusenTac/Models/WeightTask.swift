@@ -26,6 +26,12 @@ public var WeightTask: ORKOrderedTask {
     
     steps += [questionStep1]
     
+    // SUMMARY STEP
+    let summaryStep = ORKCompletionStep(identifier: Identifier.SummaryStep.rawValue)
+    summaryStep.title = "SUMMARYSTEP_TITLE".localized
+    summaryStep.text = "SUMMARYSTEP_TEXT".localized
+    steps += [summaryStep]
+    
     return ORKOrderedTask(identifier: Identifier.WeightTask.rawValue, steps: steps)
     
 }

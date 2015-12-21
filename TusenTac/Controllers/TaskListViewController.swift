@@ -13,6 +13,8 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    let nettskjema = NettskjemaHandler(scheme: .SideEffects)
+    
     enum TableViewCellIdentifier: String {
         case Default = "Default"
     }
@@ -96,10 +98,10 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         */
         taskResultFinishedCompletionHandler?(taskViewController.result)
         
-        /*    self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
+        self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
         self.nettskjema.submit()
         
-        taskViewController.dismissViewControllerAnimated(true, completion: nil) */
+        taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
