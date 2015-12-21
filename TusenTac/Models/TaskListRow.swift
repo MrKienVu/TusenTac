@@ -47,6 +47,7 @@ import ResearchKit
 enum TaskListRow: Int, CustomStringConvertible {
     case Weight
     case SideEffect
+    case Pill
     
     /// Returns an array of all the task list row enum cases.
     static var allCases: [TaskListRow] {
@@ -73,6 +74,8 @@ enum TaskListRow: Int, CustomStringConvertible {
             return "Vektregistrering".localized
         case .SideEffect:
             return "Registrer bivirkninger".localized
+        case .Pill:
+            return "Pilleregistrering".localized
         }
     }
     
@@ -85,6 +88,8 @@ enum TaskListRow: Int, CustomStringConvertible {
             return WeightTask
         case .SideEffect:
             return SideEffectTask
+        case .Pill:
+            return PillTask
         }
     }
 }

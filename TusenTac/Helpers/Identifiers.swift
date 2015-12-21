@@ -50,6 +50,15 @@ enum Identifier: String {
     case TestStep1
     case TestStep2
     
+    //PillTask
+    case PillOptionStep
+    case EatingStep
+    case TookPillStep
+    case TookPillEarlierStep
+    case TakeItLaterStep
+    case DontWantPillStep
+    case PillTask
+    
     //form
     case FormTask
     case FormStep
