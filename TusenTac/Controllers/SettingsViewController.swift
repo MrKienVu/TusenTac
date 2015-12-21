@@ -15,7 +15,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bedTimePicker: UIDatePicker!
     @IBOutlet weak var dosageTextField: UITextField!
     
-    
     @IBAction func morningTimeChanged(sender: AnyObject) {
         defaults.setObject(
             morningTimePicker.date,
