@@ -15,8 +15,8 @@ struct Color {
 }
 
 struct UserDefaultKey {
-    static let morningTime = "MorningTime"
-    static let bedTime = "BedTime"
-    static let dosage = "Dosage"
+    static let morningTime = "TusenTacMorningTime"
+    static let bedTime = "TusenTacBedTime"
+    static let dosage = "TusenTacDosage"
     
 }

@@ -86,7 +86,7 @@
                                 <rect key="frame" x="275" y="550" width="51" height="30"/>
                                 <state key="normal" title="Bli med"/>
                                 <connections>
-                                    <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskTable" id="nz0-3F-VI7"/>
+                                    <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskList" id="nz0-3F-VI7"/>
                                 </connections>
                             </button>
                         </subviews>

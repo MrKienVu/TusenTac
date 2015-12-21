@@ -15,20 +15,20 @@ public var SideEffectTask: ORKOrderedTask {
     
     // INSTRUCTION STEP
     let instructionStep = ORKInstructionStep(identifier: Identifier.IntroStep.rawValue)
-    instructionStep.title = "SURVEY_INTR_TITLE".localized
-    instructionStep.text = "SURVEY_INTR_TEXT".localized
+    instructionStep.title = "Registrering av bivirkninger".localized
+    instructionStep.text = "På den neste siden kan du registrere eventuelle bivirkninger du har opplevd.".localized
     steps += [instructionStep]
     
     // NETTSKJEMA
     let nettskjemaStep = NettskjemaStep(identifier: Identifier.SideEffectStep.rawValue)
-    nettskjemaStep.title = "NETTSKJEMASTEP_TITLE".localized
+    nettskjemaStep.title = "Bivirkninger".localized
     //nettskjemaStep.text = "NETTSKJEMASTEP_TEXT".localized
     steps += [nettskjemaStep]
     
     // SUMMARY STEP
     let summaryStep = ORKCompletionStep(identifier: Identifier.SummaryStep.rawValue)
-    summaryStep.title = "SUMMARYSTEP_TITLE".localized
-    summaryStep.text = "SUMMARYSTEP_TEXT".localized
+    summaryStep.title = "Levert!".localized
+    summaryStep.text = "Dine bivirkninger har blitt registrert.".localized
     steps += [summaryStep]
     
     return ORKOrderedTask(identifier: Identifier.SideEffectTask.rawValue, steps: steps)

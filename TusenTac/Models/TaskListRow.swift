@@ -70,9 +70,9 @@ enum TaskListRow: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .Weight:
-            return "SURVEY_DESCRIPTION".localized
+            return "Vektregistrering".localized
         case .SideEffect:
-            return "SLIDERS_DESCRIPTION".localized
+            return "Registrer bivirkninger".localized
         }
     }
     
