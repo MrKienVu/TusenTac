@@ -9,14 +9,30 @@
 import Foundation
 import UIKit
 
+let UserDefaults = NSUserDefaults.standardUserDefaults()
+
 struct Color {
-    static let primaryColor = UIColor(red: 0.22, green: 0.58, blue: 0.29, alpha: 1.0)
+    static let primaryColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
     static let secondaryColor = UIColor.lightGrayColor()
 }
 
+let Days: [Int: String] = [
+    0: "Mandag",
+    1: "Tirsdag",
+    2: "Onsdag",
+    3: "Torsdag",
+    4: "Fredag",
+    5: "Lørdag",
+    6: "Søndag"
+]
+
 struct UserDefaultKey {
     static let morningTime = "TusenTacMorningTime"
-    static let bedTime = "TusenTacBedTime"
-    static let dosage = "TusenTacDosage"
+    static let nightTime = "TusenTacNightTime"
+    static let mDosage = "TusenTacMorningDosage"
+    static let nDosage = "TusenTacNightDosage"
     
+    static let hasLaunchedBefore = "HasLaunchedBefore"
+    static let UUID = "UUID"
+    static let NotificationsEnabled = "NotificationsEnabled"
 }
