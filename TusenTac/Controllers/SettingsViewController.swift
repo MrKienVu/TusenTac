@@ -16,39 +16,31 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var dosageTextField: UITextField!
     
     @IBAction func morningTimeChanged(sender: AnyObject) {
-        defaults.setObject(
-            morningTimePicker.date,
-            forKey: UserDefaultKey.morningTime
-        )
+        defaults.setObject(morningTimePicker.date,forKey: UserDefaultKey.morningTime)
     }
     
     @IBAction func bedTimeChanged(sender: AnyObject) {
-        defaults.setObject(
-            bedTimePicker.date,
-            forKey: UserDefaultKey.bedTime
-        )
+        defaults.setObject(bedTimePicker.date, forKey: UserDefaultKey.bedTime)
     }
     
     @IBAction func dosageChanged(sender: AnyObject) {
-        defaults.setObject(
-            dosageTextField.text,
-            forKey: UserDefaultKey.dosage
-        )
+        defaults.setObject(dosageTextField.text,forKey: UserDefaultKey.dosage)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        morningTimePicker.setDate(
-            defaults.objectForKey(UserDefaultKey.morningTime) as! NSDate,
-            animated: true
-        )
+        if let morningTime = defaults.objectForKey(UserDefaultKey.morningTime) {
+            morningTimePicker.setDate(morningTime as! NSDate, animated: true)
+        }
         
-        bedTimePicker.setDate(
-            defaults.objectForKey(UserDefaultKey.bedTime) as! NSDate,
-            animated: true
-        )
+        if let bedTime = defaults.objectForKey(UserDefaultKey.bedTime) {
+            bedTimePicker.setDate(bedTime as! NSDate, animated: true)
+        }
         
-        dosageTextField.text = defaults.objectForKey(UserDefaultKey.dosage) as? String
+        if let dosage = defaults.objectForKey(UserDefaultKey.dosage) {
+            dosageTextField.text = dosage as? String
+        }
         
     }
     
@@ -56,17 +48,6 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }
 

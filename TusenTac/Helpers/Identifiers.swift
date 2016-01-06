@@ -50,6 +50,11 @@ enum Identifier: String {
     case TestStep1
     case TestStep2
     
+    // Eat Task
+    case EatInstruction
+    case EatTask
+    case EatCompletion
+    
     //PillTask
     case PillOptionStep
     case EatingStep
@@ -57,6 +62,7 @@ enum Identifier: String {
     case TookPillEarlierStep
     case TakeItLaterStep
     case DontWantPillStep
+    case PillCompletionStep
     case PillTask
     
     //form
@@ -67,6 +73,7 @@ enum Identifier: String {
     case FormItem03
     
     //weight
+    case WeightInstruction
     case WeightStep
     case WeightTask
     

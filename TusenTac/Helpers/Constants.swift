@@ -6,7 +6,6 @@
 //  Copyright © 2015 ingeborg ødegård oftedal. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 let UserDefaults = NSUserDefaults.standardUserDefaults()

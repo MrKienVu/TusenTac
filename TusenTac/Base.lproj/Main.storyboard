@@ -268,6 +268,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="settingsIcon" destination="HsA-1j-klH" id="tkn-5d-vAb"/>
                         <outlet property="tableView" destination="PrQ-DB-9e1" id="fb9-b9-VNk"/>
                     </connections>
                 </viewController>

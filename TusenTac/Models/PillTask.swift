@@ -10,44 +10,69 @@
 import Foundation
 import ResearchKit
 
-public var PillTask: ORKOrderedTask {
+public var PillTask: ORKNavigableOrderedTask {
     
     var steps = [ORKStep]()
     
-    let textChoiceOneText = NSLocalizedString("Tok pillen nå", comment: "")
-    let textChoiceTwoText = NSLocalizedString("Tok pillen tidligere", comment: "")
-    let textChoiceThreeText = NSLocalizedString("Ta pillen senere", comment: "")
-    let textChoiceThreeFour = NSLocalizedString("Vil ikke ta pillen", comment: "")
+    let textChoiceOneText = NSLocalizedString("✓\tTok medisinen nå", comment: "")
+    let textChoiceTwoText = NSLocalizedString("🕐\tTok medisinen tidligere", comment: "")
+    let textChoiceThreeText = NSLocalizedString("☓\tVil ikke ta medisinen", comment: "")
     
     // The text to display can be separate from the value coded for each choice:
     let textChoices = [
-        ORKTextChoice(text: textChoiceOneText, value: "choice_1"),
-        ORKTextChoice(text: textChoiceTwoText, value: "choice_2"),
-        ORKTextChoice(text: textChoiceThreeText, value: "choice_3"),
-        ORKTextChoice(text: textChoiceThreeFour, value: "choice_4")
+        ORKTextChoice(text: textChoiceOneText, value: "now"),
+        ORKTextChoice(text: textChoiceTwoText, value: "earlier"),
+        ORKTextChoice(text: textChoiceThreeText, value: "none")
     ]
     
     let pillOptionAnswer = ORKAnswerFormat.choiceAnswerFormatWithStyle(.SingleChoice, textChoices: textChoices)
     
-    let pillOptionStep = ORKQuestionStep(identifier: Identifier.PillOptionStep.rawValue, title: "", answer: pillOptionAnswer)
-    pillOptionStep.text = ""
+    let pillOptionStep = ORKQuestionStep(
+        identifier: Identifier.PillOptionStep.rawValue,
+        title: "Medisinregistrering",
+        answer: pillOptionAnswer
+    )
+    pillOptionStep.text = "Når tok du medisinen?"
+    pillOptionStep.optional = false
     
     steps+=[pillOptionStep]
     
-    let eatingTimeAnswer = ORKAnswerFormat.timeIntervalAnswerFormat()
+    /*let eatingTimeAnswer = ORKAnswerFormat.timeIntervalAnswerFormat()
     
     let eatingStep = ORKQuestionStep(identifier: Identifier.EatingStep.rawValue, title: "Når spiste du sist?", answer: eatingTimeAnswer)
     
     eatingStep.text = ""
     
-    steps+=[eatingStep]
+    steps+=[eatingStep]*/
     
-    let tookPillAnswer = ORKAnswerFormat.timeIntervalAnswerFormat()
-    let tookPillStep = ORKQuestionStep(identifier: Identifier.TookPillEarlierStep.rawValue, title: "Når tok du den?", answer: tookPillAnswer)
-    tookPillStep.text = ""
+    let tookPillEarlierAnswer = ORKAnswerFormat.timeOfDayAnswerFormat()
+    let tookPillEarlierStep = ORKQuestionStep(identifier: Identifier.TookPillEarlierStep.rawValue, title: "Når tok du den?", answer: tookPillEarlierAnswer)
+    tookPillEarlierStep.text = ""
+    tookPillEarlierStep.optional = false
     
-    steps += [tookPillStep]
+    steps += [tookPillEarlierStep]
     
-    return ORKOrderedTask(identifier: Identifier.IntroStep.rawValue, steps: steps)
+    // SUMMARY STEP
+    let pillCompletionStep = ORKCompletionStep(identifier: Identifier.PillCompletionStep.rawValue)
+    pillCompletionStep.title = "Ferdig!".localized
+    pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
+    steps += [pillCompletionStep]
+    
+    let pillTask = ORKNavigableOrderedTask(identifier: Identifier.PillTask.rawValue, steps: steps)
+    
+    let resultSelector = ORKResultSelector.init(resultIdentifier: pillOptionStep.identifier)
+    
+    let pillTakenNow: NSPredicate = ORKResultPredicate.predicateForChoiceQuestionResultWithResultSelector(resultSelector, expectedAnswerValue: "now")
+    let pillNotTaken: NSPredicate = ORKResultPredicate.predicateForChoiceQuestionResultWithResultSelector(resultSelector, expectedAnswerValue: "none")
+    
+    let predicateRule = ORKPredicateStepNavigationRule(resultPredicates: [pillTakenNow, pillNotTaken], destinationStepIdentifiers: [pillCompletionStep.identifier, pillCompletionStep.identifier], defaultStepIdentifier: nil, validateArrays: false)
+    
+    
+    pillTask.setNavigationRule(predicateRule, forTriggerStepIdentifier: pillOptionStep.identifier)
+    //pillTask.setNavigationRule(predicateRule2, forTriggerStepIdentifier: pillOptionStep.identifier)
+    
+    
+    
+    return pillTask
 
 }

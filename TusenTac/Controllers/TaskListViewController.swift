@@ -13,6 +13,8 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var settingsIcon: UIBarButtonItem!
+    
     let nettskjema = NettskjemaHandler(scheme: .SideEffects)
     
     enum TableViewCellIdentifier: String {
@@ -36,9 +38,10 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
+        animateSettingsIconWithDuration(1.7)
+        
         // Do any additional setup after loading the view.
     }
-    
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,9 +102,16 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         taskResultFinishedCompletionHandler?(taskViewController.result)
         
         self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
-        self.nettskjema.submit()
+        //self.nettskjema.submit()
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func animateSettingsIconWithDuration(duration: Double) {
+        let settingsView: UIView = settingsIcon.valueForKey("view") as! UIView
+        UIView.animateWithDuration(duration, animations: {
+            settingsView.transform = CGAffineTransformMakeRotation((90.0 * CGFloat(M_PI)) / 90.0)
+        })
     }
     
     override func didReceiveMemoryWarning() {

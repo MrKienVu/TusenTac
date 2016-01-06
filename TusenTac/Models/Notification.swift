@@ -6,7 +6,6 @@
 //  Copyright © 2016 ingeborg ødegård oftedal. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class Notification {
