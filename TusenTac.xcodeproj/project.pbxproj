@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32E04C8E1C3D18D6006AFB85 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C8D1C3D18D6006AFB85 /* InformationViewController.swift */; };
+		32E04C921C3D1AA8006AFB85 /* InformationPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C911C3D1AA8006AFB85 /* InformationPageContentViewController.swift */; };
+		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37F9DF1C240968000ABF26 /* AppDelegate.swift */; };
 		5F37F9E21C240968000ABF26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37F9E11C240968000ABF26 /* ViewController.swift */; };
 		5F37F9E51C240968000ABF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E31C240968000ABF26 /* Main.storyboard */; };
@@ -88,6 +91,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		32E04C8D1C3D18D6006AFB85 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		32E04C911C3D1AA8006AFB85 /* InformationPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPageContentViewController.swift; sourceTree = "<group>"; };
+		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5F37F9DC1C240968000ABF26 /* TusenTac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TusenTac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F37F9DF1C240968000ABF26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F37F9E11C240968000ABF26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				5F39E3DA1C240D5600133C86 /* Tasks */,
+				32E04C931C3D1F5E006AFB85 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,6 +248,8 @@
 				5F39E3E31C240E0400133C86 /* SettingsViewController.swift */,
 				5F39E3E51C240E2400133C86 /* TaskListViewController.swift */,
 				5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */,
+				32E04C8D1C3D18D6006AFB85 /* InformationViewController.swift */,
+				32E04C911C3D1AA8006AFB85 /* InformationPageContentViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -439,6 +448,7 @@
 				5F37F9E21C240968000ABF26 /* ViewController.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
+				32E04C921C3D1AA8006AFB85 /* InformationPageContentViewController.swift in Sources */,
 				5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
 				5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */,
@@ -447,8 +457,10 @@
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,
 				5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */,
 				5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */,
+				32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */,
 				5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */,
 				5F39E3E61C240E2400133C86 /* TaskListViewController.swift in Sources */,
+				32E04C8E1C3D18D6006AFB85 /* InformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

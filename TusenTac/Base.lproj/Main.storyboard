@@ -1,10 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wX0-K4-a92">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Information Page Content View Controller-->
+        <scene sceneID="4kW-fe-hEy">
+            <objects>
+                <viewController storyboardIdentifier="InformationPageContentViewController" id="j1W-xr-ahz" customClass="InformationPageContentViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gwa-Tm-0vf"/>
+                        <viewControllerLayoutGuide type="bottom" id="n6x-Dx-D69"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TW5-hI-jZS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpC-Cx-iUG">
+                                <rect key="frame" x="267" y="40" width="66" height="47.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-ni-fVD">
+                                <rect key="frame" x="50" y="319" width="500" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="vj1-w1-Kth"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ryx-oA-4De">
+                                <rect key="frame" x="251" y="552" width="98" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="BqE-A5-8Sk"/>
+                                    <constraint firstAttribute="height" constant="38" id="UJS-0D-H0P"/>
+                                </constraints>
+                                <state key="normal" title="Gi tilgang"/>
+                                <connections>
+                                    <action selector="permissionsClicked:" destination="j1W-xr-ahz" eventType="touchUpInside" id="RXf-VT-qkY"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HAd-xd-atQ">
+                                <rect key="frame" x="200" y="97" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6oK-Bq-WiM"/>
+                                    <constraint firstAttribute="height" constant="200" id="u4H-LA-cik"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ryx-oA-4De" firstAttribute="centerX" secondItem="TW5-hI-jZS" secondAttribute="centerX" id="5Ap-cm-Sng"/>
+                            <constraint firstItem="x7f-ni-fVD" firstAttribute="leading" secondItem="TW5-hI-jZS" secondAttribute="leadingMargin" constant="30" id="9wY-bm-5pa"/>
+                            <constraint firstItem="hpC-Cx-iUG" firstAttribute="centerX" secondItem="TW5-hI-jZS" secondAttribute="centerX" id="GKn-SF-xf3"/>
+                            <constraint firstItem="x7f-ni-fVD" firstAttribute="top" secondItem="HAd-xd-atQ" secondAttribute="bottom" constant="22" id="GhT-9g-4XV"/>
+                            <constraint firstItem="HAd-xd-atQ" firstAttribute="top" secondItem="hpC-Cx-iUG" secondAttribute="bottom" constant="10" id="XZT-dZ-pzh"/>
+                            <constraint firstItem="n6x-Dx-D69" firstAttribute="top" secondItem="Ryx-oA-4De" secondAttribute="bottom" constant="10" id="bi3-ZN-o6I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x7f-ni-fVD" secondAttribute="trailing" constant="30" id="gNA-LF-X7O"/>
+                            <constraint firstItem="x7f-ni-fVD" firstAttribute="centerX" secondItem="TW5-hI-jZS" secondAttribute="centerX" id="jOT-vX-Dl1"/>
+                            <constraint firstItem="hpC-Cx-iUG" firstAttribute="top" secondItem="gwa-Tm-0vf" secondAttribute="bottom" constant="20" id="tsi-hH-pE5"/>
+                            <constraint firstItem="HAd-xd-atQ" firstAttribute="centerX" secondItem="TW5-hI-jZS" secondAttribute="centerX" id="zSd-HM-XWf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="HAd-xd-atQ" id="HZJ-ij-Xnl"/>
+                        <outlet property="permissionButton" destination="Ryx-oA-4De" id="lSS-VK-jrC"/>
+                        <outlet property="textView" destination="x7f-ni-fVD" id="94G-ri-1oa"/>
+                        <outlet property="titleLabel" destination="hpC-Cx-iUG" id="dNZ-vN-anG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sVk-eq-3kp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1261" y="395"/>
+        </scene>
         <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -116,7 +189,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-726" y="117"/>
+            <point key="canvasLocation" x="-646" y="125"/>
+        </scene>
+        <!--Information View Controller-->
+        <scene sceneID="y33-Sd-8Su">
+            <objects>
+                <viewController id="wX0-K4-a92" customClass="InformationViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g7D-dW-mAE"/>
+                        <viewControllerLayoutGuide type="bottom" id="HVL-F2-bSb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O80-lq-IWD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAZ-XR-DTJ">
+                                <rect key="frame" x="223" y="550" width="154" height="30"/>
+                                <state key="normal" title="Konfigurer innstillinger"/>
+                                <connections>
+                                    <action selector="configureClicked:" destination="wX0-K4-a92" eventType="touchUpInside" id="xRY-5H-0Qw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pAZ-XR-DTJ" firstAttribute="centerX" secondItem="O80-lq-IWD" secondAttribute="centerX" id="QeL-iW-blR"/>
+                            <constraint firstItem="HVL-F2-bSb" firstAttribute="top" secondItem="pAZ-XR-DTJ" secondAttribute="bottom" constant="20" id="XV7-eP-QX5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="configureButton" destination="pAZ-XR-DTJ" id="oPG-UG-BV7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHz-Tm-n6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1876" y="71"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="1T6-zc-ODQ">
+            <objects>
+                <pageViewController storyboardIdentifier="InformationPageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="siB-G9-M12" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vYF-ds-bsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1261" y="-265"/>
         </scene>
         <!--Hjem-->
         <scene sceneID="5pb-jJ-4CF">
