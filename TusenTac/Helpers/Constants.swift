@@ -19,8 +19,8 @@ struct Color {
 struct UserDefaultKey {
     static let morningTime = "TusenTacMorningTime"
     static let nightTime = "TusenTacNightTime"
-    static let mDosage = "TusenTacMorningDosage"
-    static let nDosage = "TusenTacNightDosage"
+    static let morningDosage = "TusenTacMorningDosage"
+    static let nightDosage = "TusenTacNightDosage"
     
     static let hasLaunchedBefore = "HasLaunchedBefore"
     static let UUID = "UUID"

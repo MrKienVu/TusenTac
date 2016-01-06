@@ -7,10 +7,11 @@
 //
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    @IBOutlet weak var dosageTextField: UITextField!
     @IBOutlet weak var nightTimePicker: UIDatePicker!
     @IBOutlet weak var dosageLabel: UITextField!
     @IBOutlet weak var morningDayPicker: UIDatePicker!
@@ -22,19 +23,25 @@ class WelcomeViewController: UIViewController {
             let dosage = dosageLabel.text
             defaults.setObject(morningTime, forKey: UserDefaultKey.morningTime)
             defaults.setObject(bedTime, forKey: UserDefaultKey.nightTime)
-            defaults.setObject(dosage, forKey: UserDefaultKey.nDosage)
-            defaults.setObject(dosage, forKey: UserDefaultKey.mDosage)
+            defaults.setObject(dosage, forKey: UserDefaultKey.nightDosage)
+            defaults.setObject(dosage, forKey: UserDefaultKey.morningDosage)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dosageTextField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }
