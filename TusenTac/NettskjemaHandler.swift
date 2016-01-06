@@ -16,7 +16,7 @@ class NettskjemaHandler {
     let backgroundWebView: UIWebView
     
     enum SCHEME_TYPE: String {
-        case SideEffects    = "https://nettskjema.uio.no/answer/tusentac.html"
+        case SideEffects    = "https://nettskjema.uio.no/answer/bivirkninger-tusentac.html"
         //case Answer     = "https://jboss-utv.uio.no/nettskjema/answer/answer.html"
     }
     

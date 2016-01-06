@@ -13,7 +13,7 @@ import WebKit
 class NettskjemaView : UIView, WKNavigationDelegate, UIGestureRecognizerDelegate {
     
     var webView: WKWebView?
-    let url = NSURL(string: "https://nettskjema.uio.no/answer/tusentac.html")
+    let url = NSURL(string: "https://nettskjema.uio.no/answer/bivirkninger-tusentac.html")
     
     init() {
         super.init(frame: CGRectMake(0, 0, 350, 400))
