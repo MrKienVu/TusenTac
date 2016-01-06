@@ -14,7 +14,7 @@ class InformationViewController: UIViewController, UIPageViewControllerDataSourc
     let pageTitles = ["TusenTac", "Datalagring", "Personvern", "Påminnelser"]
     let pageImages = ["tusentac-logo", "tusentac-security", "tusentac-privacy", "tusentac-notification"]
     let pageTexts = [
-        "Velkommen til Min Dag! Dette forskningsprosjektet er i regi av NORMENT-senteret ved fakultetet for medisin, Universitetet i Oslo. På de neste sidene vil du kunne lese litt mer om hvordan vi håndterer datalagring osv..",
+        "Velkommen til TusenTac! Dette forskningsprosjektet er i regi av KLINMED ved fakultetet for medisin, Universitetet i Oslo. På de neste sidene vil du kunne lese litt mer om hvordan vi håndterer datalagring osv..",
         "All data du genererer vil bli lagret på Universitetet i Oslo sine sikre servere, og ingen andre enn forskere tilkoblet dette prosjektetet vil ha tilgang til dataene. Ingen data vil bli lagret lokalt på din enhet.",
         "For å ivareta ditt personvern, vil vi ikke samle inn noe informasjon som kan identifisere deg som person. Dette er viktig fordi blabla.",
         "Denne applikasjonen baserer seg på å gi deg påminnelser når du har ting du må gjøre i appen, som å fylle ut et kort spørreskjema. Det er derfor viktig at du tillater appen å gi deg påminnelser. Klikk på knappen nedenfor for å tillate påminnelser."

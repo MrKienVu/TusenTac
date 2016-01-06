@@ -24,7 +24,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-ni-fVD">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-ni-fVD">
                                 <rect key="frame" x="50" y="319" width="500" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -158,9 +158,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgm-z6-g8Y">
                                 <rect key="frame" x="275" y="550" width="51" height="30"/>
                                 <state key="normal" title="Bli med"/>
-                                <connections>
-                                    <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskList" id="nz0-3F-VI7"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -189,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-646" y="125"/>
+            <point key="canvasLocation" x="-640" y="1031"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="y33-Sd-8Su">
@@ -208,6 +205,7 @@
                                 <state key="normal" title="Konfigurer innstillinger"/>
                                 <connections>
                                     <action selector="configureClicked:" destination="wX0-K4-a92" eventType="touchUpInside" id="xRY-5H-0Qw"/>
+                                    <segue destination="bDs-ya-CcJ" kind="show" identifier="segueShowTaskList" id="AvO-so-KW3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -223,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHz-Tm-n6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1876" y="71"/>
+            <point key="canvasLocation" x="-650" y="49"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="1T6-zc-ODQ">
@@ -262,8 +260,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="a0O-ou-0N4">
-                        <barButtonItem key="rightBarButtonItem" title="Innstillinger" id="HsA-1j-klH">
+                    <navigationItem key="navigationItem" title="TusenTac" id="a0O-ou-0N4">
+                        <barButtonItem key="rightBarButtonItem" image="gear-icon" id="HsA-1j-klH">
                             <connections>
                                 <segue destination="7R5-F2-BwJ" kind="show" id="hpf-nA-ZQX"/>
                             </connections>
@@ -277,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="-17" y="267"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Innstillinger-->
         <scene sceneID="CKA-yT-2iF">
             <objects>
-                <viewController id="7R5-F2-BwJ" customClass="SettingsViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Innstillinger" id="7R5-F2-BwJ" customClass="SettingsViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zem-06-T7E"/>
                         <viewControllerLayoutGuide type="bottom" id="hw1-jz-iMJ"/>
@@ -390,4 +388,7 @@
             <point key="canvasLocation" x="-17" y="-518"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gear-icon" width="30" height="30"/>
+    </resources>
 </document>
