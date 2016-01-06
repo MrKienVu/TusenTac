@@ -21,8 +21,9 @@ class WelcomeViewController: UIViewController {
             let bedTime = nightTimePicker.date
             let dosage = dosageLabel.text
             defaults.setObject(morningTime, forKey: UserDefaultKey.morningTime)
-            defaults.setObject(bedTime, forKey: UserDefaultKey.bedTime)
-            defaults.setObject(dosage, forKey: UserDefaultKey.dosage)
+            defaults.setObject(bedTime, forKey: UserDefaultKey.nightTime)
+            defaults.setObject(dosage, forKey: UserDefaultKey.nDosage)
+            defaults.setObject(dosage, forKey: UserDefaultKey.mDosage)
         }
     }
     
