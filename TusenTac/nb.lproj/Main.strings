@@ -1,0 +1,126 @@
+
+/* Class = "UILabel"; text = "Påminnelser"; ObjectID = "0jp-3N-mOh"; */
+"0jp-3N-mOh.text" = "Påminnelser";
+
+/* Class = "UILabel"; text = "Når tar du morgenmedisinen?"; ObjectID = "1bh-PF-LWQ"; */
+"1bh-PF-LWQ.text" = "Når tar du morgenmedisinen?";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "2Yn-MM-i58"; */
+"2Yn-MM-i58.text" = "mg";
+
+/* Class = "UILabel"; text = "Morgendose"; ObjectID = "2sd-3W-izY"; */
+"2sd-3W-izY.text" = "Morgendose";
+
+/* Class = "UITextField"; placeholder = "200"; ObjectID = "4OF-M6-kE7"; */
+"4OF-M6-kE7.placeholder" = "200";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "50T-8b-lky"; */
+"50T-8b-lky.text" = "mg";
+
+/* Class = "UIViewController"; title = "Innstillinger"; ObjectID = "7R5-F2-BwJ"; */
+"7R5-F2-BwJ.title" = "Innstillinger";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "AdS-W3-b4k"; */
+"AdS-W3-b4k.text" = "Detail";
+
+/* Class = "UILabel"; text = "Jeg ønsker å ta den andre pillen klokken:"; ObjectID = "FNp-DZ-mLC"; */
+"FNp-DZ-mLC.text" = "Jeg ønsker å ta den andre pillen klokken:";
+
+/* Class = "UIViewController"; title = "Hjem"; ObjectID = "G7F-Vg-chc"; */
+"G7F-Vg-chc.title" = "Hjem";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "Gix-A9-geY"; */
+"Gix-A9-geY.text" = "mg";
+
+/* Class = "UILabel"; text = "Når tar du morgenmedisinen?"; ObjectID = "H6y-mk-TqM"; */
+"H6y-mk-TqM.text" = "Når tar du morgenmedisinen?";
+
+/* Class = "UILabel"; text = "Kveldsdose"; ObjectID = "Ijv-Kz-uKy"; */
+"Ijv-Kz-uKy.text" = "Kveldsdose";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "J8F-WZ-Z8D"; */
+"J8F-WZ-Z8D.text" = "mg";
+
+/* Class = "UILabel"; text = "Påminnelser"; ObjectID = "Mpo-QO-r73"; */
+"Mpo-QO-r73.text" = "Påminnelser";
+
+/* Class = "UILabel"; text = "Morgendose"; ObjectID = "OAu-J1-gG2"; */
+"OAu-J1-gG2.text" = "Morgendose";
+
+/* Class = "UILabel"; text = "Min dose:"; ObjectID = "PCl-4Z-v4a"; */
+"PCl-4Z-v4a.text" = "Min dose:";
+
+/* Class = "UIButton"; normalTitle = "Gi tilgang"; ObjectID = "Ryx-oA-4De"; */
+"Ryx-oA-4De.normalTitle" = "Gi tilgang";
+
+/* Class = "UILabel"; text = "Min dose:"; ObjectID = "UUQ-gJ-57b"; */
+"UUQ-gJ-57b.text" = "Min dose:";
+
+/* Class = "UILabel"; text = "Innstillinger"; ObjectID = "W2X-ks-KZR"; */
+"W2X-ks-KZR.text" = "Innstillinger";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Wko-go-sKx"; */
+"Wko-go-sKx.text" = "Detail";
+
+/* Class = "UITableViewSection"; headerTitle = "Påminnelser"; ObjectID = "XKE-rv-kmE"; */
+"XKE-rv-kmE.headerTitle" = "Påminnelser";
+
+/* Class = "UIButton"; normalTitle = "Bli med"; ObjectID = "Xgm-z6-g8Y"; */
+"Xgm-z6-g8Y.normalTitle" = "Bli med";
+
+/* Class = "UITextField"; placeholder = "200"; ObjectID = "YO6-6b-phR"; */
+"YO6-6b-phR.placeholder" = "200";
+
+/* Class = "UILabel"; text = "Når tar du kveldsmedisinen?"; ObjectID = "ZzJ-7E-o2T"; */
+"ZzJ-7E-o2T.text" = "Når tar du kveldsmedisinen?";
+
+/* Class = "UINavigationItem"; title = "TusenTac"; ObjectID = "a0O-ou-0N4"; */
+"a0O-ou-0N4.title" = "TusenTac";
+
+/* Class = "UILabel"; text = "Jeg ønsker å ta den første pillen klokken:"; ObjectID = "b92-QQ-1IW"; */
+"b92-QQ-1IW.text" = "Jeg ønsker å ta den første pillen klokken:";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "bFv-r3-hXg"; */
+"bFv-r3-hXg.text" = "Detail";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "bdW-hU-oi2"; */
+"bdW-hU-oi2.text" = "mg";
+
+/* Class = "UILabel"; text = "Kveldsdose"; ObjectID = "eW7-is-MZZ"; */
+"eW7-is-MZZ.text" = "Kveldsdose";
+
+/* Class = "UITextField"; placeholder = "200"; ObjectID = "f2X-Ob-Cl7"; */
+"f2X-Ob-Cl7.placeholder" = "200";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "guu-yK-w9q"; */
+"guu-yK-w9q.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "hpC-Cx-iUG"; */
+"hpC-Cx-iUG.text" = "Title";
+
+/* Class = "UITextField"; placeholder = "200"; ObjectID = "i4Y-9z-85e"; */
+"i4Y-9z-85e.placeholder" = "200";
+
+/* Class = "UILabel"; text = "Jeg ønsker å ta den første pillen klokken:"; ObjectID = "jic-JR-Fdn"; */
+"jic-JR-Fdn.text" = "Jeg ønsker å ta den første pillen klokken:";
+
+/* Class = "UILabel"; text = "Jeg ønsker å ta den andre pillen klokken:"; ObjectID = "mCq-7f-J16"; */
+"mCq-7f-J16.text" = "Jeg ønsker å ta den andre pillen klokken:";
+
+/* Class = "UIButton"; normalTitle = "Konfigurer innstillinger"; ObjectID = "pAZ-XR-DTJ"; */
+"pAZ-XR-DTJ.normalTitle" = "Konfigurer innstillinger";
+
+/* Class = "UITableViewController"; title = "Innstillinger"; ObjectID = "qqB-4u-Dka"; */
+"qqB-4u-Dka.title" = "Innstillinger";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "sYU-8X-N5l"; */
+"sYU-8X-N5l.title" = "Title";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "x7f-ni-fVD"; */
+"x7f-ni-fVD.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Når tar du kveldsmedisinen?"; ObjectID = "zTk-hS-rwA"; */
+"zTk-hS-rwA.text" = "Når tar du kveldsmedisinen?";
+
+/* Class = "UILabel"; text = "mg"; ObjectID = "ziF-16-uD4"; */
+"ziF-16-uD4.text" = "mg";
