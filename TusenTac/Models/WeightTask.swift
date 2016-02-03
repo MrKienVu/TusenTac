@@ -27,7 +27,15 @@ public var WeightTask: ORKOrderedTask {
     let questionStep1 = ORKQuestionStep(identifier: String(Identifier.WeightStep), title: "Registrer vekt", answer: questionStep1AnswerFormat)
     
     questionStep1.text = "Vennligst skriv inn din nåværende vekt nedenfor."
-    questionStep1.placeholder = "Forrige vekt".localized
+    
+    print("yolo \(UserDefaults.valueForKey("Weight"))")
+        
+    if let lastWeight = UserDefaults.valueForKey("Weight"){
+        questionStep1.placeholder = "\(lastWeight)" 
+    }
+    else {
+        questionStep1.placeholder = "Forrige vekt".localized
+    }
     
     steps += [questionStep1]
     

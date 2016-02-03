@@ -101,10 +101,32 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         */
         taskResultFinishedCompletionHandler?(taskViewController.result)
         
+        
+        let taskResult = taskViewController.result
+
+            if let stepResults = taskResult.results as? [ORKStepResult] {
+                for stepResult in stepResults {
+                    for result in stepResult.results! {
+                        if let questionStepResult = result as? ORKNumericQuestionResult {
+                            if let answer = questionStepResult.answer  {
+                                UserDefaults.setObject(answer, forKey: "Weight")
+                            }
+                        }
+                    }
+                }
+            }
+        
+        //print(UserDefaults.valueForKey("Weight"))
+        
         self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
         //self.nettskjema.submit()
         
+        
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getNumberOfStepsCompleted(results: [ORKResult]) -> Int {
+        return results.count
     }
     
     func animateSettingsIconWithDuration(duration: Double) {
@@ -118,5 +140,4 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }

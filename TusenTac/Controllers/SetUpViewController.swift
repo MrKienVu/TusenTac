@@ -64,6 +64,8 @@ class SetUpViewController: UITableViewController, UITextFieldDelegate {
         else if indexPath.section == 0 && indexPath.row == 5 { toggleDatepicker(2) } // nightTimePicker
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

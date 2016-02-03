@@ -116,6 +116,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //print(UserDefaults.valueForKey("Weight"))
+        
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
 
