@@ -34,7 +34,7 @@ public var WeightTask: ORKOrderedTask {
         questionStep1.placeholder = "\(lastWeight)" 
     }
     else {
-        questionStep1.placeholder = "Forrige vekt".localized
+        questionStep1.placeholder = "Skriv inn vekt".localized
     }
     
     steps += [questionStep1]
