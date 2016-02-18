@@ -39,6 +39,7 @@
 		5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */; };
 		5F3EB2A41C3E559C000710B3 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3EB2A31C3E559C000710B3 /* SetUpViewController.swift */; };
 		5F3EB2A91C3E5F2E000710B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3EB2AB1C3E5F2E000710B3 /* Localizable.strings */; };
+		5FB8EA8C1C75BDA2000E5F93 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EA8B1C75BDA2000E5F93 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		5F3EB2AC1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		5F3EB2AD1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5F3EB2AE1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5FB8EA8B1C75BDA2000E5F93 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				32E04C8D1C3D18D6006AFB85 /* InformationViewController.swift */,
 				32E04C911C3D1AA8006AFB85 /* InformationPageContentViewController.swift */,
 				5F3EB2A31C3E559C000710B3 /* SetUpViewController.swift */,
+				5FB8EA8B1C75BDA2000E5F93 /* CollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB8EA8C1C75BDA2000E5F93 /* CollectionViewController.swift in Sources */,
 				5F39E3DE1C240D6C00133C86 /* SideEffectTask.swift in Sources */,
 				5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */,
 				5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */,

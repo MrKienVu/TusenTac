@@ -12,17 +12,28 @@ import ResearchKit
 
 public var PillTask: ORKNavigableOrderedTask {
     
+    var lastDosageText = ""
+    
+    if let lastDosage = UserDefaults.valueForKey("LastDosageTime"){
+        lastDosageText = "Forrige dose tatt \(lastDosage as! String)"
+        //lastDosageText = lastDosage as! String
+        
+    }
+    else {
+        lastDosageText = ""
+    }
+    
     var steps = [ORKStep]()
     
     let textChoiceOneText = NSLocalizedString("✓\tTok medisinen nå", comment: "")
     let textChoiceTwoText = NSLocalizedString("🕐\tTok medisinen tidligere", comment: "")
-    let textChoiceThreeText = NSLocalizedString("☓\tVil ikke ta medisinen", comment: "")
+    
+    
     
     // The text to display can be separate from the value coded for each choice:
     let textChoices = [
         ORKTextChoice(text: textChoiceOneText, value: "now"),
-        ORKTextChoice(text: textChoiceTwoText, value: "earlier"),
-        ORKTextChoice(text: textChoiceThreeText, value: "none")
+        ORKTextChoice(text: textChoiceTwoText, value: "earlier")
     ]
     
     let pillOptionAnswer = ORKAnswerFormat.choiceAnswerFormatWithStyle(.SingleChoice, textChoices: textChoices)
@@ -32,7 +43,8 @@ public var PillTask: ORKNavigableOrderedTask {
         title: "Medisinregistrering",
         answer: pillOptionAnswer
     )
-    pillOptionStep.text = "Når tok du medisinen?"
+    pillOptionStep.text = "Når tok du medisinen? \n \(lastDosageText)"
+
     pillOptionStep.optional = false
     
     steps+=[pillOptionStep]

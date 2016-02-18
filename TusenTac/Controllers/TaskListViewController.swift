@@ -112,6 +112,11 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
                                 UserDefaults.setObject(answer, forKey: "Weight")
                             }
                         }
+                    /*    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
+                            if let timeAnswer = lastDosageTime.answer {
+                                UserDefaults.setObject(timeAnswer, forKey: "LastDosageTime")
+                            }
+                        }*/
                     }
                 }
             }

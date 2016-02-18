@@ -13,11 +13,11 @@ public var EatTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
     
-    let instructionStep = ORKInstructionStep(identifier: Identifier.EatInstruction.rawValue)
+   /* let instructionStep = ORKInstructionStep(identifier: Identifier.EatInstruction.rawValue)
     instructionStep.title = "Registrering av mat"
     instructionStep.text = "På den neste siden blir du spurt om å svare på når du sist spiste."
     instructionStep.image = UIImage(named: "tusentac-food")
-    steps.append(instructionStep)
+    steps.append(instructionStep) */
     
     
     

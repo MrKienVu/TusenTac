@@ -28,4 +28,5 @@ struct UserDefaultKey {
     static let StudyID = "StudyID"
     
     static let Weight = "weight"
+    static let lastDosageTime = "LastDosageTime"
 }
