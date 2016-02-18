@@ -1,24 +1,27 @@
 //
-//  TaskListViewController.swift
-//  TusenTac
+//  CollectionViewController.swift
+//  ColletionViewTest2
 //
-//  Created by ingeborg ødegård oftedal on 17/12/15.
-//  Copyright © 2015 Paul Philip Mitchell. All rights reserved.
+//  Created by ingeborg ødegård oftedal on 18/02/16.
+//  Copyright © 2016 ingeborg ødegård oftedal. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import ResearchKit
 
-class TaskListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ORKTaskViewControllerDelegate {
+
+private let reuseIdentifier = "Cell"
+
+class TaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ORKTaskViewControllerDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var collection: UICollectionView!
     
-    @IBOutlet weak var settingsIcon: UIBarButtonItem!
+ 
+    let logos = ["copier", "crescentmoon","utensils", "cursor"]
     
-    let nettskjema = NettskjemaHandler(scheme: .SideEffects)
-    
-    enum TableViewCellIdentifier: String {
-        case Default = "Default"
+    enum CollectionViewCellIdentifier: String {
+        case Default = "Cell"
     }
     
     // MARK: Properties
@@ -35,33 +38,159 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
         
-        animateSettingsIconWithDuration(1.7)
+        // Register cell classes
+        // self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        collection.dataSource = self
+        collection.delegate = self
+        
+        
+        collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        
+        
+        collection.backgroundColor = UIColor(red: 0.9294, green: 0.9294, blue: 0.9294, alpha: 1)
+ 
+        
+        //animateSettingsIconWithDuration(1.7)
+        
+        // Do any additional setup after loading the view.
         
         // Do any additional setup after loading the view.
     }
     
-    // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskListRows.count
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifier.Default.rawValue, forIndexPath: indexPath)
+    /*
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    }
+    */
+    
+    // MARK: UICollectionViewDataSource
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return taskListRows.count
+       
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
+        
         
         let taskListRow = taskListRows[indexPath.row]
         
-        cell.textLabel!.text = "\(taskListRow)"
+        let logoFont = UIFont(name: "SSGizmo", size: 60)
+        
+        cell.iconLabel.font = logoFont
+        cell.iconLabel.text = logos[indexPath.row]
+        
+       // cell.taskLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        //cell.taskLabel?.numberOfLines = 0
+        
+        
+        cell.taskLabel.text = "\(taskListRow)"
+        cell.taskLabel.sizeToFit()
+        
+       // cell.textLabel!.text = "\(taskListRow)"
+        
+        // Configure the cell
         
         return cell
     }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: (self.view.frame.width/2)-5, height: (self.view.frame.height/2.5)-20)
+    }
     
-    // MARK: UITableViewDelegate
+    // MARK: UICollectionViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    /*
+    // Uncomment this method to specify if the specified item should be highlighted during tracking
+    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+    }
+    */
+    
+    /*
+    // Uncomment this method to specify if the specified item should be selected
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+    }
+    */
+    
+    /*
+    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return false
+    }
+    
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+    return false
+    }
+
+    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+        
+    } */
+    
+    // MARK: ORKTaskViewControllerDelegate
+    
+    func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
+        /*
+        The `reason` passed to this method indicates why the task view
+        controller finished: Did the user cancel, save, or actually complete
+        the task; or was there an error?
+        
+        The actual result of the task is on the `result` property of the task
+        view controller.
+        */
+        taskResultFinishedCompletionHandler?(taskViewController.result)
+        
+        
+        let taskResult = taskViewController.result
+        
+        if let stepResults = taskResult.results as? [ORKStepResult] {
+            for stepResult in stepResults {
+                for result in stepResult.results! {
+                    if let questionStepResult = result as? ORKNumericQuestionResult {
+                        if let answer = questionStepResult.answer  {
+                            UserDefaults.setObject(answer, forKey: "Weight")
+                        }
+                    }
+                    /*    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
+                    if let timeAnswer = lastDosageTime.answer {
+                    UserDefaults.setObject(timeAnswer, forKey: "LastDosageTime")
+                    }
+                    }*/
+                }
+            }
+        }
+        
+        //print(UserDefaults.valueForKey("Weight"))
+        
+       /* self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result) */
+        //self.nettskjema.submit()
+        
+        
+        taskViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
         // Present the task view controller that the user asked for.
         let taskListRow = taskListRows[indexPath.row]
@@ -86,63 +215,18 @@ class TaskListViewController: UIViewController, UITableViewDataSource, UITableVi
         the task view controller is presented.
         */
         presentViewController(taskViewController, animated: true, completion: nil)
-    }
-    
-    // MARK: ORKTaskViewControllerDelegate
-    
-    func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
-        /*
-        The `reason` passed to this method indicates why the task view
-        controller finished: Did the user cancel, save, or actually complete
-        the task; or was there an error?
         
-        The actual result of the task is on the `result` property of the task
-        view controller.
-        */
-        taskResultFinishedCompletionHandler?(taskViewController.result)
-        
-        
-        let taskResult = taskViewController.result
-
-            if let stepResults = taskResult.results as? [ORKStepResult] {
-                for stepResult in stepResults {
-                    for result in stepResult.results! {
-                        if let questionStepResult = result as? ORKNumericQuestionResult {
-                            if let answer = questionStepResult.answer  {
-                                UserDefaults.setObject(answer, forKey: "Weight")
-                            }
-                        }
-                    /*    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                            if let timeAnswer = lastDosageTime.answer {
-                                UserDefaults.setObject(timeAnswer, forKey: "LastDosageTime")
-                            }
-                        }*/
-                    }
-                }
-            }
-        
-        //print(UserDefaults.valueForKey("Weight"))
-        
-        self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
-        //self.nettskjema.submit()
-        
-        
-        taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func getNumberOfStepsCompleted(results: [ORKResult]) -> Int {
         return results.count
     }
     
-    func animateSettingsIconWithDuration(duration: Double) {
+  /*  func animateSettingsIconWithDuration(duration: Double) {
         let settingsView: UIView = settingsIcon.valueForKey("view") as! UIView
         UIView.animateWithDuration(duration, animations: {
             settingsView.transform = CGAffineTransformMakeRotation((90.0 * CGFloat(M_PI)) / 90.0)
         })
-    }
+    }*/
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

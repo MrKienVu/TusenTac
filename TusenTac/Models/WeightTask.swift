@@ -31,7 +31,8 @@ public var WeightTask: ORKOrderedTask {
     print("yolo \(UserDefaults.valueForKey("Weight"))")
         
     if let lastWeight = UserDefaults.valueForKey("Weight"){
-        questionStep1.placeholder = "\(lastWeight)" 
+        questionStep1.placeholder = "\(lastWeight)"
+        questionStep1.optional = true
     }
     else {
         questionStep1.placeholder = "Skriv inn vekt".localized
