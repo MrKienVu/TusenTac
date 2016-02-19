@@ -441,7 +441,6 @@
         <!--Information View Controller-->
         <scene sceneID="y33-Sd-8Su">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XHz-Tm-n6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wX0-K4-a92" customClass="InformationViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7D-dW-mAE"/>
@@ -470,6 +469,7 @@
                         <outlet property="configureButton" destination="pAZ-XR-DTJ" id="oPG-UG-BV7"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHz-Tm-n6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1404" y="1113"/>
         </scene>

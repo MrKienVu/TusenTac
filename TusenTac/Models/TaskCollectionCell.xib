@@ -25,7 +25,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bQ-8B-nt4">
-                        <rect key="frame" x="45" y="149" width="58.5" height="29"/>
+                        <rect key="frame" x="12" y="149" width="125" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="125" id="vSf-iS-J9I"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
