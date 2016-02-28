@@ -12,6 +12,7 @@ class TaskCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var iconLabel: UILabel!
 
+    @IBOutlet weak var lastDosageLabel: UILabel!
     
     @IBOutlet weak var taskLabel: UILabel!
     

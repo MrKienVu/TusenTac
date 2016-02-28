@@ -97,21 +97,21 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let taskListRow = taskListRows[indexPath.row]
         
+        print(taskListRows)
+        print(taskListRow)
+        
+        
         let logoFont = UIFont(name: "SSGizmo", size: 60)
         
         cell.iconLabel.font = logoFont
         cell.iconLabel.text = logos[indexPath.row]
         
-       // cell.taskLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //cell.taskLabel?.numberOfLines = 0
+       
         
         
         cell.taskLabel.text = "\(taskListRow)"
         cell.taskLabel.sizeToFit()
         
-       // cell.textLabel!.text = "\(taskListRow)"
-        
-        // Configure the cell
         
         return cell
     }
@@ -190,13 +190,16 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         // Present the task view controller that the user asked for.
         let taskListRow = taskListRows[indexPath.row]
         
         // Create a task from the `TaskListRow` to present in the `ORKTaskViewController`.
         let task = taskListRow.representedTask
+        
+        print(indexPath.item)
+        print(indexPath.row)
         
         /*
         Passing `nil` for the `taskRunUUID` lets the task view controller
