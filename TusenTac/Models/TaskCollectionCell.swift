@@ -14,6 +14,7 @@ class TaskCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var taskLabel: UILabel!
     
+    @IBOutlet weak var lastDosageLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

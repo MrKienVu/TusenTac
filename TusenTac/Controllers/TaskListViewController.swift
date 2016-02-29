@@ -120,14 +120,18 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let taskListRow = taskListRows[indexPath.row]
         
-        
-        
+        if(indexPath.row == 0){
+            cell.lastDosageLabel.text = "Forrige dose tatt 3.1.15 kl 09:15"
+        }
+        else {
+            cell.lastDosageLabel.hidden = true;
+        }
         
         //let logoFont = UIFont(name: "SSGizmo", size: 60)
         
         cell.iconLabel.text = logos[indexPath.row]
-        
         cell.taskLabel.text = "\(taskListRow)"
+        
         cell.taskLabel.sizeToFit()
         
         
@@ -215,6 +219,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         // Create a task from the `TaskListRow` to present in the `ORKTaskViewController`.
         let task = taskListRow.representedTask
+        
+        
         
         /*
         Passing `nil` for the `taskRunUUID` lets the task view controller
