@@ -39,6 +39,8 @@
 		5F3E047D1C75CE2F002798F9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */; };
 		5F3EB2A41C3E559C000710B3 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3EB2A31C3E559C000710B3 /* SetUpViewController.swift */; };
 		5F3EB2A91C3E5F2E000710B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3EB2AB1C3E5F2E000710B3 /* Localizable.strings */; };
+		5F7656221C849FDC00C39A0C /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656211C849FDC00C39A0C /* FooterView.swift */; };
+		5F7656261C84E40300C39A0C /* ss-gizmo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3E04811C75E1A8002798F9 /* ss-gizmo.otf */; };
 		5FB8EA8C1C75BDA2000E5F93 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EA8B1C75BDA2000E5F93 /* CollectionViewController.swift */; };
 		5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
 		5FB8EAD41C75C78E000E5F93 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
@@ -138,6 +140,7 @@
 		5F3EB2AC1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		5F3EB2AD1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5F3EB2AE1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5F7656211C849FDC00C39A0C /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		5FB8EA8B1C75BDA2000E5F93 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCollectionCell.xib; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 				32E04C961C3D743C006AFB85 /* EatTask.swift */,
 				5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */,
 				5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */,
+				5F7656211C849FDC00C39A0C /* FooterView.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -448,6 +452,7 @@
 				5F37FA0E1C24099D000ABF26 /* .gitignore in Resources */,
 				5F3EB2A91C3E5F2E000710B3 /* Localizable.strings in Resources */,
 				5F37F9EA1C240968000ABF26 /* LaunchScreen.storyboard in Resources */,
+				5F7656261C84E40300C39A0C /* ss-gizmo.otf in Resources */,
 				5F37F9E71C240968000ABF26 /* Assets.xcassets in Resources */,
 				5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */,
 				5F37F9E51C240968000ABF26 /* Main.storyboard in Resources */,
@@ -478,6 +483,7 @@
 				5FB8EA8C1C75BDA2000E5F93 /* CollectionViewController.swift in Sources */,
 				5F39E3DE1C240D6C00133C86 /* SideEffectTask.swift in Sources */,
 				5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */,
+				5F7656221C849FDC00C39A0C /* FooterView.swift in Sources */,
 				5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */,
 				5F39E3E21C240DE700133C86 /* WelcomeViewController.swift in Sources */,
 				5F3E047D1C75CE2F002798F9 /* TaskListViewController.swift in Sources */,

@@ -13,11 +13,11 @@ public var WeightTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
     
-    let weightInstruction = ORKInstructionStep(identifier: Identifier.WeightInstruction.rawValue)
+  /*  let weightInstruction = ORKInstructionStep(identifier: Identifier.WeightInstruction.rawValue)
     weightInstruction.title = "Vektregistrering"
     weightInstruction.text = "På den neste siden blir du spurt om å skrive inn din nåværende vekt."
     weightInstruction.image = UIImage(named: "tusentac-scale")
-    steps.append(weightInstruction)
+    steps.append(weightInstruction) */
     
     // This answer format will display a unit in-line with the numeric entry field.
     //husk å legg inn localized strenger
@@ -28,11 +28,10 @@ public var WeightTask: ORKOrderedTask {
     
     questionStep1.text = "Vennligst skriv inn din nåværende vekt nedenfor."
     
-    print("yolo \(UserDefaults.valueForKey("Weight"))")
-        
+    
     if let lastWeight = UserDefaults.valueForKey("Weight"){
         questionStep1.placeholder = "\(lastWeight)"
-        questionStep1.optional = true
+       
     }
     else {
         questionStep1.placeholder = "Skriv inn vekt".localized

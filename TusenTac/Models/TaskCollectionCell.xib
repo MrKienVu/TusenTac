@@ -33,12 +33,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5J-sQ-wHR">
-                        <rect key="frame" x="53" y="163" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -58,7 +52,6 @@
             </variation>
             <connections>
                 <outlet property="iconLabel" destination="VgF-7g-zEZ" id="4IT-ED-yas"/>
-                <outlet property="lastDosageLabel" destination="N5J-sQ-wHR" id="5wU-zC-0Gn"/>
                 <outlet property="taskLabel" destination="6bQ-8B-nt4" id="n1E-Vd-wOF"/>
             </connections>
             <point key="canvasLocation" x="135" y="333"/>

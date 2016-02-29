@@ -18,7 +18,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet var collection: UICollectionView!
     
  
-    let logos = ["copier", "crescentmoon","utensils", "cursor"]
+    let logos = ["medicalcross", "crescentmoon","utensils", "cursor"]
     
     enum CollectionViewCellIdentifier: String {
         case Default = "Cell"
@@ -67,6 +67,28 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Dispose of any resources that can be recreated.
     }
     
+    func collectionView(collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+            //1
+            switch kind {
+                //2
+            case UICollectionElementKindSectionFooter:
+                //3
+                let footerView =
+                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                    withReuseIdentifier: "UIOFooterView",
+                    forIndexPath: indexPath)
+                    as! FooterView
+                
+                return footerView
+            default:
+                //4
+                assert(false, "Unexpected element kind")
+            }
+    }
+    
+    
     /*
     // MARK: - Navigation
     
@@ -78,6 +100,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     */
     
     // MARK: UICollectionViewDataSource
+
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -97,17 +120,12 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let taskListRow = taskListRows[indexPath.row]
         
-        print(taskListRows)
-        print(taskListRow)
         
         
-        let logoFont = UIFont(name: "SSGizmo", size: 60)
         
-        cell.iconLabel.font = logoFont
+        //let logoFont = UIFont(name: "SSGizmo", size: 60)
+        
         cell.iconLabel.text = logos[indexPath.row]
-        
-       
-        
         
         cell.taskLabel.text = "\(taskListRow)"
         cell.taskLabel.sizeToFit()
@@ -197,9 +215,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         // Create a task from the `TaskListRow` to present in the `ORKTaskViewController`.
         let task = taskListRow.representedTask
-        
-        print(indexPath.item)
-        print(indexPath.row)
         
         /*
         Passing `nil` for the `taskRunUUID` lets the task view controller
