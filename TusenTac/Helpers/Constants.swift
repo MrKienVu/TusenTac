@@ -21,11 +21,12 @@ struct UserDefaultKey {
     static let nightTime = "TusenTacNightTime"
     static let morningDosage = "TusenTacMorningDosage"
     static let nightDosage = "TusenTacNightDosage"
-    
+
     static let hasLaunchedBefore = "HasLaunchedBefore"
     static let UUID = "UUID"
-    static let NotificationsEnabled = "NotificationsEnabled"
     static let StudyID = "StudyID"
+    static let NotificationsEnabled = "NotificationsEnabled"
+    static let CompletedOnboarding = "CompletedOnboarding"
     
     static let Weight = "weight"
     static let lastDosageTime = "LastDosageTime"

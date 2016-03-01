@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.tintColor = Color.primaryColor
         
-        let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
+      /*  let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
         if !hasLaunchedBefore  {
             print("First launch, storing UUID and hasLaunched-flag in UserDefaults")
             let uuid = NSUUID().UUIDString
@@ -27,9 +27,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.setObject(uuid, forKey: UserDefaultKey.UUID)
             UserDefaults.setBool(true, forKey: UserDefaultKey.hasLaunchedBefore)
             print("Stored user ID \(uuid) in UserDefaults")
+        } */
+        
+        let completedOnboarding = UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding)
+        
+        let onboarding = UIStoryboard(name: "Onboarding", bundle: nil)
+        let onboardingVC = onboarding.instantiateInitialViewController()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = main.instantiateInitialViewController()
+        
+        window?.rootViewController = completedOnboarding ? mainVC : onboardingVC
+        
+        let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
+        if !hasLaunchedBefore  {
+            let uuid = NSUUID().UUIDString
+            UserDefaults.setObject(uuid, forKey: UserDefaultKey.UUID)
+            print("Stored user ID \(uuid) in UserDefaults")
+            
+            ORKPasscodeViewController.removePasscodeFromKeychain()
+            print("Removed passcode from Keychain")
+            
+            UserDefaults.setBool(true, forKey: UserDefaultKey.hasLaunchedBefore)
+            print("HasLaunched flag enabled in UserDefaults")
+            
         }
         
+        lock()
+        
         return true
+    }
+    
+    func lock() {
+        guard ORKPasscodeViewController.isPasscodeStoredInKeychain()
+            && !(window?.rootViewController?.presentedViewController is ORKPasscodeViewController)
+            && UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding)
+            else { return }
+        
+        window?.makeKeyAndVisible()
+        
+        let passcodeVC = ORKPasscodeViewController.passcodeAuthenticationViewControllerWithText("Velkommen tilbake til Min Dag.", delegate: self) as! ORKPasscodeViewController
+        window?.rootViewController?.presentViewController(passcodeVC, animated: false, completion: nil)
     }
     
     // MARK: Notification delegates
@@ -47,6 +84,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(notification.alertBody)
     }
     
+   /* func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        let type = notification.userInfo!["type"] as! String
+        
+        application.applicationIconBadgeNumber = 0
+        
+        if identifier == "GO_ACTION" {
+            if      type == "dailySurvey"   { NSNotificationCenter.defaultCenter().postNotificationName("presentDailySurvey", object: nil) }
+            else if type == "weeklySurvey"  { NSNotificationCenter.defaultCenter().postNotificationName("presentWeeklySurvey", object: nil) }
+        }
+        
+        completionHandler()
+    }*/
+    
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         
         if identifier == "editList" {
@@ -58,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         completionHandler()
     }
+
     
     // MARK: Other lifecycle delegate methods
 
@@ -83,4 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
-
+extension AppDelegate: ORKPasscodeDelegate {
+    func passcodeViewControllerDidFinishWithSuccess(viewController: UIViewController) {
+            viewController.dismissViewControllerAnimated(true, completion: nil)
+            
+    }
+        
+    func passcodeViewControllerDidFailAuthentication(viewController: UIViewController) {
+            // Todo
+    }
+}

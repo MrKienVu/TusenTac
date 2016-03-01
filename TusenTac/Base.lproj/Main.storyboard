@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wX0-K4-a92">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vJe-6o-HT2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -9,7 +9,7 @@
         <!--Information Page Content View Controller-->
         <scene sceneID="4kW-fe-hEy">
             <objects>
-                <viewController storyboardIdentifier="InformationPageContentViewController" id="j1W-xr-ahz" customClass="InformationPageContentViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationPageContentViewController" id="j1W-xr-ahz" customClass="InformationPageContentViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gwa-Tm-0vf"/>
                         <viewControllerLayoutGuide type="bottom" id="n6x-Dx-D69"/>
@@ -81,7 +81,7 @@
         <!--Set Up View Controller-->
         <scene sceneID="jzT-FW-vi3">
             <objects>
-                <tableViewController id="vmY-Ec-7qE" customClass="SetUpViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vmY-Ec-7qE" customClass="SetUpViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cLX-Ch-nhE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -346,9 +346,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q04-g6-CSA">
                                                     <rect key="frame" x="254" y="11" width="30" height="30"/>
                                                     <state key="normal" title="Test"/>
-                                                    <connections>
-                                                        <segue destination="vJe-6o-HT2" kind="show" id="Dmi-9v-Fee"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -383,7 +380,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDt-ec-uer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-858" y="1099"/>
+            <point key="canvasLocation" x="-1022" y="1075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x2F-LW-1PT">
@@ -405,7 +402,7 @@
         <!--Task List View Controller-->
         <scene sceneID="jNQ-E6-TfC">
             <objects>
-                <viewController id="4Qm-H7-6p7" customClass="TaskListViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Qm-H7-6p7" customClass="TaskListViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="X6Q-am-I9H">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -416,7 +413,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="p7a-mF-63z" customClass="TaskCollectionCell" customModule="TusenTac" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="p7a-mF-63z" customClass="TaskCollectionCell" customModule="MinDag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -426,7 +423,7 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="UIOFooterView" id="r7a-oY-v2X" customClass="FooterView" customModule="TusenTac" customModuleProvider="target">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="UIOFooterView" id="r7a-oY-v2X" customClass="FooterView" customModule="MinDag" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="114" width="600" height="80"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -448,7 +445,11 @@
                         </collectionReusableView>
                     </collectionView>
                     <navigationItem key="navigationItem" id="kFT-o4-t5C">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="vke-8P-35C"/>
+                        <barButtonItem key="rightBarButtonItem" image="gear-icon" id="vke-8P-35C">
+                            <connections>
+                                <segue destination="qqB-4u-Dka" kind="show" id="IPN-Ae-6b5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -462,7 +463,7 @@
         <!--Information View Controller-->
         <scene sceneID="y33-Sd-8Su">
             <objects>
-                <viewController id="wX0-K4-a92" customClass="InformationViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wX0-K4-a92" customClass="InformationViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7D-dW-mAE"/>
                         <viewControllerLayoutGuide type="bottom" id="HVL-F2-bSb"/>
@@ -476,7 +477,6 @@
                                 <state key="normal" title="Konfigurer innstillinger"/>
                                 <connections>
                                     <action selector="configureClicked:" destination="wX0-K4-a92" eventType="touchUpInside" id="xRY-5H-0Qw"/>
-                                    <segue destination="vmY-Ec-7qE" kind="show" identifier="segueShowSetUp" id="yQp-zO-7Nk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -505,7 +505,7 @@
         <!--Hjem-->
         <scene sceneID="5pb-jJ-4CF">
             <objects>
-                <viewController title="Hjem" id="G7F-Vg-chc" customClass="TaskListViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Hjem" id="G7F-Vg-chc" customClass="TaskListViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KS7-2D-P60"/>
                         <viewControllerLayoutGuide type="bottom" id="vCn-Dq-G69"/>
@@ -532,11 +532,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="TusenTac" id="a0O-ou-0N4">
-                        <barButtonItem key="rightBarButtonItem" image="gear-icon" id="HsA-1j-klH">
-                            <connections>
-                                <segue destination="qqB-4u-Dka" kind="show" id="9Pg-mt-5z5"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="gear-icon" id="HsA-1j-klH"/>
                     </navigationItem>
                     <connections>
                         <outlet property="settingsIcon" destination="HsA-1j-klH" id="tkn-5d-vAb"/>
@@ -566,7 +562,7 @@
         <!--Innstillinger-->
         <scene sceneID="r1x-jG-CSd">
             <objects>
-                <tableViewController title="Innstillinger" id="qqB-4u-Dka" customClass="SettingsViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Innstillinger" id="qqB-4u-Dka" customClass="SettingsViewController" customModule="MinDag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WF1-Sb-HlL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -781,30 +777,6 @@
                                                     <exclude reference="hB2-xp-TAc"/>
                                                 </mask>
                                             </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Informasjon" id="9QD-97-qdS">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="V6w-C6-RHg">
-                                        <rect key="frame" x="0.0" y="596" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V6w-C6-RHg" id="XrI-1W-6Lo">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Informasjon om prosjektet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrZ-N5-2dc">
-                                                    <rect key="frame" x="8" y="11" width="200" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="RrZ-N5-2dc" firstAttribute="centerY" secondItem="XrI-1W-6Lo" secondAttribute="centerY" id="Vxc-qG-Vsb"/>
-                                                <constraint firstItem="RrZ-N5-2dc" firstAttribute="leading" secondItem="XrI-1W-6Lo" secondAttribute="leadingMargin" constant="8" id="qCe-Hz-sky"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
