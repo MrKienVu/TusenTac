@@ -17,8 +17,14 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     @IBOutlet var collection: UICollectionView!
     
- 
-    let logos = ["medicalcross", "crescentmoon","utensils", "cursor"]
+    @IBOutlet var medication: UIImageView!
+    @IBOutlet var eating: UIImageView!
+    @IBOutlet var weight: UIImageView!
+    @IBOutlet var sideEffects: UIImageView!
+    
+    var logos = [UIImage]()
+    
+   // logos = ["medication", "eating", "side-effects", "weight"];
     
     enum CollectionViewCellIdentifier: String {
         case Default = "Cell"
@@ -44,12 +50,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Register cell classes
         // self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
+        
         collection.dataSource = self
         collection.delegate = self
-        
-        
+  
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.9294, green: 0.9294, blue: 0.9294, alpha: 1)
         
         
         collection.backgroundColor = UIColor(red: 0.9294, green: 0.9294, blue: 0.9294, alpha: 1)
@@ -117,6 +126,24 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
+        let med = "medication"
+        let img = UIImage(named: med)
+        let eat = "eating"
+        let img2 = UIImage(named: eat)
+        let weight = "weight"
+        let img3 = UIImage(named: weight)
+        let side = "side-effects"
+        let img4 = UIImage(named: side)
+        
+       // let imageView = UIImageView(image: img)
+        
+        
+     //   medication.image = UIImageView(named:"medication")
+        logos.append(img!)
+        logos.append(img2!)
+        logos.append(img3!)
+        logos.append(img4!)
+        
         
         let taskListRow = taskListRows[indexPath.row]
         
@@ -129,7 +156,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         //let logoFont = UIFont(name: "SSGizmo", size: 60)
         
-        cell.iconLabel.text = logos[indexPath.row]
+        cell.iconImage.image = logos[indexPath.row]
+    //    cell.iconLabel.text = logos[indexPath.row]
         cell.taskLabel.text = "\(taskListRow)"
         
         cell.taskLabel.sizeToFit()

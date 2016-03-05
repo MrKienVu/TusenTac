@@ -10,11 +10,11 @@ import UIKit
 
 class TaskCollectionCell: UICollectionViewCell {
     
-    @IBOutlet weak var iconLabel: UILabel!
-    
     @IBOutlet weak var taskLabel: UILabel!
     
     @IBOutlet weak var lastDosageLabel: UILabel!
+    
+    @IBOutlet weak var iconImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

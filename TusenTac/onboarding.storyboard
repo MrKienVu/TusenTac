@@ -74,7 +74,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-yj-JFG">
                                 <rect key="frame" x="214.5" y="87" width="171.5" height="140"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
-                                <color key="textColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fyll inn din studie ID i feltene nedenfor. Du kan ikke gå videre før feltene er samstemte." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLj-3X-Pzw">
@@ -162,7 +162,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUh-7P-8hw">
                                 <rect key="frame" x="4.5" y="83" width="591.5" height="140"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
-                                <color key="textColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Denne applikasjonen baserer seg på å gi deg påminnelser når du har ting du må gjøre i appen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX5-HY-YVU">
@@ -176,7 +176,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slV-Rd-OVz">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="aro-iy-Glt"/>
                                 </constraints>
@@ -192,7 +192,7 @@
                                 <rect key="frame" x="277" y="513" width="46" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Ikke nå">
-                                    <color key="titleColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="7zn-Lg-wdy" kind="show" id="ivZ-9M-Vm7">
@@ -202,7 +202,7 @@
                             </button>
                             <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-H6-IRV">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="JZq-KI-nU6"/>
                                     <constraint firstAttribute="height" constant="50" id="RdB-OK-s26"/>
@@ -299,12 +299,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="private" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isl-iE-X93">
                                 <rect key="frame" x="118" y="83" width="364.5" height="140"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
-                                <color key="textColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-A9-b4j">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gf9-vT-gI8"/>
                                 </constraints>
@@ -318,7 +318,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIx-Hl-22r">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UxI-Yt-oF4"/>
                                 </constraints>
@@ -334,7 +334,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdq-tV-XM7">
                                 <rect key="frame" x="226" y="512" width="148" height="30"/>
                                 <state key="normal" title="Ønsker ikke app kode">
-                                    <color key="titleColor" red="1" green="0.68235294120000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="notNowClicked:" destination="7zn-Lg-wdy" eventType="touchUpInside" id="Wz5-G6-NLf"/>

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ResearchKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let completedOnboarding = UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding)
         
-        let onboarding = UIStoryboard(name: "Onboarding", bundle: nil)
+        let onboarding = UIStoryboard(name: "onboarding", bundle: nil)
         let onboardingVC = onboarding.instantiateInitialViewController()
         let main = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = main.instantiateInitialViewController()
