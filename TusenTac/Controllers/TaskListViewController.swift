@@ -93,7 +93,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                 return footerView
             default:
                 //4
-                assert(false, "Unexpected element kind")
+                fatalError("Unexpected element kind")
             }
     }
     

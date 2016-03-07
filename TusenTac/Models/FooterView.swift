@@ -11,4 +11,5 @@ import UIKit
 class FooterView: UICollectionReusableView {
 
     @IBOutlet weak var uioLogo: UIImageView!
+
 }
