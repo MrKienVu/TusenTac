@@ -55,13 +55,13 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.delegate = self
   
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.title = "TusenTac"
+        /*self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barStyle = .Black
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.9294, green: 0.9294, blue: 0.9294, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1) */
         
         
-        collection.backgroundColor = UIColor(red: 0.9294, green: 0.9294, blue: 0.9294, alpha: 1)
+        collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
  
         
         //animateSettingsIconWithDuration(1.7)
