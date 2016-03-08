@@ -78,7 +78,7 @@ class Notification {
         morningNotification.category = "NOTIFICATION_CATEGORY"
         morningNotification.repeatInterval = NSCalendarUnit.Day
         morningNotification.applicationIconBadgeNumber += 1
-        morningNotification.userInfo = ["type": "morningRegistration"]
+        morningNotification.userInfo = ["type": "medicineRegistration"]
         UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
         NSLog("Scheduled morning notifications: \n \(morningNotification)")
         
@@ -88,7 +88,7 @@ class Notification {
         eveningNotification.category = "NOTIFICATION_CATEGORY"
         eveningNotification.repeatInterval = NSCalendarUnit.Day
         eveningNotification.applicationIconBadgeNumber += 1
-        eveningNotification.userInfo = ["type": "eveningRegistration"]
+        eveningNotification.userInfo = ["type": "medicineRegistration"]
         UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
         NSLog("Scheduled evening notifications: \n \(eveningNotification)")
     }

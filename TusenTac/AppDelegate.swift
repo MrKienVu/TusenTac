@@ -20,16 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window?.tintColor = Color.primaryColor
-        
-      /*  let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
-        if !hasLaunchedBefore  {
-            print("First launch, storing UUID and hasLaunched-flag in UserDefaults")
-            let uuid = NSUUID().UUIDString
-            
-            UserDefaults.setObject(uuid, forKey: UserDefaultKey.UUID)
-            UserDefaults.setBool(true, forKey: UserDefaultKey.hasLaunchedBefore)
-            print("Stored user ID \(uuid) in UserDefaults")
-        } */
+        application.applicationIconBadgeNumber = 0
         
         let completedOnboarding = UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding)
         
@@ -86,31 +77,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(notification.alertBody)
     }
     
-   /* func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         let type = notification.userInfo!["type"] as! String
         
         application.applicationIconBadgeNumber = 0
         
         if identifier == "GO_ACTION" {
-            if      type == "dailySurvey"   { NSNotificationCenter.defaultCenter().postNotificationName("presentDailySurvey", object: nil) }
-            else if type == "weeklySurvey"  { NSNotificationCenter.defaultCenter().postNotificationName("presentWeeklySurvey", object: nil) }
-        }
-        
-        completionHandler()
-    }*/
-    
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        
-        if identifier == "editList" {
-            NSNotificationCenter.defaultCenter().postNotificationName("modifyListNotification", object: nil)
-        }
-        else if identifier == "trashAction" {
-            NSNotificationCenter.defaultCenter().postNotificationName("deleteListNotification", object: nil)
+            if type == "medicineRegistration" {
+                NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
+            }
         }
         
         completionHandler()
     }
-
     
     // MARK: Other lifecycle delegate methods
 

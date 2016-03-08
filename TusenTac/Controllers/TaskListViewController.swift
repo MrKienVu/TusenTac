@@ -45,31 +45,20 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
-        // self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        
         collection.dataSource = self
         collection.delegate = self
   
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        self.navigationController?.title = "TusenTac"
-        /*self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barStyle = .Black
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1) */
-        
-        
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
- 
+        self.navigationController?.title = "TusenTac"
+        
         
         animateSettingsIconWithDuration(1.7)
         
-        // Do any additional setup after loading the view.
+        UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
+        print("Completed onboarding")
         
-        // Do any additional setup after loading the view.
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -280,6 +269,13 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         UIView.animateWithDuration(duration, animations: {
             settingsView.transform = CGAffineTransformMakeRotation((90.0 * CGFloat(M_PI)) / 90.0)
         })
+    }
+    
+    func presentMedicineRegistration() {
+        let taskListRow = taskListRows[0]
+        let task = taskListRow.representedTask
+        let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
+        presentViewController(taskViewController, animated: false, completion: nil)
     }
     
 }
