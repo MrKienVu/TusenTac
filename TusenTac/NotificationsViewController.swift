@@ -80,8 +80,8 @@ class NotificationsViewController: UIViewController {
         if Notification.sharedInstance.isNotificationsEnabled() {
             UserDefaults.setBool(true, forKey: UserDefaultKey.NotificationsEnabled)
         }
-     /*   let defaultDates = Notification.sharedInstance.getDefaultDates()
-        Notification.sharedInstance.scheduleNotifications(defaultDates[0], weekendTime: defaultDates[1], weeklyDay: 1, weeklyTime: defaultDates[2]) */
+        let defaultDates = Notification.sharedInstance.getDefaultDates()
+        Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
     }
     
 }

@@ -58,31 +58,46 @@ class Notification {
         }
     }
     
-    func scheduleLocalNotification(date: NSDate) {
-        let localNotification = UILocalNotification()
-        let fireDate = fixNotificationDate(date)
-        localNotification.fireDate = fireDate
-        localNotification.alertBody = "Du har en ny oppgave å gjøre."
-        localNotification.alertAction = "Vise valg"
-        localNotification.category = "NOTIFICATION_CATEGORY"
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        print("Scheduled local notification at firedate: \(fireDate)")
+    func cancelAllNotifications() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
     
-    private func fixNotificationDate(dateToFix: NSDate) -> NSDate {
+    func scheduleNotifications(morning: NSDate, evening: NSDate) {
+        if !UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled) { return }
         
+        if !isNotificationsEnabled() {
+            print("Notification switch on, but notifications not enabled. Not scheduling notifications.")
+            return
+        }
+        
+        let morningNotification = UILocalNotification()
+        morningNotification.fireDate = morning
+        morningNotification.alertBody = "Du har en ny oppgave å gjøre."
+        morningNotification.category = "NOTIFICATION_CATEGORY"
+        morningNotification.repeatInterval = NSCalendarUnit.Day
+        morningNotification.applicationIconBadgeNumber += 1
+        morningNotification.userInfo = ["type": "morningRegistration"]
+        UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
+        NSLog("Scheduled morning notifications: \n \(morningNotification)")
+        
+        let eveningNotification = UILocalNotification()
+        eveningNotification.fireDate = evening
+        eveningNotification.alertBody = "Du har en ny oppgave å gjøre."
+        eveningNotification.category = "NOTIFICATION_CATEGORY"
+        eveningNotification.repeatInterval = NSCalendarUnit.Day
+        eveningNotification.applicationIconBadgeNumber += 1
+        eveningNotification.userInfo = ["type": "eveningRegistration"]
+        UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
+        NSLog("Scheduled evening notifications: \n \(eveningNotification)")
+    }
+    
+    func getDefaultDates() -> [NSDate] {
         let calendar = NSCalendar.currentCalendar()
+        let today = NSDate()
         
-        let currentDate = NSDate()
-        let currentDateComponents = calendar.components([.Year, .Month, .Day], fromDate: currentDate)
+        let morning = calendar.dateBySettingHour(9, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions())!
+        let evening = calendar.dateBySettingHour(21, minute: 0, second: 0, ofDate: today, options: NSCalendarOptions())!
         
-        let otherDateComponents = calendar.components([.Year, .Month, .Day, .Hour, .Minute], fromDate: dateToFix)
-        otherDateComponents.year = currentDateComponents.year
-        otherDateComponents.month = currentDateComponents.month
-        otherDateComponents.day = currentDateComponents.day
-        
-        let fixedDate = calendar.dateFromComponents(otherDateComponents)
-        
-        return fixedDate!
+        return [morning, evening]
     }
 }
