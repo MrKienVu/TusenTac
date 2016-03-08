@@ -70,6 +70,8 @@ class Notification {
             return
         }
         
+        cancelAllNotifications()
+        
         let morningNotification = UILocalNotification()
         morningNotification.fireDate = morning
         morningNotification.alertBody = "Du har en ny oppgave å gjøre."
