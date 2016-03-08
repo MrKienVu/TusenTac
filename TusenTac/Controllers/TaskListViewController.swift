@@ -21,6 +21,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet var eating: UIImageView!
     @IBOutlet var weight: UIImageView!
     @IBOutlet var sideEffects: UIImageView!
+    @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
     var logos = [UIImage]()
     
@@ -64,7 +65,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
  
         
-        //animateSettingsIconWithDuration(1.7)
+        animateSettingsIconWithDuration(1.7)
         
         // Do any additional setup after loading the view.
         
@@ -274,11 +275,11 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         return results.count
     }
     
-  /*  func animateSettingsIconWithDuration(duration: Double) {
+    func animateSettingsIconWithDuration(duration: Double) {
         let settingsView: UIView = settingsIcon.valueForKey("view") as! UIView
         UIView.animateWithDuration(duration, animations: {
             settingsView.transform = CGAffineTransformMakeRotation((90.0 * CGFloat(M_PI)) / 90.0)
         })
-    }*/
+    }
     
 }

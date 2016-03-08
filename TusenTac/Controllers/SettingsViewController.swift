@@ -28,8 +28,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: On Value Changed
     @IBAction func notificationsChanged(sender: AnyObject) {
-        // TODO: Cancel notifications
-        if notificationSwitch.on { Notification.sharedInstance.setupNotificationSettings() }
+        if notificationSwitch.on {
+            Notification.sharedInstance.setupNotificationSettings()
+            scheduleNotifications()
+        } else {
+            Notification.sharedInstance.cancelAllNotifications()
+        }
+        
         UserDefaults.setBool(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -38,18 +43,22 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func morningTimeChanged(sender: AnyObject) {
         morningTimeChanged()
         UserDefaults.setObject(morningTimePicker.date, forKey: UserDefaultKey.morningTime)
+        scheduleNotifications()
     }
     
     @IBAction func nightTimeChanged(sender: AnyObject) {
         nightTimeChanged()
         UserDefaults.setObject(nightTimePicker.date, forKey: UserDefaultKey.nightTime)
+        scheduleNotifications()
     }
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
+        replaceWhitespaceInTextField(morningDosageTextField)
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
     }
     
     @IBAction func nightDosageChanged(sender: AnyObject) {
+        replaceWhitespaceInTextField(nightDosageTextField)
         UserDefaults.setObject(nightDosageTextField.text, forKey: UserDefaultKey.nightDosage)
     }
     
@@ -57,8 +66,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if      indexPath.section == 0 && indexPath.row == 1 { toggleDatepicker(1) } // morningTimePicker
-        else if indexPath.section == 0 && indexPath.row == 4 { toggleDatepicker(2) } // nightTimePicker
+        if      indexPath.section == 1 && indexPath.row == 0 { toggleDatepicker(1) } // morningTimePicker
+        else if indexPath.section == 2 && indexPath.row == 0 { toggleDatepicker(2) } // nightTimePicker
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -66,26 +75,25 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     
         // Hide / Show datepickers
-        if  (morningTimePickerHidden && indexPath.section == 0 && indexPath.row == 2) ||
-            (nightTimePickerHidden && indexPath.section == 0 && indexPath.row == 5)
+        if  (morningTimePickerHidden && indexPath.section == 1 && indexPath.row == 1) ||
+            (nightTimePickerHidden && indexPath.section == 2 && indexPath.row == 1)
         {
             return 0
         }
-        
-    
-        // Hide / Show all rows in first section based on notification switch
-        /*else if (!notificationSwitch.on && indexPath.section == 0 && indexPath.row == 1) ||
-                (!notificationSwitch.on && indexPath.section == 0 && indexPath.row == 2) ||
-                (!notificationSwitch.on && indexPath.section == 0 && indexPath.row == 3) ||
-                (!notificationSwitch.on && indexPath.section == 0 && indexPath.row == 4)
-        {
-            return 0
-        }*/
+            
     
         else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }
         
+    }
+    
+    func toggleDatepicker(cell: Int) {
+        if      cell == 1 { morningTimePickerHidden = !morningTimePickerHidden }
+        else if cell == 2 { nightTimePickerHidden =  !nightTimePickerHidden }
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     func morningTimeChanged() {
@@ -104,24 +112,16 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         )
     }
     
-    func toggleDatepicker(cell: Int) {
-        if      cell == 1 { morningTimePickerHidden = !morningTimePickerHidden }
-        else if cell == 2 { nightTimePickerHidden =  !nightTimePickerHidden }
-    
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //print(UserDefaults.valueForKey("Weight"))
         
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
 
         notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
+        
+        addDoneButtonOnKeyboard()
     
         if let morningTime = UserDefaults.objectForKey(UserDefaultKey.morningTime) {
             morningTimePicker.setDate(morningTime as! NSDate, animated: true)
@@ -149,41 +149,42 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        scheduleLocalNotification()
+    func replaceWhitespaceInTextField(textField: UITextField) {
+        let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+        if textField.text!.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
+            textField.text = "0"
+        }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
+        doneToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        morningDosageTextField.inputAccessoryView = doneToolbar
+        nightDosageTextField.inputAccessoryView = doneToolbar
     }
     
-    
-    func scheduleLocalNotification() {
-        let localNotification = UILocalNotification()
-        let fireDate = fixNotificationDate(morningTimePicker.date)
-        localNotification.fireDate = fireDate
-        localNotification.alertBody = "Du har en ny oppgave å gjøre."
-        localNotification.alertAction = "Vise valg"
-        localNotification.category = "NOTIFICATION_CATEGORY"
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        print("Scheduled local notification at firedate: \(fireDate)")
+    func doneButtonAction()
+    {
+        morningDosageTextField.resignFirstResponder()
+        nightDosageTextField.resignFirstResponder()
     }
+
     
-    private func fixNotificationDate(dateToFix: NSDate) -> NSDate {
-    
-        let calendar = NSCalendar.currentCalendar()
-    
-        let currentDate = NSDate()
-        let currentDateComponents = calendar.components([.Year, .Month, .Day], fromDate: currentDate)
-    
-        let otherDateComponents = calendar.components([.Year, .Month, .Day, .Hour, .Minute], fromDate: dateToFix)
-        otherDateComponents.year = currentDateComponents.year
-        otherDateComponents.month = currentDateComponents.month
-        otherDateComponents.day = currentDateComponents.day
-    
-        let fixedDate = calendar.dateFromComponents(otherDateComponents)
-    
-        return fixedDate!
+    func scheduleNotifications() {
+        Notification.sharedInstance.scheduleNotifications(
+            morningTimePicker.date,
+            evening: nightTimePicker.date
+        )
     }
 }
