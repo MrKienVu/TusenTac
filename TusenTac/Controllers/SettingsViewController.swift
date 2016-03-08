@@ -53,12 +53,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
-        replaceWhitespaceInTextField(morningDosageTextField)
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
     }
     
     @IBAction func nightDosageChanged(sender: AnyObject) {
-        replaceWhitespaceInTextField(nightDosageTextField)
         UserDefaults.setObject(nightDosageTextField.text, forKey: UserDefaultKey.nightDosage)
     }
     
@@ -67,7 +65,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if      indexPath.section == 1 && indexPath.row == 0 { toggleDatepicker(1) } // morningTimePicker
+        else if indexPath.section == 1 && indexPath.row == 2 { morningDosageTextField.becomeFirstResponder() }
         else if indexPath.section == 2 && indexPath.row == 0 { toggleDatepicker(2) } // nightTimePicker
+        else if indexPath.section == 2 && indexPath.row == 2 { nightDosageTextField.becomeFirstResponder() }
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -149,7 +149,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func replaceWhitespaceInTextField(textField: UITextField) {
+    func textFieldDidEndEditing(textField: UITextField) {
         let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
         if textField.text!.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
             textField.text = "0"

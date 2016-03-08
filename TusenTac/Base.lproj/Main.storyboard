@@ -191,13 +191,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziF-16-uD4">
-                                                    <rect key="frame" x="568" y="12.5" width="23.5" height="19.5"/>
+                                                    <rect key="frame" x="560.5" y="12.5" width="23.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="200" textAlignment="right" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="f2X-Ob-Cl7">
-                                                    <rect key="frame" x="503" y="11.5" width="60" height="20"/>
+                                                    <rect key="frame" x="495.5" y="11" width="60" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="yga-LR-lfH"/>
                                                     </constraints>
@@ -210,13 +210,19 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ziF-16-uD4" firstAttribute="trailing" secondItem="e7M-eg-FS3" secondAttribute="trailingMargin" id="P6A-k4-2Fv"/>
+                                                <constraint firstItem="ziF-16-uD4" firstAttribute="trailing" secondItem="e7M-eg-FS3" secondAttribute="trailingMargin" constant="-8" id="P6A-k4-2Fv"/>
                                                 <constraint firstItem="f2X-Ob-Cl7" firstAttribute="centerY" secondItem="e7M-eg-FS3" secondAttribute="centerY" id="QJ6-0X-AY4"/>
                                                 <constraint firstItem="OAu-J1-gG2" firstAttribute="leading" secondItem="e7M-eg-FS3" secondAttribute="leadingMargin" constant="8" id="W8i-sd-E9I"/>
                                                 <constraint firstItem="OAu-J1-gG2" firstAttribute="centerY" secondItem="e7M-eg-FS3" secondAttribute="centerY" id="dYB-yW-WXX"/>
                                                 <constraint firstItem="ziF-16-uD4" firstAttribute="centerY" secondItem="e7M-eg-FS3" secondAttribute="centerY" id="oXD-Yi-NH7"/>
                                                 <constraint firstItem="ziF-16-uD4" firstAttribute="leading" secondItem="f2X-Ob-Cl7" secondAttribute="trailing" constant="5" id="qRf-IQ-V4R"/>
+                                                <constraint firstItem="ziF-16-uD4" firstAttribute="trailing" secondItem="e7M-eg-FS3" secondAttribute="trailingMargin" constant="8" id="vT5-fl-wmB"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="vT5-fl-wmB"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -288,13 +294,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8F-WZ-Z8D">
-                                                    <rect key="frame" x="568" y="11.5" width="23.5" height="19.5"/>
+                                                    <rect key="frame" x="560.5" y="11.5" width="23.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="200" textAlignment="right" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="4OF-M6-kE7">
-                                                    <rect key="frame" x="503" y="11.5" width="60" height="20"/>
+                                                    <rect key="frame" x="495.5" y="11.5" width="60" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="E39-as-Gwi"/>
                                                     </constraints>
@@ -309,7 +315,7 @@
                                             <constraints>
                                                 <constraint firstItem="eW7-is-MZZ" firstAttribute="centerY" secondItem="o3c-4h-TwA" secondAttribute="centerY" id="BFY-bV-MI7"/>
                                                 <constraint firstItem="eW7-is-MZZ" firstAttribute="leading" secondItem="o3c-4h-TwA" secondAttribute="leadingMargin" constant="8" id="XIG-Oy-RhR"/>
-                                                <constraint firstItem="J8F-WZ-Z8D" firstAttribute="trailing" secondItem="o3c-4h-TwA" secondAttribute="trailingMargin" id="boB-ZM-CyC"/>
+                                                <constraint firstItem="J8F-WZ-Z8D" firstAttribute="trailing" secondItem="o3c-4h-TwA" secondAttribute="trailingMargin" constant="-8" id="boB-ZM-CyC"/>
                                                 <constraint firstItem="J8F-WZ-Z8D" firstAttribute="leading" secondItem="4OF-M6-kE7" secondAttribute="trailing" constant="5" id="fsz-vH-B2D"/>
                                                 <constraint firstItem="J8F-WZ-Z8D" firstAttribute="centerY" secondItem="o3c-4h-TwA" secondAttribute="centerY" id="hB2-xp-TAc"/>
                                                 <constraint firstItem="4OF-M6-kE7" firstAttribute="centerY" secondItem="o3c-4h-TwA" secondAttribute="centerY" id="psV-hz-AJq"/>
