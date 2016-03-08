@@ -33,7 +33,6 @@
 		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
 		5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D85751C27F2EA001CBEB6 /* hideSections.js */; };
 		5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85791C281150001CBEB6 /* PillTask.swift */; };
-		5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */; };
 		5F3E047D1C75CE2F002798F9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */; };
 		5F3EB2A91C3E5F2E000710B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3EB2AB1C3E5F2E000710B3 /* Localizable.strings */; };
 		5F7656221C849FDC00C39A0C /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656211C849FDC00C39A0C /* FooterView.swift */; };
@@ -130,7 +129,6 @@
 		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
 		5F3D85751C27F2EA001CBEB6 /* hideSections.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hideSections.js; sourceTree = "<group>"; };
 		5F3D85791C281150001CBEB6 /* PillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillTask.swift; sourceTree = "<group>"; };
-		5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalPillTask.swift; sourceTree = "<group>"; };
 		5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		5F3E04811C75E1A8002798F9 /* ss-gizmo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ss-gizmo.otf"; sourceTree = "<group>"; };
 		5F3EB2AA1C3E5F2E000710B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				5F39E3DF1C240DA500133C86 /* TaskListRow.swift */,
 				5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */,
 				5F3D85791C281150001CBEB6 /* PillTask.swift */,
-				5F3D857B1C28198D001CBEB6 /* ConditionalPillTask.swift */,
 				32E04C961C3D743C006AFB85 /* EatTask.swift */,
 				5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */,
 				5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */,
@@ -501,7 +498,6 @@
 				5F76562E1C856A8F00C39A0C /* StudyIDViewController.swift in Sources */,
 				32E04C921C3D1AA8006AFB85 /* InformationPageContentViewController.swift in Sources */,
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,
-				5F3D857C1C28198D001CBEB6 /* ConditionalPillTask.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
 				5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */,
 				5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */,
