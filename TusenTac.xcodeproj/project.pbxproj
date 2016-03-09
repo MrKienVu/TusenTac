@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3266F7D01C9031A20048E9B7 /* CSVProcesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
 		5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37F9DF1C240968000ABF26 /* AppDelegate.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVProcesser.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
 		5F37F9DC1C240968000ABF26 /* TusenTac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TusenTac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -328,6 +330,7 @@
 			children = (
 				5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */,
 				32E04C931C3D1F5E006AFB85 /* Notification.swift */,
+				3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
+				3266F7D01C9031A20048E9B7 /* CSVProcesser.swift in Sources */,
 				5F76562E1C856A8F00C39A0C /* StudyIDViewController.swift in Sources */,
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,

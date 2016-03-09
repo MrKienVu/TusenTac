@@ -222,6 +222,11 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         
+        if taskResult.identifier != "SideEffectTask" {
+            let csv = CSVProcesser(taskResult: taskResult)
+            print(csv.csv)
+        }
+        
         //print(UserDefaults.valueForKey("Weight"))
         
        /* self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result) */
