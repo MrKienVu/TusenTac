@@ -99,7 +99,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
         if indexPath.row == 0 {
-            if let lastDosage = UserDefaults.objectForKey("LastDosageTime") {
+            if let lastDosage = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateStyle = .ShortStyle
                 dateFormatter.timeStyle = .ShortStyle
@@ -151,6 +151,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         
+        // If the user registered that he/she took the pill earlier, set the date to the current date with those times.
         if timePillTaken != nil {
             dateNow = NSCalendar.currentCalendar().dateBySettingHour(
                 timePillTaken!.hour, minute: timePillTaken!.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
