@@ -28,6 +28,6 @@ struct UserDefaultKey {
     static let NotificationsEnabled = "NotificationsEnabled"
     static let CompletedOnboarding = "CompletedOnboarding"
     
-    static let Weight = "weight"
-    static let lastDosageTime = "LastDosageTime"
+    static let Weight = "Weight"
+    static let LastDosageTime = "LastDosageTime"
 }

@@ -15,9 +15,7 @@ public var PillTask: ORKNavigableOrderedTask {
     var lastDosageText = ""
     
     if let lastDosage = UserDefaults.valueForKey("LastDosageTime"){
-        lastDosageText = "Forrige dose tatt \(lastDosage as! String)"
-        //lastDosageText = lastDosage as! String
-        
+        lastDosageText = "Forrige dose tatt \(lastDosage)"
     }
     else {
         lastDosageText = ""

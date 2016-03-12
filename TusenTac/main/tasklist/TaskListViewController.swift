@@ -52,7 +52,11 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
         print("Completed onboarding")
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // TODO: Update cell last registration label
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,8 +98,16 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
-        if indexPath.row == 0{
-            cell.lastDosageLabel.text = "Forrige dose tatt 3.1.15 kl 09:15"
+        if indexPath.row == 0 {
+            if let lastDosage = UserDefaults.objectForKey("LastDosageTime") {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateStyle = .ShortStyle
+                dateFormatter.timeStyle = .ShortStyle
+                let dateString = dateFormatter.stringFromDate(lastDosage as! NSDate)
+                cell.lastDosageLabel.text = "Forrige dose tatt \(dateString)"
+            } else {
+                cell.lastDosageLabel.text = ""
+            }
         } else {
             cell.lastDosageLabel.hidden = true;
         }
@@ -119,32 +131,41 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         
         let taskResult = taskViewController.result
+        var dateNow = NSDate()
+        var timePillTaken: NSDateComponents?
         
         if let stepResults = taskResult.results as? [ORKStepResult] {
             for stepResult in stepResults {
                 for result in stepResult.results! {
                     if let questionStepResult = result as? ORKNumericQuestionResult {
                         if let answer = questionStepResult.answer  {
-                            UserDefaults.setObject(answer, forKey: "Weight")
+                            UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
                         }
                     }
-                    /*    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                    if let timeAnswer = lastDosageTime.answer {
-                    UserDefaults.setObject(timeAnswer, forKey: "LastDosageTime")
+                    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
+                        if let timeAnswer = lastDosageTime.dateComponentsAnswer {
+                            timePillTaken = timeAnswer
+                        }
                     }
-                    }*/
                 }
             }
         }
+        
+        if timePillTaken != nil {
+            dateNow = NSCalendar.currentCalendar().dateBySettingHour(
+                timePillTaken!.hour, minute: timePillTaken!.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
+            )!
+        }
+        
+        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
         
         if taskResult.identifier != "SideEffectTask" {
             let csv = CSVProcesser(taskResult: taskResult)
             print(csv.csv)
         }
         
-       /* self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result) */
+        //self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
         //self.nettskjema.submit()
-        
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -174,6 +195,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         */
         presentViewController(taskViewController, animated: true, completion: nil)
         
+        
     }
     
     func getNumberOfStepsCompleted(results: [ORKResult]) -> Int {
@@ -191,7 +213,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let taskListRow = taskListRows[0]
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
-        presentViewController(taskViewController, animated: false, completion: nil)
+        self.navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
     }
     
 }
