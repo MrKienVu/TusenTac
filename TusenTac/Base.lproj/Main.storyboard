@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--TusenTac-->
         <scene sceneID="x2F-LW-1PT">
             <objects>
-                <navigationController id="vJe-6o-HT2" sceneMemberID="viewController">
+                <navigationController title="TusenTac" id="vJe-6o-HT2" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="53n-pB-HWH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -52,7 +52,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uio-footer" translatesAutoresizingMaskIntoConstraints="NO" id="SCr-d6-KTm">
-                                    <rect key="frame" x="180" y="16" width="240" height="50"/>
+                                    <rect key="frame" x="180" y="8" width="240" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="7H3-wo-Vyf"/>
                                         <constraint firstAttribute="height" constant="50" id="iWy-PD-K4P"/>
@@ -61,7 +61,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="SCr-d6-KTm" firstAttribute="centerX" secondItem="r7a-oY-v2X" secondAttribute="centerX" id="25K-GX-kyh"/>
-                                <constraint firstItem="SCr-d6-KTm" firstAttribute="top" secondItem="r7a-oY-v2X" secondAttribute="topMargin" constant="8" id="cZ8-oX-YZq"/>
+                                <constraint firstItem="SCr-d6-KTm" firstAttribute="top" secondItem="r7a-oY-v2X" secondAttribute="topMargin" id="cZ8-oX-YZq"/>
                             </constraints>
                             <connections>
                                 <outlet property="uioLogo" destination="SCr-d6-KTm" id="RVJ-mn-K0G"/>

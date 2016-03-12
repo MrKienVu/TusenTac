@@ -13,8 +13,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="148" height="192"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bQ-8B-nt4">
-                        <rect key="frame" x="12" y="144" width="125" height="29"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bQ-8B-nt4">
+                        <rect key="frame" x="12" y="137" width="125" height="25.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="125" id="vSf-iS-J9I"/>
                         </constraints>
@@ -29,8 +29,8 @@
                             <constraint firstAttribute="height" constant="76" id="uZO-Vz-ouu"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBC-lI-dCM">
-                        <rect key="frame" x="18" y="171" width="113" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBC-lI-dCM">
+                        <rect key="frame" x="18" y="164.5" width="113" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="113" id="tfT-Qd-mey"/>
                         </constraints>
@@ -44,8 +44,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="nBC-lI-dCM" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Dyb-na-GfN"/>
-                <constraint firstItem="nBC-lI-dCM" firstAttribute="top" secondItem="6bQ-8B-nt4" secondAttribute="bottom" constant="-2" id="UHf-wf-TlB"/>
-                <constraint firstItem="6bQ-8B-nt4" firstAttribute="top" secondItem="fdo-rB-jOV" secondAttribute="bottom" constant="23" id="Udg-Vk-o6B"/>
+                <constraint firstItem="nBC-lI-dCM" firstAttribute="top" secondItem="6bQ-8B-nt4" secondAttribute="bottom" constant="2" id="UHf-wf-TlB"/>
+                <constraint firstItem="6bQ-8B-nt4" firstAttribute="top" secondItem="fdo-rB-jOV" secondAttribute="bottom" constant="16" id="Udg-Vk-o6B"/>
                 <constraint firstItem="6bQ-8B-nt4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="XpL-m7-ASU"/>
                 <constraint firstItem="fdo-rB-jOV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="45" id="bsG-hT-Psk"/>
                 <constraint firstItem="fdo-rB-jOV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xby-mq-z72"/>

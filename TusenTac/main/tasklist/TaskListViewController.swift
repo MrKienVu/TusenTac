@@ -10,9 +10,6 @@ import UIKit
 import Foundation
 import ResearchKit
 
-
-private let reuseIdentifier = "Cell"
-
 class TaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ORKTaskViewControllerDelegate {
     
     @IBOutlet var collection: UICollectionView!
@@ -23,9 +20,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet var sideEffects: UIImageView!
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
-    var logos = [UIImage]()
-    
-   // logos = ["medication", "eating", "side-effects", "weight"];
+    let icons = ["medication", "eating", "weight", "side-effects"]
+    private let reuseIdentifier = "Cell"
     
     enum CollectionViewCellIdentifier: String {
         case Default = "Cell"
@@ -50,15 +46,13 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
   
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-        self.navigationController?.title = "TusenTac"
-        
         
         animateSettingsIconWithDuration(1.7)
         
         UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
         print("Completed onboarding")
         
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,119 +81,40 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             }
     }
     
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: UICollectionViewDataSource
-
-    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return taskListRows.count
-       
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
-        let med = "medication"
-        let img = UIImage(named: med)
-        let eat = "eating"
-        let img2 = UIImage(named: eat)
-        let weight = "weight"
-        let img3 = UIImage(named: weight)
-        let side = "side-effects"
-        let img4 = UIImage(named: side)
-        
-       // let imageView = UIImageView(image: img)
-        
-        
-     //   medication.image = UIImageView(named:"medication")
-        logos.append(img!)
-        logos.append(img2!)
-        logos.append(img3!)
-        logos.append(img4!)
-        
-        
-        let taskListRow = taskListRows[indexPath.row]
-        
-        if(indexPath.row == 0){
+        if indexPath.row == 0{
             cell.lastDosageLabel.text = "Forrige dose tatt 3.1.15 kl 09:15"
-        }
-        else {
+        } else {
             cell.lastDosageLabel.hidden = true;
         }
         
-        //let logoFont = UIFont(name: "SSGizmo", size: 60)
-        
-        cell.iconImage.image = logos[indexPath.row]
-    //    cell.iconLabel.text = logos[indexPath.row]
-        cell.taskLabel.text = "\(taskListRow)"
-        
+        cell.iconImage.image = UIImage(named: icons[indexPath.row])
+        cell.taskLabel.text = "\(taskListRows[indexPath.row])"
         cell.taskLabel.sizeToFit()
-        
         
         return cell
     }
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: (self.view.frame.width/2)-5, height: (self.view.frame.height/2.5)-20)
+        return CGSize(width: (self.view.frame.width/2)-5, height: (self.view.frame.height/2.5)-14)
     }
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-    }
-    */
-    
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-    }
-    */
-    
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return false
-    }
-    
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-    return false
-    }
-
-    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-        
-    } */
     
     // MARK: ORKTaskViewControllerDelegate
-    
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
-        /*
-        The `reason` passed to this method indicates why the task view
-        controller finished: Did the user cancel, save, or actually complete
-        the task; or was there an error?
+
         
-        The actual result of the task is on the `result` property of the task
-        view controller.
-        */
         taskResultFinishedCompletionHandler?(taskViewController.result)
         
         
@@ -227,8 +142,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             print(csv.csv)
         }
         
-        //print(UserDefaults.valueForKey("Weight"))
-        
        /* self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result) */
         //self.nettskjema.submit()
         
@@ -242,8 +155,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         // Create a task from the `TaskListRow` to present in the `ORKTaskViewController`.
         let task = taskListRow.representedTask
-        
-        
         
         /*
         Passing `nil` for the `taskRunUUID` lets the task view controller
