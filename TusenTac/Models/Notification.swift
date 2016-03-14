@@ -62,7 +62,7 @@ class Notification {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
     
-    func scheduleNotifications(morning: NSDate, evening: NSDate) {
+    func scheduleNotifications(morning: NSDate?, evening: NSDate?) {
         if !UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled) { return }
         
         if !isNotificationsEnabled() {
@@ -71,26 +71,31 @@ class Notification {
         }
         
         cancelAllNotifications()
+        print("Cancelled all previous notifications")
         
-        let morningNotification = UILocalNotification()
-        morningNotification.fireDate = morning
-        morningNotification.alertBody = "Du har en ny oppgave å gjøre."
-        morningNotification.category = "NOTIFICATION_CATEGORY"
-        morningNotification.repeatInterval = NSCalendarUnit.Day
-        morningNotification.applicationIconBadgeNumber += 1
-        morningNotification.userInfo = ["type": "medicineRegistration"]
-        UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
-        NSLog("Scheduled morning notifications: \n \(morningNotification)")
+        if let fireDate = morning {
+            let morningNotification = UILocalNotification()
+            morningNotification.fireDate = fireDate
+            morningNotification.alertBody = "Du har en ny oppgave å gjøre."
+            morningNotification.category = "NOTIFICATION_CATEGORY"
+            morningNotification.repeatInterval = NSCalendarUnit.Day
+            morningNotification.applicationIconBadgeNumber += 1
+            morningNotification.userInfo = ["type": "medicineRegistration"]
+            UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
+            NSLog("Scheduled morning notifications: \n \(morningNotification)")
+        }
         
-        let eveningNotification = UILocalNotification()
-        eveningNotification.fireDate = evening
-        eveningNotification.alertBody = "Du har en ny oppgave å gjøre."
-        eveningNotification.category = "NOTIFICATION_CATEGORY"
-        eveningNotification.repeatInterval = NSCalendarUnit.Day
-        eveningNotification.applicationIconBadgeNumber += 1
-        eveningNotification.userInfo = ["type": "medicineRegistration"]
-        UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
-        NSLog("Scheduled evening notifications: \n \(eveningNotification)")
+        if let fireDate = evening {
+            let eveningNotification = UILocalNotification()
+            eveningNotification.fireDate = fireDate
+            eveningNotification.alertBody = "Du har en ny oppgave å gjøre."
+            eveningNotification.category = "NOTIFICATION_CATEGORY"
+            eveningNotification.repeatInterval = NSCalendarUnit.Day
+            eveningNotification.applicationIconBadgeNumber += 1
+            eveningNotification.userInfo = ["type": "medicineRegistration"]
+            UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
+            NSLog("Scheduled evening notifications: \n \(eveningNotification)")
+        }
     }
     
     func getDefaultDates() -> [NSDate] {

@@ -14,10 +14,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     @IBOutlet var collection: UICollectionView!
     
-    @IBOutlet var medication: UIImageView!
-    @IBOutlet var eating: UIImageView!
-    @IBOutlet var weight: UIImageView!
-    @IBOutlet var sideEffects: UIImageView!
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
@@ -100,10 +96,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         if indexPath.row == 0 {
             if let lastDosage = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateStyle = .ShortStyle
-                dateFormatter.timeStyle = .ShortStyle
-                let dateString = dateFormatter.stringFromDate(lastDosage as! NSDate)
+                let dateString = (lastDosage as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Forrige dose tatt \(dateString)"
             } else {
                 cell.lastDosageLabel.text = ""
@@ -134,43 +127,51 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         var dateNow = NSDate()
         var timePillTaken: NSDateComponents?
         
-        if let stepResults = taskResult.results as? [ORKStepResult] {
-            for stepResult in stepResults {
-                for result in stepResult.results! {
-                    if let questionStepResult = result as? ORKNumericQuestionResult {
-                        if let answer = questionStepResult.answer  {
-                            UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
-                            UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
+        switch reason {
+        case .Completed:
+            
+            if let stepResults = taskResult.results as? [ORKStepResult] {
+                for stepResult in stepResults {
+                    for result in stepResult.results! {
+                        if let questionStepResult = result as? ORKNumericQuestionResult {
+                            if let answer = questionStepResult.answer  {
+                                UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
+                                UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
+                            }
                         }
-                    }
-                    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                        if let timeAnswer = lastDosageTime.dateComponentsAnswer {
-                            timePillTaken = timeAnswer
+                        if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
+                            if let timeAnswer = lastDosageTime.dateComponentsAnswer {
+                                timePillTaken = timeAnswer
+                            }
                         }
                     }
                 }
             }
-        }
-        
-        // If the user registered that he/she took the pill earlier, set the date to the current date with those times.
-        if timePillTaken != nil {
-            dateNow = NSCalendar.currentCalendar().dateBySettingHour(
-                timePillTaken!.hour, minute: timePillTaken!.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
-            )!
-        }
-        
-        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-        
-        if taskResult.identifier != "SideEffectTask" {
-            let csv = CSVProcesser(taskResult: taskResult)
-            print(csv.csv)
+            
+            // If the user registered that he/she took the pill earlier, set the date to the current date with those times.
+            if timePillTaken != nil {
+                dateNow = NSCalendar.currentCalendar().dateBySettingHour(
+                    timePillTaken!.hour, minute: timePillTaken!.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
+                    )!
+            }
+            
+            UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+            
+            if taskResult.identifier != "SideEffectTask" {
+                let csv = CSVProcesser(taskResult: taskResult)
+                print(csv.csv)
+            }
+            
+        case .Failed, .Discarded, .Saved:
+            break
+            
         }
         
         //self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
         //self.nettskjema.submit()
-        
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         // Present the task view controller that the user asked for.

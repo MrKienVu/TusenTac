@@ -14,10 +14,12 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var morningTimeLabel: UILabel!
     @IBOutlet weak var morningTimePicker: UIDatePicker!
+    @IBOutlet weak var morningSwitch: UISwitch!
     @IBOutlet weak var morningDosageTextField: UITextField!
     
     @IBOutlet weak var nightTimeLabel: UILabel!
     @IBOutlet weak var nightTimePicker: UIDatePicker!
+    @IBOutlet weak var nightSwitch: UISwitch!
     @IBOutlet weak var nightDosageTextField: UITextField!
     
     // MARK: Variables and constants
@@ -40,16 +42,34 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         tableView.endUpdates()
     }
     
+    @IBAction func morningSwitchChanged(sender: AnyObject) {
+        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     @IBAction func morningTimeChanged(sender: AnyObject) {
         morningTimeChanged()
         UserDefaults.setObject(morningTimePicker.date, forKey: UserDefaultKey.morningTime)
-        scheduleNotifications()
+        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningTimePicker.date, evening: nightDate)
+    }
+    
+    @IBAction func nightSwitchChanged(sender: AnyObject) {
+        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     @IBAction func nightTimeChanged(sender: AnyObject) {
         nightTimeChanged()
         UserDefaults.setObject(nightTimePicker.date, forKey: UserDefaultKey.nightTime)
-        scheduleNotifications()
+        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightTimePicker.date)
     }
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
@@ -64,10 +84,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if      indexPath.section == 1 && indexPath.row == 0 { toggleDatepicker(1) } // morningTimePicker
-        else if indexPath.section == 1 && indexPath.row == 2 { morningDosageTextField.becomeFirstResponder() }
-        else if indexPath.section == 2 && indexPath.row == 0 { toggleDatepicker(2) } // nightTimePicker
-        else if indexPath.section == 2 && indexPath.row == 2 { nightDosageTextField.becomeFirstResponder() }
+        if      indexPath.section == 1 && indexPath.row == 1 { toggleDatepicker(1) } // morningTimePicker
+        else if indexPath.section == 1 && indexPath.row == 3 { morningDosageTextField.becomeFirstResponder() }
+        else if indexPath.section == 2 && indexPath.row == 1 { toggleDatepicker(2) } // nightTimePicker
+        else if indexPath.section == 2 && indexPath.row == 3 { nightDosageTextField.becomeFirstResponder() }
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -75,8 +95,15 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     
         // Hide / Show datepickers
-        if  (morningTimePickerHidden && indexPath.section == 1 && indexPath.row == 1) ||
-            (nightTimePickerHidden && indexPath.section == 2 && indexPath.row == 1)
+        if  (morningTimePickerHidden && indexPath.section == 1 && indexPath.row == 2) ||
+            (nightTimePickerHidden && indexPath.section == 2 && indexPath.row == 2)
+        {
+            return 0
+        }
+            
+        else if
+            (!morningSwitch.on && indexPath.section == 1 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3)) ||
+            (!nightSwitch.on && indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3))
         {
             return 0
         }
