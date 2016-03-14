@@ -21,3 +21,22 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
     }
 }
+
+extension NSDate {
+    func toStringShortStyle() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.timeStyle = .ShortStyle
+        
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func toStringHourMinute() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .NoStyle
+        dateFormatter.timeStyle = .ShortStyle
+        
+        return dateFormatter.stringFromDate(self)
+    }
+}
+

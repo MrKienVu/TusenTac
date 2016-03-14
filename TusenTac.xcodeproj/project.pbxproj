@@ -25,7 +25,7 @@
 		5F39E3DE1C240D6C00133C86 /* SideEffectTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DD1C240D6C00133C86 /* SideEffectTask.swift */; };
 		5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DF1C240DA500133C86 /* TaskListRow.swift */; };
 		5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E31C240E0400133C86 /* SettingsViewController.swift */; };
-		5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* StringExtensions.swift */; };
+		5F39E3E91C241DF400133C86 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* Extensions.swift */; };
 		5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */; };
 		5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */; };
 		5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
@@ -120,7 +120,7 @@
 		5F39E3DD1C240D6C00133C86 /* SideEffectTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectTask.swift; sourceTree = "<group>"; };
 		5F39E3DF1C240DA500133C86 /* TaskListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListRow.swift; sourceTree = "<group>"; };
 		5F39E3E31C240E0400133C86 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5F39E3E81C241DF400133C86 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		5F39E3E81C241DF400133C86 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaHandler.swift; sourceTree = "<group>"; };
 		5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaView.swift; sourceTree = "<group>"; };
 		5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStep.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 			children = (
 				5F39E3D61C240D2100133C86 /* Constants.swift */,
 				5F39E3D81C240D2B00133C86 /* Identifiers.swift */,
-				5F39E3E81C241DF400133C86 /* StringExtensions.swift */,
+				5F39E3E81C241DF400133C86 /* Extensions.swift */,
 				5F3D85751C27F2EA001CBEB6 /* hideSections.js */,
 			);
 			path = helpers;
@@ -532,7 +532,7 @@
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,
 				5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */,
-				5F39E3E91C241DF400133C86 /* StringExtensions.swift in Sources */,
+				5F39E3E91C241DF400133C86 /* Extensions.swift in Sources */,
 				5F7656301C856ABC00C39A0C /* NotificationsViewController.swift in Sources */,
 				5F39E3D71C240D2100133C86 /* Constants.swift in Sources */,
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,

@@ -33,7 +33,7 @@ public class CSVProcesser {
             "\(sid)," +
             "\(taskResult.startDate!)," +
             "\(taskResult.endDate!)," +
-        "\(NSInteger(taskResult.endDate!.timeIntervalSinceDate(taskResult.startDate!))),"
+            "\(NSInteger(taskResult.endDate!.timeIntervalSinceDate(taskResult.startDate!))),"
     }
     
     func appendResultData(taskResult: ORKTaskResult) -> String {
@@ -43,6 +43,22 @@ public class CSVProcesser {
         if let stepResults = taskResult.results as? [ORKStepResult] {
             for stepResult in stepResults {
                 for result in stepResult.results! {
+                    
+                    if let choiceResult = result as? ORKChoiceQuestionResult {
+                        if let _ = choiceResult.answer {
+                            resultString += "\(choiceResult.choiceAnswers![0]),"
+                            
+                            var dateNow = ""
+                            if "\(choiceResult.choiceAnswers![0])" == "now" {
+                                dateNow = taskResult.endDate!.toStringHourMinute()
+                                resultString += "\(dateNow),"
+                            }
+                            
+                        } else {
+                            resultString += "\(choiceResult.answer),"
+                        }
+                    }
+                    
                     if let timeOfDayResult = result as? ORKTimeOfDayQuestionResult {
                         if let answer = timeOfDayResult.dateComponentsAnswer {
                             resultString += "\(answer.hour):\(answer.minute),"
@@ -50,6 +66,7 @@ public class CSVProcesser {
                             resultString += "\(timeOfDayResult.answer),"
                         }
                     }
+                    
                     if let numericResult = result as? ORKNumericQuestionResult {
                         if let answer = numericResult.numericAnswer {
                             resultString += "\(answer),"
@@ -57,17 +74,21 @@ public class CSVProcesser {
                             resultString += "\(numericResult.answer),"
                         }
                     }
+                    
                     if let textResult = result as? ORKTextQuestionResult {
                         if let answer = textResult.answer {
-                            resultString += "\(answer)"
+                            resultString += "\(answer),"
                         } else {
-                            resultString += "\(textResult.answer)"
+                            resultString += "\(textResult.answer),"
                         }
                     }
+                    
                 }
             }
         }
         
+        // Remove trailing comma ","
+        if resultString.characters.count > 0 { resultString.removeAtIndex(resultString.endIndex.predecessor()) }
         return resultString
     }
     

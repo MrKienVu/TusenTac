@@ -14,18 +14,18 @@ public var PillTask: ORKNavigableOrderedTask {
     
     var lastDosageText = ""
     
-    if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .ShortStyle
-        dateFormatter.timeStyle = .ShortStyle
-        let dateString = dateFormatter.stringFromDate(lastDosage as! NSDate)
-        lastDosageText = "Forrige dose tatt \(dateString)"
+    if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
+        
+        let dateString = lastDosage.toStringShortStyle()
+        let dosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
+        
+        lastDosageText = "Din forrige dosering var \(dosage!) mg og ble registrert \(dateString)."
     }
     
     var steps = [ORKStep]()
     
-    let textChoiceOneText = NSLocalizedString("✓\tTok medisinen nå", comment: "")
-    let textChoiceTwoText = NSLocalizedString("🕐\tTok medisinen tidligere", comment: "")
+    let textChoiceOneText = "✓\tTok medisinen nå".localized
+    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
     
     
     
@@ -42,20 +42,14 @@ public var PillTask: ORKNavigableOrderedTask {
         title: "Medisinregistrering",
         answer: pillOptionAnswer
     )
-    pillOptionStep.text = "Når tok du medisinen? \n \(lastDosageText)"
+    pillOptionStep.text = "\(lastDosageText) \n\nFor å registrere en ny dosering, trykk på et av valgene nedenfor."
 
     pillOptionStep.optional = false
     
     steps+=[pillOptionStep]
     
-    /*let eatingTimeAnswer = ORKAnswerFormat.timeIntervalAnswerFormat()
     
-    let eatingStep = ORKQuestionStep(identifier: Identifier.EatingStep.rawValue, title: "Når spiste du sist?", answer: eatingTimeAnswer)
-    
-    eatingStep.text = ""
-    
-    steps+=[eatingStep]*/
-    
+    // EARLIER STEP
     let tookPillEarlierAnswer = ORKAnswerFormat.timeOfDayAnswerFormat()
     let tookPillEarlierStep = ORKQuestionStep(identifier: Identifier.TookPillEarlierStep.rawValue, title: "Når tok du den?", answer: tookPillEarlierAnswer)
     tookPillEarlierStep.text = ""
@@ -71,6 +65,7 @@ public var PillTask: ORKNavigableOrderedTask {
     
     let pillTask = ORKNavigableOrderedTask(identifier: Identifier.PillTask.rawValue, steps: steps)
     
+    // NAVIGABILITY RULES
     let resultSelector = ORKResultSelector.init(resultIdentifier: pillOptionStep.identifier)
     
     let pillTakenNow: NSPredicate = ORKResultPredicate.predicateForChoiceQuestionResultWithResultSelector(resultSelector, expectedAnswerValue: "now")
@@ -78,11 +73,7 @@ public var PillTask: ORKNavigableOrderedTask {
     
     let predicateRule = ORKPredicateStepNavigationRule(resultPredicates: [pillTakenNow, pillNotTaken], destinationStepIdentifiers: [pillCompletionStep.identifier, pillCompletionStep.identifier], defaultStepIdentifier: nil, validateArrays: false)
     
-    
     pillTask.setNavigationRule(predicateRule, forTriggerStepIdentifier: pillOptionStep.identifier)
-    //pillTask.setNavigationRule(predicateRule2, forTriggerStepIdentifier: pillOptionStep.identifier)
-    
-    
     
     return pillTask
 
