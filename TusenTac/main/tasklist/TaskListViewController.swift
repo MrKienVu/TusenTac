@@ -18,6 +18,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     let icons = ["medication", "eating", "weight", "side-effects"]
     private let reuseIdentifier = "Cell"
+    let nettskjema = NettskjemaHandler(scheme: .Answer)
     
     enum CollectionViewCellIdentifier: String {
         case Default = "Cell"
@@ -160,6 +161,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             if taskResult.identifier != "SideEffectTask" {
                 let csv = CSVProcesser(taskResult: taskResult)
                 print(csv.csv)
+                nettskjema.setExtraField("\(taskViewController.result.identifier)", csv: "\(csv.csv)")
+                nettskjema.submit()
             }
             
         case .Failed, .Discarded, .Saved:
@@ -167,8 +170,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             
         }
         
-        //self.nettskjema.setExtraField("\(taskViewController.result.identifier)", result: taskViewController.result)
-        //self.nettskjema.submit()
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     

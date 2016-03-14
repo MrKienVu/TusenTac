@@ -17,13 +17,13 @@ class NettskjemaHandler {
     
     enum SCHEME_TYPE: String {
         case SideEffects    = "https://nettskjema.uio.no/answer/bivirkninger-tusentac.html"
-        //case Answer     = "https://jboss-utv.uio.no/nettskjema/answer/answer.html"
+        case Answer         = "https://nettskjema.uio.no/answer/tusentac.html"
     }
     
     init(scheme: SCHEME_TYPE) {
-        self.request = NSURLRequest(URL: NSURL(string: scheme.rawValue)!)
-        self.backgroundWebView = UIWebView()
-        self.backgroundWebView.loadRequest(request)
+        request = NSURLRequest(URL: NSURL(string: scheme.rawValue)!)
+        backgroundWebView = UIWebView()
+        backgroundWebView.loadRequest(request)
     }
     
     func submit() {
@@ -35,17 +35,9 @@ class NettskjemaHandler {
         backgroundWebView.stopLoading()
     }
     
-    func setExtraField(key: String, result: ORKResult) {
-        // IMPORTANT NOTE: This is really not suitable for production use.
-        //      - The code for ORKESerializer closely tracks the ResearchKit data model, which may change between versions.
-        //      - There is no guarantee for backward or forward compatibility
-        //      - ORKESerializer is only included in Apple's internal test app for new features for the ResearchKit API.
-        
+    func setExtraField(key: String, csv: String) {
         print("Got result")
-        //let serializedResult = try? ORKESerializer.JSONDataForObject(result)
-        //print(serializedResult)
-        //backgroundWebView.stringByEvaluatingJavaScriptFromString("Nettskjema.setExtraField('\(key)', \(serializedResultJSON));")
-        backgroundWebView.stringByEvaluatingJavaScriptFromString("Nettskjema.setExtraField('\(key)', Tester innsending fra app);")
+        backgroundWebView.stringByEvaluatingJavaScriptFromString("Nettskjema.setExtraField('\(key)', \(csv));")
     }
     
 }
