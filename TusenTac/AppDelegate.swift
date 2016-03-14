@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
-        let passcodeVC = ORKPasscodeViewController.passcodeAuthenticationViewControllerWithText("Velkommen tilbake til Min Dag.", delegate: self) as! ORKPasscodeViewController
+        let passcodeVC = ORKPasscodeViewController.passcodeAuthenticationViewControllerWithText("Velkommen tilbake til TusenTac.", delegate: self) as! ORKPasscodeViewController
         window?.rootViewController?.presentViewController(passcodeVC, animated: false, completion: nil)
     }
     
