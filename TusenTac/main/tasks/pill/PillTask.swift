@@ -17,9 +17,10 @@ public var PillTask: ORKNavigableOrderedTask {
     if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
         
         let dateString = lastDosage.toStringShortStyle()
-        let dosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
+        if let dosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage) {
+            lastDosageText = "Din forrige dosering var \(dosage) mg og ble registrert \(dateString)."
+        }
         
-        lastDosageText = "Din forrige dosering var \(dosage!) mg og ble registrert \(dateString)."
     }
     
     var steps = [ORKStep]()

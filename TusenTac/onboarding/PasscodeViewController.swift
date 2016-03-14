@@ -64,6 +64,13 @@ class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
     }
     
     @IBAction func getStartedClicked(sender: AnyObject) {
+        // Setting defaults
+        let defaultDates = Notification.sharedInstance.getDefaultDates()
+        Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
+        UserDefaults.setObject("200", forKey: UserDefaultKey.morningDosage)
+        UserDefaults.setObject("200", forKey: UserDefaultKey.nightDosage)
+        
+        // Presenting main storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         presentViewController(vc!, animated: true, completion: nil)
@@ -97,9 +104,8 @@ class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
     }
     
     
-  /*  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let defaultDates = Notification.sharedInstance.getDefaultDates()
-        Notification.sharedInstance.scheduleNotifications(defaultDates[0], weekendTime: defaultDates[1], weeklyDay: 1, weeklyTime: defaultDates[2])
-    } */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    } 
     
 }
