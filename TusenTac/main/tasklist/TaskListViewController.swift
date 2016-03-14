@@ -140,6 +140,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                     if let questionStepResult = result as? ORKNumericQuestionResult {
                         if let answer = questionStepResult.answer  {
                             UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
+                            UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
                         }
                     }
                     if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {

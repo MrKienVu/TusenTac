@@ -13,12 +13,6 @@ public var WeightTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
     
-  /*  let weightInstruction = ORKInstructionStep(identifier: Identifier.WeightInstruction.rawValue)
-    weightInstruction.title = "Vektregistrering"
-    weightInstruction.text = "På den neste siden blir du spurt om å skrive inn din nåværende vekt."
-    weightInstruction.image = UIImage(named: "tusentac-scale")
-    steps.append(weightInstruction) */
-    
     // This answer format will display a unit in-line with the numeric entry field.
     //husk å legg inn localized strenger
     let localizedQuestionStep1AnswerFormatUnit = "kg"
@@ -26,10 +20,18 @@ public var WeightTask: ORKOrderedTask {
     
     let questionStep1 = ORKQuestionStep(identifier: String(Identifier.WeightStep), title: "Registrer vekt", answer: questionStep1AnswerFormat)
     
-    questionStep1.text = "Vennligst skriv inn din nåværende vekt nedenfor."
+    var lastWeightString = ""
+    if let weight = UserDefaults.objectForKey(UserDefaultKey.Weight) {
+        if let weightTime = UserDefaults.objectForKey(UserDefaultKey.LastWeightTime) {
+            lastWeightString += "Din forrige vekt var \(weight) kg og ble registrert \((weightTime as! NSDate).toStringShortStyle())."
+        }
+    }
+    
+    questionStep1.text = "\(lastWeightString) \n\nVennligst skriv inn din nåværende vekt nedenfor."
+    questionStep1.optional = false
     
     
-    if let lastWeight = UserDefaults.valueForKey("Weight"){
+    if let lastWeight = UserDefaults.valueForKey(UserDefaultKey.Weight){
         questionStep1.placeholder = "\(lastWeight)"
        
     }
