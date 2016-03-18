@@ -15,6 +15,8 @@ public class CSVProcesser {
     let sid = UserDefaults.objectForKey(UserDefaultKey.StudyID)!
     
     var csv: String = ""
+    //var headers: [String] = []
+    var fields: [String] = []
     
     var description: String {
         return csv
@@ -22,7 +24,6 @@ public class CSVProcesser {
     
     
     init(taskResult: ORKTaskResult) {
-        
         csv += "\(appendMetadata(taskResult))"
         csv += "\(appendResultData(taskResult))"
     }
@@ -38,48 +39,46 @@ public class CSVProcesser {
     
     func appendResultData(taskResult: ORKTaskResult) -> String {
         
-        var resultString = ""
-        
         if let stepResults = taskResult.results as? [ORKStepResult] {
             for stepResult in stepResults {
                 for result in stepResult.results! {
                     
                     if let choiceResult = result as? ORKChoiceQuestionResult {
                         if let _ = choiceResult.answer {
-                            resultString += "\(choiceResult.choiceAnswers![0]),"
+                            fields.append("\(choiceResult.choiceAnswers![0])")
                             
                             var dateNow = ""
                             if "\(choiceResult.choiceAnswers![0])" == "now" {
                                 dateNow = taskResult.endDate!.toStringHourMinute()
-                                resultString += "\(dateNow),"
+                                fields.append("\(dateNow)")
                             }
                             
                         } else {
-                            resultString += "\(choiceResult.answer),"
+                            fields.append("\(choiceResult.answer)")
                         }
                     }
                     
                     if let timeOfDayResult = result as? ORKTimeOfDayQuestionResult {
                         if let answer = timeOfDayResult.dateComponentsAnswer {
-                            resultString += "\(answer.hour):\(answer.minute),"
+                            fields.append("\(answer.hour):\(answer.minute)")
                         } else {
-                            resultString += "\(timeOfDayResult.answer),"
+                            fields.append("\(timeOfDayResult.answer)")
                         }
                     }
                     
                     if let numericResult = result as? ORKNumericQuestionResult {
                         if let answer = numericResult.numericAnswer {
-                            resultString += "\(answer),"
+                            fields.append("\(answer)")
                         } else {
-                            resultString += "\(numericResult.answer),"
+                            fields.append("\(numericResult.answer)")
                         }
                     }
                     
                     if let textResult = result as? ORKTextQuestionResult {
                         if let answer = textResult.answer {
-                            resultString += "\(answer),"
+                            fields.append("\(answer)")
                         } else {
-                            resultString += "\(textResult.answer),"
+                            fields.append("\(textResult.answer)")
                         }
                     }
                     
@@ -87,9 +86,7 @@ public class CSVProcesser {
             }
         }
         
-        // Remove trailing comma ","
-        if resultString.characters.count > 0 { resultString.removeAtIndex(resultString.endIndex.predecessor()) }
-        return resultString
+        return fields.joinWithSeparator(",")
     }
     
 }
