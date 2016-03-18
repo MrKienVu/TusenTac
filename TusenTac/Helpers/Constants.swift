@@ -25,6 +25,7 @@ struct UserDefaultKey {
     static let hasLaunchedBefore = "HasLaunchedBefore"
     static let UUID = "UUID"
     static let StudyID = "StudyID"
+    static let PersonNumber = "PersonNumber"
     static let NotificationsEnabled = "NotificationsEnabled"
     static let CompletedOnboarding = "CompletedOnboarding"
     
