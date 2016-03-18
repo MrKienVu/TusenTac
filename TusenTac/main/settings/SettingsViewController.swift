@@ -43,6 +43,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func morningSwitchChanged(sender: AnyObject) {
+        UserDefaults.setObject(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
         Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
@@ -58,6 +59,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func nightSwitchChanged(sender: AnyObject) {
+        UserDefaults.setObject(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
         Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
@@ -147,6 +149,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         nightDosageTextField.delegate = self
 
         notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
+        morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
+        nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
         
         addDoneButtonOnKeyboard()
     

@@ -31,4 +31,7 @@ struct UserDefaultKey {
     static let Weight = "Weight"
     static let LastWeightTime = "LastWeightTime"
     static let LastDosageTime = "LastDosageTime"
+    
+    static let morningSwitchOn = "MorningSwitchOn"
+    static let nightSwitchOn = "NightSwitchOn"
 }
