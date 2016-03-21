@@ -16,7 +16,6 @@ public class CSVProcesser {
     
     var csv: String = ""
     //var headers: [String] = []
-    var fields: [String] = []
     
     var description: String {
         return csv
@@ -38,6 +37,7 @@ public class CSVProcesser {
     }
     
     func appendResultData(taskResult: ORKTaskResult) -> String {
+        var fields: [String] = []
         
         if let stepResults = taskResult.results as? [ORKStepResult] {
             for stepResult in stepResults {

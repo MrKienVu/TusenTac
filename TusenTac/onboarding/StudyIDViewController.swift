@@ -92,14 +92,14 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
         if keyboardSize.height == offset.height {
             if nextButtonBottomConstraint.constant == 0 {
                 nextButtonBottomConstraint.constant += keyboardSize.height
-                studyIdTopConstraint.constant -= 120
+                studyIdTopConstraint.constant -= 160
                 UIView.animateWithDuration(0.1, animations: { () -> Void in
                     self.view.layoutIfNeeded()
                 })
             }
         } else {
             nextButtonBottomConstraint.constant -= keyboardSize.height + offset.height
-            studyIdTopConstraint.constant -= 120
+            studyIdTopConstraint.constant -= 160
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.view.layoutIfNeeded()
             })

@@ -29,8 +29,8 @@
                             <constraint firstAttribute="height" constant="76" id="uZO-Vz-ouu"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBC-lI-dCM">
-                        <rect key="frame" x="18" y="164.5" width="113" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBC-lI-dCM">
+                        <rect key="frame" x="18" y="164.5" width="113" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="113" id="tfT-Qd-mey"/>
                         </constraints>

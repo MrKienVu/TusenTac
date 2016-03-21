@@ -53,7 +53,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
-        // TODO: Update cell last registration label
+        collection.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,11 +96,17 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
         if indexPath.row == 0 {
-            if let lastDosage = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
-                let dateString = (lastDosage as! NSDate).toStringShortStyle()
-                cell.lastDosageLabel.text = "Forrige dose tatt \(dateString)"
-            } else {
-                cell.lastDosageLabel.text = ""
+            if let lastDosageTime = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
+                let dateString = (lastDosageTime as! NSDate).toStringShortStyle()
+                cell.lastDosageLabel.text = "Sist registrert \(dateString)"
+                cell.lastDosageLabel.hidden = false
+            }
+            
+        } else if indexPath.row == 2 {
+            if let lastWeightTime = UserDefaults.objectForKey(UserDefaultKey.LastWeightTime) {
+                let dateString = (lastWeightTime as! NSDate).toStringShortStyle()
+                cell.lastDosageLabel.text = "Sist registrert \(dateString)"
+                cell.lastDosageLabel.hidden = false
             }
         } else {
             cell.lastDosageLabel.hidden = true;
@@ -114,19 +120,16 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: (self.view.frame.width/2)-5, height: (self.view.frame.height/2.5)-14)
+        return CGSize(width: (view.frame.width/2)-5, height: (view.frame.height/2.5)-14)
     }
     
     // MARK: ORKTaskViewControllerDelegate
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
-
         
         taskResultFinishedCompletionHandler?(taskViewController.result)
         
-        
         let taskResult = taskViewController.result
         var dateNow = NSDate()
-        var timePillTaken: NSDateComponents?
         
         switch reason {
         case .Completed:
@@ -140,23 +143,26 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                                 UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
                             }
                         }
-                        if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                            if let timeAnswer = lastDosageTime.dateComponentsAnswer {
-                                timePillTaken = timeAnswer
+                        if taskResult.identifier == PillTask.identifier {
+                            if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
+                                if let timeAnswer = lastDosageTime.dateComponentsAnswer {
+                                    dateNow = NSCalendar.currentCalendar().dateBySettingHour(
+                                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
+                                        )!
+                                    UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                }
+                            }
+                            if let choiceResult = result as? ORKChoiceQuestionResult {
+                                if let _ = choiceResult.answer {
+                                    if choiceResult.choiceAnswers![0] as! String == "now" {
+                                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            
-            // If the user registered that he/she took the pill earlier, set the date to the current date with those times.
-            if timePillTaken != nil {
-                dateNow = NSCalendar.currentCalendar().dateBySettingHour(
-                    timePillTaken!.hour, minute: timePillTaken!.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
-                    )!
-            }
-            
-            UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
             
             if taskResult.identifier != "SideEffectTask" {
                 let csv = CSVProcesser(taskResult: taskResult)
@@ -189,7 +195,12 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         // Make sure we receive events from `taskViewController`.
         taskViewController.delegate = self
-        taskViewController.outputDirectory = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask)[0] as NSURL
+        
+        // Save eventual files to the document directory
+        let documentURL = NSFileManager.defaultManager().URLsForDirectory(
+            NSSearchPathDirectory.DocumentDirectory,
+            inDomains: NSSearchPathDomainMask.UserDomainMask)[0] as NSURL
+        taskViewController.outputDirectory = documentURL
         
         
         /*
@@ -200,10 +211,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         presentViewController(taskViewController, animated: true, completion: nil)
         
         
-    }
-    
-    func getNumberOfStepsCompleted(results: [ORKResult]) -> Int {
-        return results.count
     }
     
     func animateSettingsIconWithDuration(duration: Double) {
