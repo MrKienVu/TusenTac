@@ -277,7 +277,8 @@
                                     <color key="titleColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7zn-Lg-wdy" kind="show" id="ivZ-9M-Vm7">
+                                    <action selector="notNowClicked:" destination="7Yz-ow-plY" eventType="touchUpInside" id="cVT-ah-Ajd"/>
+                                    <segue destination="7zn-Lg-wdy" kind="show" identifier="segueShowPasscode" id="ivZ-9M-Vm7">
                                         <nil key="action"/>
                                     </segue>
                                 </connections>
@@ -514,6 +515,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vyW-mq-WVG"/>
+        <segue reference="ivZ-9M-Vm7"/>
     </inferredMetricsTieBreakers>
 </document>

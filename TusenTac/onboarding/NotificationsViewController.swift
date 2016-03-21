@@ -51,6 +51,33 @@ class NotificationsViewController: UIViewController {
         enableNextButton()
     }
     
+    @IBAction func notNowClicked(sender: AnyObject) {
+        let alert = UIAlertController(
+            title: "Påminnelser av",
+            message: "Påminnelser vil hjelpe deg med å huske å gjøre oppgaver i appen. Det anbefales på det sterkeste å gi tilgang til påminnelser.",
+            preferredStyle: .Alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Fortsett uten påminnelser", style: .Default, handler: { action in
+            self.performSegueWithIdentifier("segueShowPasscode", sender: self)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gi tilgang", style: .Cancel, handler: { action
+            in
+            
+            Notification.sharedInstance.setupNotificationSettings()
+            
+            UIView.animateWithDuration(0.8, animations: {
+                self.nextButton.alpha = 1
+                self.notNowButton.alpha = 0
+                self.givePermissionButton.setTitleColor(UIColor(red: 1, green: 1, blue: 1, alpha: 0), forState: .Normal)
+            })
+            self.enableNextButton()
+        }))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func animateEnabledLabels() {
         UIView.animateWithDuration(0.8, animations: {
             self.showEnabledLabels()
