@@ -13,18 +13,11 @@ import ResearchKit
 class TaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ORKTaskViewControllerDelegate {
     
     @IBOutlet var collection: UICollectionView!
-    
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
-    private let reuseIdentifier = "Cell"
     let nettskjema = NettskjemaHandler(scheme: .Answer)
-    
-    enum CollectionViewCellIdentifier: String {
-        case Default = "Cell"
-    }
-    
-    // MARK: Properties
+    let taskListRows = TaskListRow.allCases
     
     /**
     When a task is completed, the `TaskListViewController` calls this closure
@@ -32,7 +25,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     */
     var taskResultFinishedCompletionHandler: (ORKResult -> Void)?
     
-    let taskListRows = TaskListRow.allCases
     
     
     override func viewDidLoad() {
@@ -50,36 +42,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         print("Completed onboarding")
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        collection.reloadData()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-            //1
-            switch kind {
-                //2
-            case UICollectionElementKindSectionFooter:
-                //3
-                let footerView =
-                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                    withReuseIdentifier: "UIOFooterView",
-                    forIndexPath: indexPath)
-                    as! FooterView
-                
-                return footerView
-            default:
-                //4
-                fatalError("Unexpected element kind")
-            }
     }
     
     // MARK: UICollectionViewDataSource
@@ -209,8 +171,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         the task view controller is presented.
         */
         presentViewController(taskViewController, animated: true, completion: nil)
-        
-        
     }
     
     func animateSettingsIconWithDuration(duration: Double) {
@@ -225,6 +185,36 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         self.navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        collection.reloadData()
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+            //1
+            switch kind {
+                //2
+            case UICollectionElementKindSectionFooter:
+                //3
+                let footerView =
+                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                    withReuseIdentifier: "UIOFooterView",
+                    forIndexPath: indexPath)
+                    as! FooterView
+                
+                return footerView
+            default:
+                //4
+                fatalError("Unexpected element kind")
+            }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 }
