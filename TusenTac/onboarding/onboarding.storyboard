@@ -49,30 +49,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Skriv inn studie ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-8m-pHr">
-                                <rect key="frame" x="200" y="342" width="200" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Studie ID (3-6 tegn)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-8m-pHr">
+                                <rect key="frame" x="175" y="342" width="250" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="tvk-Nt-H24"/>
+                                    <constraint firstAttribute="height" constant="50" id="MH3-5u-0KM"/>
+                                    <constraint firstAttribute="width" constant="250" id="tvk-Nt-H24"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="IdChanged:" destination="c8y-3O-nv4" eventType="editingChanged" id="0Jp-cd-IyJ"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gjenta studie ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ckB-m5-N2C">
-                                <rect key="frame" x="200" y="380.5" width="200" height="30"/>
+                                <rect key="frame" x="175" y="400" width="250" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="wWz-s4-Gaa"/>
+                                    <constraint firstAttribute="height" constant="50" id="bXZ-vD-SPk"/>
+                                    <constraint firstAttribute="width" constant="250" id="wWz-s4-Gaa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                 <connections>
                                     <action selector="repeatIdChanged:" destination="c8y-3O-nv4" eventType="editingChanged" id="uG1-J8-CJM"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-yj-JFG">
-                                <rect key="frame" x="240.5" y="87" width="120" height="165"/>
+                                <rect key="frame" x="240" y="87" width="120" height="165"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
                                 <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -87,8 +89,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TZ-rt-U0P">
-                                <rect key="frame" x="380" y="385" width="17" height="23.5"/>
-                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="17"/>
+                                <rect key="frame" x="400" y="409" width="24" height="33"/>
+                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.1555452387" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -99,8 +101,8 @@
                             <constraint firstItem="VLj-3X-Pzw" firstAttribute="top" secondItem="zOz-yj-JFG" secondAttribute="bottom" constant="-10" id="1ld-7F-vR1"/>
                             <constraint firstItem="kbq-RF-MR1" firstAttribute="leading" secondItem="wCC-Ap-bhU" secondAttribute="leading" id="3ds-vc-rTJ"/>
                             <constraint firstItem="VLj-3X-Pzw" firstAttribute="centerX" secondItem="wCC-Ap-bhU" secondAttribute="centerX" id="7F3-bp-VbM"/>
-                            <constraint firstItem="2TZ-rt-U0P" firstAttribute="top" secondItem="NG6-8m-pHr" secondAttribute="bottom" constant="13" id="7Uh-pw-tuV"/>
-                            <constraint firstItem="2TZ-rt-U0P" firstAttribute="leading" secondItem="ckB-m5-N2C" secondAttribute="trailing" constant="-20" id="7rp-oJ-qJD"/>
+                            <constraint firstItem="2TZ-rt-U0P" firstAttribute="top" secondItem="NG6-8m-pHr" secondAttribute="bottom" constant="17" id="7Uh-pw-tuV"/>
+                            <constraint firstItem="2TZ-rt-U0P" firstAttribute="leading" secondItem="ckB-m5-N2C" secondAttribute="trailing" constant="-25" id="7rp-oJ-qJD"/>
                             <constraint firstItem="jN1-ts-oJ3" firstAttribute="top" secondItem="kbq-RF-MR1" secondAttribute="bottom" id="CXi-8H-Suo"/>
                             <constraint firstItem="ckB-m5-N2C" firstAttribute="top" secondItem="NG6-8m-pHr" secondAttribute="bottom" constant="8" id="LJ4-2O-DoC"/>
                             <constraint firstItem="NG6-8m-pHr" firstAttribute="centerX" secondItem="wCC-Ap-bhU" secondAttribute="centerX" id="NN3-Zq-y7v"/>
@@ -162,11 +164,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Personnummer (11 siffer)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-EP-uKm">
-                                <rect key="frame" x="200" y="322" width="200" height="30"/>
+                                <rect key="frame" x="175" y="322" width="250" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="zf9-h3-400"/>
+                                    <constraint firstAttribute="height" constant="50" id="DtH-YY-7ZA"/>
+                                    <constraint firstAttribute="width" constant="250" id="zf9-h3-400"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
                                     <action selector="IdChanged:" destination="c8y-3O-nv4" eventType="editingChanged" id="2Va-cN-yDU"/>
@@ -188,8 +191,8 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ca-G6-O0b">
-                                <rect key="frame" x="380" y="326.5" width="17" height="23.5"/>
-                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="17"/>
+                                <rect key="frame" x="400" y="330.5" width="24" height="33"/>
+                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.1555452387" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -200,12 +203,12 @@
                             <constraint firstItem="22X-RM-LD9" firstAttribute="top" secondItem="6tx-0h-Eq4" secondAttribute="bottom" id="6VP-YZ-woC"/>
                             <constraint firstItem="DVu-eV-px3" firstAttribute="top" secondItem="9Hj-dG-ipi" secondAttribute="bottom" constant="8" id="Fre-65-kge"/>
                             <constraint firstItem="Kfb-EP-uKm" firstAttribute="top" secondItem="oIL-vp-8bd" secondAttribute="bottom" constant="40" id="KdN-rd-3xe"/>
-                            <constraint firstItem="8ca-G6-O0b" firstAttribute="top" secondItem="oIL-vp-8bd" secondAttribute="bottom" constant="45" id="OaC-Ld-1sJ"/>
+                            <constraint firstItem="8ca-G6-O0b" firstAttribute="top" secondItem="oIL-vp-8bd" secondAttribute="bottom" constant="49" id="OaC-Ld-1sJ"/>
                             <constraint firstItem="DVu-eV-px3" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="XQg-cm-JLa"/>
                             <constraint firstItem="oIL-vp-8bd" firstAttribute="top" secondItem="PTP-zL-laN" secondAttribute="bottom" constant="-10" id="YqV-pJ-6cW"/>
                             <constraint firstItem="PTP-zL-laN" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="fGn-3y-DeM"/>
                             <constraint firstItem="6tx-0h-Eq4" firstAttribute="leading" secondItem="XZJ-2Z-kZh" secondAttribute="leading" id="jGj-gg-BFZ"/>
-                            <constraint firstItem="8ca-G6-O0b" firstAttribute="leading" secondItem="Kfb-EP-uKm" secondAttribute="trailing" constant="-20" id="qqw-qA-ezd"/>
+                            <constraint firstItem="8ca-G6-O0b" firstAttribute="leading" secondItem="Kfb-EP-uKm" secondAttribute="trailing" constant="-25" id="qqw-qA-ezd"/>
                             <constraint firstItem="oIL-vp-8bd" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="v1q-NO-0Vl"/>
                             <constraint firstItem="Kfb-EP-uKm" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="vwz-7D-KBq"/>
                             <constraint firstItem="PTP-zL-laN" firstAttribute="top" secondItem="DVu-eV-px3" secondAttribute="bottom" constant="16" id="yRH-GF-Zdb"/>
@@ -247,8 +250,8 @@
                                 <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Denne applikasjonen baserer seg på å gi deg påminnelser når du har ting du må gjøre i appen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX5-HY-YVU">
-                                <rect key="frame" x="150" y="213" width="300" height="60.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Denne applikasjonen baserer seg på å gi deg påminnelser når du har ting du må gjøre i appen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX5-HY-YVU">
+                                <rect key="frame" x="150" y="238" width="300" height="60.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="GXx-r2-Bg0"/>
                                 </constraints>
@@ -302,7 +305,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gG7-3U-JJg">
-                                <rect key="frame" x="280.5" y="440" width="40" height="55"/>
+                                <rect key="frame" x="280" y="440" width="40" height="55"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="40"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
