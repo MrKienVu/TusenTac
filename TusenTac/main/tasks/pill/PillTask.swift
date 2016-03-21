@@ -74,6 +74,7 @@ public var PillTask: ORKNavigableOrderedTask {
     
     let predicateRule = ORKPredicateStepNavigationRule(resultPredicates: [pillTakenNow, pillNotTaken], destinationStepIdentifiers: [pillCompletionStep.identifier, pillCompletionStep.identifier], defaultStepIdentifier: nil, validateArrays: false)
     
+    
     pillTask.setNavigationRule(predicateRule, forTriggerStepIdentifier: pillOptionStep.identifier)
     
     return pillTask

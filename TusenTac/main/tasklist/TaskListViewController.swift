@@ -16,7 +16,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
-    let nettskjema = NettskjemaHandler(scheme: .Answer)
+    //let nettskjema = NettskjemaHandler(scheme: .Answer)
     let taskListRows = TaskListRow.allCases
     
     /**
@@ -129,8 +129,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             if taskResult.identifier != "SideEffectTask" {
                 let csv = CSVProcesser(taskResult: taskResult)
                 print(csv.csv)
-                nettskjema.setExtraField("\(taskViewController.result.identifier)", csv: "\(csv.csv)")
-                nettskjema.submit()
+                //nettskjema.setExtraField("\(taskViewController.result.identifier)", csv: "\(csv.csv)")
+                //nettskjema.submit()
+                let ns = NettskjemaHandler()
+                ns.ping()
             }
             
         case .Failed, .Discarded, .Saved:

@@ -9,10 +9,59 @@
 import Foundation
 import UIKit
 import ResearchKit
+import Alamofire
 
 class NettskjemaHandler {
+    let pingUrl = "https://nettskjema.uio.no/ping.html"
     
-    let request: NSURLRequest
+    private var csrfToken: String?
+    
+    init() {
+        
+    }
+    
+    func ping() {
+        Alamofire.request(.GET, pingUrl)
+            .responseString { response in
+                print(response.result.value)
+                if let csrf = response.result.value {
+                    self.csrfToken = csrf
+                }
+            }
+        print("CSRF: \(csrfToken)")
+    }
+    
+}
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*let request: NSURLRequest
     let backgroundWebView: UIWebView
     
     enum SCHEME_TYPE: String {
@@ -38,6 +87,4 @@ class NettskjemaHandler {
     func setExtraField(key: String, csv: String) {
         print("Got result")
         backgroundWebView.stringByEvaluatingJavaScriptFromString("Nettskjema.setExtraField('\(key)', \(csv));")
-    }
-    
-}
+    }*/
