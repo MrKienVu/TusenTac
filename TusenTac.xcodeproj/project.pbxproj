@@ -11,6 +11,7 @@
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
+		5F2FA6151CA003D2007736C7 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */; };
 		5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37F9DF1C240968000ABF26 /* AppDelegate.swift */; };
 		5F37F9E51C240968000ABF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E31C240968000ABF26 /* Main.storyboard */; };
 		5F37F9E71C240968000ABF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E61C240968000ABF26 /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
+		5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		5F37F9DC1C240968000ABF26 /* TusenTac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TusenTac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F37F9DF1C240968000ABF26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F37F9E41C240968000ABF26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				5F39E3E31C240E0400133C86 /* SettingsViewController.swift */,
+				5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */,
 			);
 			name = settings;
 			path = main/settings;
@@ -541,6 +544,7 @@
 				5F39E3D71C240D2100133C86 /* Constants.swift in Sources */,
 				5F39E3DC1C240D6100133C86 /* WeightTask.swift in Sources */,
 				5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */,
+				5F2FA6151CA003D2007736C7 /* ContactTableViewController.swift in Sources */,
 				5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */,
 				32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */,
 				5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */,
