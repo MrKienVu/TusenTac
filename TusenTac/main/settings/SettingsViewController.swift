@@ -218,4 +218,15 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
             evening: nightTimePicker.date
         )
     }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        print("yolo")
+        if(textField == nightDosageTextField || textField == morningDosageTextField){
+            let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
+            if tempRange?.isEmpty == false && string == "," {
+                
+                return false
+            }
+        }
+        return true
+    }
 }
