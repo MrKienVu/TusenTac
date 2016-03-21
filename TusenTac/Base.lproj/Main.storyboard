@@ -455,7 +455,7 @@
         <!--Kontakt oss-->
         <scene sceneID="KkE-4c-YGm">
             <objects>
-                <tableViewController title="Kontakt oss" id="jsT-qL-gra" sceneMemberID="viewController">
+                <tableViewController title="Kontakt oss" id="jsT-qL-gra" customClass="ContactTableViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="n7B-nS-Pqg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -481,7 +481,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-lW-Z7f">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-lW-Z7f">
                                                     <rect key="frame" x="570" y="7" width="22" height="30.5"/>
                                                     <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -517,7 +517,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKG-Zy-yMi">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKG-Zy-yMi">
                                                     <rect key="frame" x="570" y="7" width="22" height="30.5"/>
                                                     <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -557,7 +557,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-SH-hJU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-SH-hJU">
                                                     <rect key="frame" x="570" y="6.5" width="22" height="30.5"/>
                                                     <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
