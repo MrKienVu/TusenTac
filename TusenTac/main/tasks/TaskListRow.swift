@@ -72,13 +72,13 @@ enum TaskListRow: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .Pill:
-            return "Registrer dose".localized
+            return "Medisin".localized
         case .Eat:
-            return "Registrer måltid".localized
+            return "Måltid".localized
         case .Weight:
-            return "Registrer vekt".localized
+            return "Vekt".localized
         case .SideEffect:
-            return "Registrer bivirkninger".localized
+            return "Bivirkninger".localized
         }
     }
     

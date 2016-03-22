@@ -24,7 +24,7 @@ public var EatTask: ORKOrderedTask {
     waitStepIndeterminate.text = "Laster opp..."
     waitStepIndeterminate.indicatorType = ORKProgressIndicatorType.Indeterminate
     steps.append(waitStepIndeterminate)
-    
+  
     return ORKOrderedTask(identifier: Identifier.EatTask.rawValue, steps: steps)
     
 }
