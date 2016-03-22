@@ -141,8 +141,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+    }    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         // Present the task view controller that the user asked for.

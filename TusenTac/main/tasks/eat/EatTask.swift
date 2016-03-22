@@ -19,6 +19,8 @@ public var EatTask: ORKOrderedTask {
     eatingStep.optional = false
     steps.append(eatingStep)
     
+    
+    
     let completionStep = ORKCompletionStep(identifier: Identifier.EatCompletion.rawValue)
     completionStep.title = "Takk!"
     completionStep.text = "Dine svar har blitt registrert."
