@@ -19,10 +19,11 @@ public var EatTask: ORKOrderedTask {
     eatingStep.optional = false
     steps.append(eatingStep)
     
-    let completionStep = ORKCompletionStep(identifier: Identifier.EatCompletion.rawValue)
-    completionStep.title = "Takk!"
-    completionStep.text = "Dine svar har blitt registrert."
-    steps.append(completionStep)
+    let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
+    waitStepIndeterminate.title = "Ferdig"
+    waitStepIndeterminate.text = "Laster opp..."
+    waitStepIndeterminate.indicatorType = ORKProgressIndicatorType.Indeterminate
+    steps.append(waitStepIndeterminate)
     
     return ORKOrderedTask(identifier: Identifier.EatTask.rawValue, steps: steps)
     

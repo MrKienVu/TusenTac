@@ -41,11 +41,11 @@ public var WeightTask: ORKOrderedTask {
     
     steps += [questionStep1]
     
-    // SUMMARY STEP
-    let summaryStep = ORKCompletionStep(identifier: Identifier.SummaryStep.rawValue)
-    summaryStep.title = "Levert!".localized
-    summaryStep.text = "Dine svar har blitt levert til Nettskjema.".localized
-    steps += [summaryStep]
+    let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
+    waitStepIndeterminate.title = "Ferdig"
+    waitStepIndeterminate.text = "Laster opp..."
+    waitStepIndeterminate.indicatorType = ORKProgressIndicatorType.Indeterminate
+    steps.append(waitStepIndeterminate)
     
     return ORKOrderedTask(identifier: Identifier.WeightTask.rawValue, steps: steps)
     

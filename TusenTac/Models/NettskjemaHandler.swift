@@ -12,7 +12,8 @@ import ResearchKit
 import Alamofire
 
 class NettskjemaHandler {
-    let pingUrl = "https://nettskjema.uio.no/ping.html"
+    private let pingUrl = "https://nettskjema.uio.no/ping.html"
+    private let formUrl = "https://nettskjema.uio.no/answer/tusentac.html"
     
     private var csrfToken: String?
     
@@ -20,71 +21,58 @@ class NettskjemaHandler {
         
     }
     
-    func ping() {
+    private func getCsrfToken(completion: (String?, NSError?) -> Void) -> () {
         Alamofire.request(.GET, pingUrl)
+            .validate()
             .responseString { response in
-                print(response.result.value)
-                if let csrf = response.result.value {
-                    self.csrfToken = csrf
+                switch response.result {
+                case .Success(let data):
+                    self.csrfToken = data
+                    completion(data, nil)
+                    NSLog("Request succeeded with data: \(data)")
+                case .Failure(let error):
+                    completion(nil, error)
+                    NSLog("Request failed with error: \(error)")
                 }
             }
-        print("CSRF: \(csrfToken)")
+    }
+    
+    func upload() {
+        getCsrfToken { (data, error) in
+            if let token = data {
+                NSLog("Got to upload with token: \(token)")
+            } else {
+                NSLog("Got to upload with error: \(error!)")
+            }
+        }
+    }
+    
+    func post(file: String) {
+        Alamofire.upload(
+            .POST,
+            formUrl,
+            multipartFormData: { multipartFormData in
+                let tokenData = self.csrfToken?.dataUsingEncoding(NSUTF8StringEncoding)
+                multipartFormData.appendBodyPart(data: tokenData!, name: "CsrfFieldId")
+                /*multipartFormData.appendBodyPart(
+                    data: NSData(),
+                    name: "file.name",
+                    fileName: "file.name",
+                    mimeType: "text/csv"
+                )*/
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseString { response in
+                        NSLog("Upload success.")
+                        debugPrint(response)
+                    }
+                case .Failure(let encodingError):
+                    NSLog("Upload failed.")
+                    print(encodingError)
+                }
+            })
     }
     
 }
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*let request: NSURLRequest
-    let backgroundWebView: UIWebView
-    
-    enum SCHEME_TYPE: String {
-        case SideEffects    = "https://nettskjema.uio.no/answer/bivirkninger-tusentac.html"
-        case Answer         = "https://nettskjema.uio.no/answer/tusentac.html"
-    }
-    
-    init(scheme: SCHEME_TYPE) {
-        request = NSURLRequest(URL: NSURL(string: scheme.rawValue)!)
-        backgroundWebView = UIWebView()
-        backgroundWebView.loadRequest(request)
-    }
-    
-    func submit() {
-        backgroundWebView.stringByEvaluatingJavaScriptFromString("document.getElementById('submit-answer').click();")
-        print("did run submit")
-    }
-    
-    func reload() {
-        backgroundWebView.stopLoading()
-    }
-    
-    func setExtraField(key: String, csv: String) {
-        print("Got result")
-        backgroundWebView.stringByEvaluatingJavaScriptFromString("Nettskjema.setExtraField('\(key)', \(csv));")
-    }*/

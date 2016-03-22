@@ -132,7 +132,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                 //nettskjema.setExtraField("\(taskViewController.result.identifier)", csv: "\(csv.csv)")
                 //nettskjema.submit()
                 let ns = NettskjemaHandler()
-                ns.ping()
+                ns.upload()
             }
             
         case .Failed, .Discarded, .Saved:
@@ -141,6 +141,18 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func taskViewController(taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
+        let identifier = stepViewController.step?.identifier
+        if identifier == Identifier.WaitCompletionStep.rawValue {
+            stepViewController.cancelButtonItem = nil
+            delay(2.0, closure: { () -> () in
+                if let stepViewController = stepViewController as? ORKWaitStepViewController {
+                    stepViewController.goForward()
+                }
+            })
+        }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -191,6 +203,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewWillAppear(animated: Bool) {
         collection.reloadData()
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
     func collectionView(collectionView: UICollectionView,

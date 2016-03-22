@@ -37,6 +37,8 @@ enum Identifier: String {
     case AmountSleptQuestionStep =                              "AmountSleptQuestionStep"
     case SummaryStep =                                          "SummaryStep"
     
+    case WaitCompletionStep =                                   "WaitCompletionStep"
+    
     // Task with examples of questions with sliding scales.
     case ScaleQuestionTask
     case DiscreteScaleQuestionStep

@@ -59,10 +59,15 @@ public var PillTask: ORKNavigableOrderedTask {
     steps += [tookPillEarlierStep]
     
     // SUMMARY STEP
-    let pillCompletionStep = ORKCompletionStep(identifier: Identifier.PillCompletionStep.rawValue)
+    /*let pillCompletionStep = ORKCompletionStep(identifier: Identifier.PillCompletionStep.rawValue)
     pillCompletionStep.title = "Ferdig!".localized
     pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
-    steps += [pillCompletionStep]
+    steps += [pillCompletionStep]*/
+    let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
+    waitStepIndeterminate.title = "Ferdig"
+    waitStepIndeterminate.text = "Laster opp..."
+    waitStepIndeterminate.indicatorType = ORKProgressIndicatorType.Indeterminate
+    steps.append(waitStepIndeterminate)
     
     let pillTask = ORKNavigableOrderedTask(identifier: Identifier.PillTask.rawValue, steps: steps)
     
@@ -70,9 +75,8 @@ public var PillTask: ORKNavigableOrderedTask {
     let resultSelector = ORKResultSelector.init(resultIdentifier: pillOptionStep.identifier)
     
     let pillTakenNow: NSPredicate = ORKResultPredicate.predicateForChoiceQuestionResultWithResultSelector(resultSelector, expectedAnswerValue: "now")
-    let pillNotTaken: NSPredicate = ORKResultPredicate.predicateForChoiceQuestionResultWithResultSelector(resultSelector, expectedAnswerValue: "none")
     
-    let predicateRule = ORKPredicateStepNavigationRule(resultPredicates: [pillTakenNow, pillNotTaken], destinationStepIdentifiers: [pillCompletionStep.identifier, pillCompletionStep.identifier], defaultStepIdentifier: nil, validateArrays: false)
+    let predicateRule = ORKPredicateStepNavigationRule(resultPredicates: [pillTakenNow], destinationStepIdentifiers: [waitStepIndeterminate.identifier], defaultStepIdentifier: nil, validateArrays: false)
     
     
     pillTask.setNavigationRule(predicateRule, forTriggerStepIdentifier: pillOptionStep.identifier)
