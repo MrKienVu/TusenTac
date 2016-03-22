@@ -75,7 +75,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         cell.iconImage.image = UIImage(named: icons[indexPath.row])
         cell.taskLabel.text = "\(taskListRows[indexPath.row])"
-        cell.taskLabel.sizeToFit()
         
         return cell
     }

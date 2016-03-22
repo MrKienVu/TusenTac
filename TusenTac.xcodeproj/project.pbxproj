@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320119341CA184CD00F3DA34 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F008B761CA138F800CAFDC1 /* Alamofire.framework */; };
+		320119351CA184CD00F3DA34 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F008B761CA138F800CAFDC1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3266F7D01C9031A20048E9B7 /* CSVProcesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */; };
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
@@ -47,6 +49,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		320119361CA184CD00F3DA34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F008B651CA138F700CAFDC1 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
 		5F008B751CA138F800CAFDC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F008B651CA138F700CAFDC1 /* Alamofire.xcodeproj */;
@@ -141,6 +150,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5F39E3C21C240A7B00133C86 /* ResearchKit.framework in Embed Frameworks */,
+				320119351CA184CD00F3DA34 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F39E3C11C240A7B00133C86 /* ResearchKit.framework in Frameworks */,
+				320119341CA184CD00F3DA34 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +452,7 @@
 			);
 			dependencies = (
 				5F39E3C41C240A7B00133C86 /* PBXTargetDependency */,
+				320119371CA184CD00F3DA34 /* PBXTargetDependency */,
 			);
 			name = TusenTac;
 			productName = TusenTac;
@@ -688,6 +700,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		320119371CA184CD00F3DA34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = 320119361CA184CD00F3DA34 /* PBXContainerItemProxy */;
+		};
 		5F37F9F21C240968000ABF26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F37F9DB1C240968000ABF26 /* TusenTac */;
