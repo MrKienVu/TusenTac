@@ -106,6 +106,8 @@ class NotificationsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if Notification.sharedInstance.isNotificationsEnabled() {
             UserDefaults.setBool(true, forKey: UserDefaultKey.NotificationsEnabled)
+            UserDefaults.setBool(true, forKey: UserDefaultKey.morningSwitchOn)
+            UserDefaults.setBool(true, forKey: UserDefaultKey.nightSwitchOn)
         }
         let defaultDates = Notification.sharedInstance.getDefaultDates()
         Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])

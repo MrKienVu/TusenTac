@@ -44,12 +44,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studie ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Krb-M2-KDg">
-                                <rect key="frame" x="230" y="28" width="141.5" height="42.5"/>
+                                <rect key="frame" x="230" y="28" width="142" height="43"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Studie ID (3-6 tegn)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-8m-pHr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Studie ID (3-8 tegn)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NG6-8m-pHr">
                                 <rect key="frame" x="175" y="342" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MH3-5u-0KM"/>
@@ -80,7 +80,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fyll inn din studie ID i feltene nedenfor. Du kan ikke gå videre før feltene er samstemte." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLj-3X-Pzw">
-                                <rect key="frame" x="150" y="242" width="300" height="60.5"/>
+                                <rect key="frame" x="150" y="242" width="300" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Nn9-YW-UNl"/>
                                 </constraints>
@@ -142,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personnummer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eV-px3">
-                                <rect key="frame" x="181" y="28" width="238.5" height="42.5"/>
+                                <rect key="frame" x="181" y="28" width="239" height="43"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -154,7 +154,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For å være med i denne studien trenger vi å vite ditt personnummer." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIL-vp-8bd">
-                                <rect key="frame" x="150" y="241" width="300" height="40.5"/>
+                                <rect key="frame" x="150" y="241" width="300" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="GDt-0q-8xN"/>
                                     <constraint firstAttribute="width" constant="300" id="loM-Hu-uYv"/>
@@ -191,7 +191,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ca-G6-O0b">
-                                <rect key="frame" x="400" y="330.5" width="24" height="33"/>
+                                <rect key="frame" x="400" y="331" width="24" height="33"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.1555452387" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -251,7 +251,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Denne applikasjonen baserer seg på å gi deg påminnelser når du har ting du må gjøre i appen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX5-HY-YVU">
-                                <rect key="frame" x="150" y="238" width="300" height="60.5"/>
+                                <rect key="frame" x="150" y="238" width="300" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="GXx-r2-Bg0"/>
                                 </constraints>
@@ -311,7 +311,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Påminnelser er på" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSb-jh-Cij">
-                                <rect key="frame" x="234" y="489" width="132" height="20.5"/>
+                                <rect key="frame" x="234" y="489" width="132" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -383,7 +383,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="private" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isl-iE-X93">
-                                <rect key="frame" x="118" y="83" width="364.5" height="140"/>
+                                <rect key="frame" x="118" y="83" width="365" height="140"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
                                 <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -427,7 +427,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpu-pq-prp">
-                                <rect key="frame" x="150" y="213" width="300" height="80.5"/>
+                                <rect key="frame" x="150" y="213" width="300" height="81"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Hly-UX-f1b"/>
                                 </constraints>
@@ -437,13 +437,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="check" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5X-8U-efm">
-                                <rect key="frame" x="246.5" y="448" width="107.5" height="47"/>
+                                <rect key="frame" x="247" y="448" width="107" height="47"/>
                                 <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="40"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App kode opprettet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pyd-tR-vTv">
-                                <rect key="frame" x="229" y="489" width="143" height="20.5"/>
+                                <rect key="frame" x="229" y="489" width="143" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

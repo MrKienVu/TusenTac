@@ -15,15 +15,12 @@ class ContactTableViewController: UITableViewController {
     
     @IBOutlet weak var mailLabel: UILabel!
     
+    let phone1 = "40486106"
+    let phone2 = "90932530"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +28,10 @@ class ContactTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     func openPhoneApp(phoneNumber:String) {
-        UIApplication.sharedApplication().openURL(NSURL(string:"tel://\(phoneNumber)")!);
+        let url = NSURL(string: "tel://\(phoneNumber)")
+        if url != nil {
+            UIApplication.sharedApplication().openURL(url!);
+        }
     }
     
     func openMailApp(mail:String){
@@ -44,10 +44,10 @@ class ContactTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(indexPath.section == 0) {
             if(indexPath.row == 0){
-                openPhoneApp(phoneNumber1Label.text!)
+                openPhoneApp(phone1)
             }
             else if (indexPath.row == 1){
-                openPhoneApp(phoneNumber2Label.text!)
+                openPhoneApp(phone2)
             }
         }
         else if (indexPath.section == 1 && indexPath.row == 0){
@@ -55,51 +55,6 @@ class ContactTableViewController: UITableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
