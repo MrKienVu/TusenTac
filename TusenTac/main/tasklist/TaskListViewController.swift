@@ -16,7 +16,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
-    //let nettskjema = NettskjemaHandler(scheme: .Answer)
     let taskListRows = TaskListRow.allCases
     
     /**
@@ -128,11 +127,17 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             
             if taskResult.identifier != "SideEffectTask" {
                 let csv = CSVProcesser(taskResult: taskResult)
+                let filename = getDocumentsDirectory().stringByAppendingPathComponent("test.txt")
                 print(csv.csv)
-                //nettskjema.setExtraField("\(taskViewController.result.identifier)", csv: "\(csv.csv)")
-                //nettskjema.submit()
+                do {
+                    try csv.csv.writeToFile(filename, atomically: true, encoding: NSUTF8StringEncoding)
+                } catch {
+                    NSLog("Failed to write to disk.")
+                }
                 let ns = NettskjemaHandler()
-                ns.upload()
+                if let data = NSFileManager.defaultManager().contentsAtPath(filename) {
+                    ns.upload(data)
+                }
             }
             
         case .Failed, .Discarded, .Saved:
@@ -143,7 +148,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths.first
+        return documentsDirectory!
+    }
+    
     func taskViewController(taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
+        stepViewController.continueButtonTitle = "Registrer"
+        
         let identifier = stepViewController.step?.identifier
         if identifier == Identifier.WaitCompletionStep.rawValue {
             stepViewController.cancelButtonItem = nil

@@ -14,6 +14,8 @@ import Alamofire
 class NettskjemaHandler {
     private let pingUrl = "https://nettskjema.uio.no/ping.html"
     private let formUrl = "https://nettskjema.uio.no/answer/tusentac.html"
+    private let csrfField = "NETTSKJEMA_CSRF_PREVENTION"
+    private let uploadField = "answersAsMap[492013].attachment.upload"
     
     private var csrfToken: String?
     
@@ -37,29 +39,19 @@ class NettskjemaHandler {
             }
     }
     
-    func upload() {
-        getCsrfToken { (data, error) in
-            if let token = data {
-                NSLog("Got to upload with token: \(token)")
-            } else {
-                NSLog("Got to upload with error: \(error!)")
-            }
-        }
-    }
-    
-    func post(file: String) {
+    func post(file: NSData, csrf: String) {
         Alamofire.upload(
             .POST,
             formUrl,
             multipartFormData: { multipartFormData in
-                let tokenData = self.csrfToken?.dataUsingEncoding(NSUTF8StringEncoding)
-                multipartFormData.appendBodyPart(data: tokenData!, name: "CsrfFieldId")
-                /*multipartFormData.appendBodyPart(
-                    data: NSData(),
-                    name: "file.name",
-                    fileName: "file.name",
-                    mimeType: "text/csv"
-                )*/
+                let tokenData = csrf.dataUsingEncoding(NSUTF8StringEncoding)
+                multipartFormData.appendBodyPart(data: tokenData!, name: self.csrfField)
+                multipartFormData.appendBodyPart(
+                    data: file,
+                    name: self.uploadField,
+                    fileName: "test1231123",
+                    mimeType: "text/plain"
+                )
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
@@ -72,7 +64,18 @@ class NettskjemaHandler {
                     NSLog("Upload failed.")
                     print(encodingError)
                 }
-            })
+        })
+    }
+    
+    func upload(file: NSData) {
+        getCsrfToken { (data, error) in
+            if let token = data {
+                NSLog("Got to upload with token: \(token)")
+                self.post(file, csrf: token)
+            } else {
+                NSLog("Got to upload with error: \(error!)")
+            }
+        }
     }
     
 }
