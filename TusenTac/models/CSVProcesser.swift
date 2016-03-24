@@ -9,10 +9,11 @@
 import Foundation
 import ResearchKit
 
-public class CSVProcesser {
+class CSVProcesser {
     
     let rid = UserDefaults.objectForKey(UserDefaultKey.UUID)!
     let sid = UserDefaults.objectForKey(UserDefaultKey.StudyID)!
+    let pnr = UserDefaults.objectForKey(UserDefaultKey.PersonNumber)!
     
     var csv: String = ""
     //var headers: [String] = []
@@ -31,6 +32,7 @@ public class CSVProcesser {
         return "\(taskResult.identifier)," +
             "\(rid)," +
             "\(sid)," +
+            "\(pnr)," +
             "\(taskResult.startDate!)," +
             "\(taskResult.endDate!)," +
             "\(NSInteger(taskResult.endDate!.timeIntervalSinceDate(taskResult.startDate!))),"

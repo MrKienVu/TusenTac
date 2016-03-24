@@ -126,7 +126,12 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             
             if taskResult.identifier != "SideEffectTask" {
                 let csv = CSVProcesser(taskResult: taskResult)
-                let filename = getDocumentsDirectory().stringByAppendingPathComponent("test.txt")
+                let csvData = csv.csv.dataUsingEncoding(NSUTF8StringEncoding)
+                let ns = NettskjemaHandler()
+                if csvData != nil {
+                    ns.upload(csvData!)
+                }
+                /*let filename = getDocumentsDirectory().stringByAppendingPathComponent("test.txt")
                 print(csv.csv)
                 do {
                     try csv.csv.writeToFile(filename, atomically: true, encoding: NSUTF8StringEncoding)
@@ -136,7 +141,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                 let ns = NettskjemaHandler()
                 if let data = NSFileManager.defaultManager().contentsAtPath(filename) {
                     ns.upload(data)
-                }
+                }*/
             }
             
         case .Failed, .Discarded, .Saved:
@@ -147,11 +152,11 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func getDocumentsDirectory() -> NSString {
+    /*func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths.first
         return documentsDirectory!
-    }
+    }*/
     
     func taskViewController(taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
         stepViewController.continueButtonTitle = "Registrer"
