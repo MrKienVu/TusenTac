@@ -27,7 +27,7 @@ class NotificationsViewController: UIViewController {
             enableNextButton()
             showEnabledLabels()
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "animateEnabledLabels", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NotificationsViewController.animateEnabledLabels), name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -23,8 +23,8 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
         idTextField.delegate = self
         repeatIdTextField.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StudyIDViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StudyIDViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: self.view.window)
         
         // Do any additional setup after loading the view.
     }

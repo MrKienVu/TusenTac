@@ -22,8 +22,8 @@ class PersonNumberViewController: UIViewController, UITextFieldDelegate {
         
         personNumberTextField.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PersonNumberViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PersonNumberViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: self.view.window)
     }
 
     override func viewWillDisappear(animated: Bool) {
