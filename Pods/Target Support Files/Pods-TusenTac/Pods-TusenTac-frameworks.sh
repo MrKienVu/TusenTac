@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TusenTac/Alamofire.framework"
+  install_framework "Pods-TusenTac/ResearchKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TusenTac/Alamofire.framework"
+  install_framework "Pods-TusenTac/ResearchKit.framework"
 fi

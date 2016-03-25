@@ -6,6 +6,7 @@ use_frameworks!
 
 target 'TusenTac' do
 	pod 'Alamofire', '~> 3.0'
+	pod 'ResearchKit', '~> 1.3.0'
 end
 
 target 'TusenTacTests' do
