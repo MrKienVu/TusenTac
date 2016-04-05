@@ -82,6 +82,8 @@ enum Identifier: String {
     //side effect
     case SideEffectStep
     case SideEffectTask
+    case NewSideEffectStep
+    case OldSideEffectStep
     
     //SleepSurveyTask identifiers
     case SleepSurveyTask =                                      "SleepSurveyTask"
