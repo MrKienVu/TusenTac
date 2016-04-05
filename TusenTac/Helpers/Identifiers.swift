@@ -60,8 +60,16 @@ enum Identifier: String {
     //PillTask
     case PillOptionStep
     case EatingStep
+    
+    case TookMorningPillStep
+    case TookMorningPillEarlierStep
+    
+    case TookNightPillStep
+    case TookNightPillEarlierStep
+    
     case TookPillStep
     case TookPillEarlierStep
+    
     case TakeItLaterStep
     case DontWantPillStep
     case PillCompletionStep

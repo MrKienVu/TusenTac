@@ -82,8 +82,7 @@ class CSVProcesser {
                         } else {
                             fields.append("\(textResult.answer)")
                         }
-                    }
-                    
+                    }                    
                 }
             }
         }
