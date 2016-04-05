@@ -145,7 +145,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
         
-
         notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
@@ -163,9 +162,15 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         if let morningDosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage) {
             morningDosageTextField.text = morningDosage as? String
         }
+        else {
+            morningDosageTextField.placeholder = "0";
+        }
         
         if let nightDosage = UserDefaults.objectForKey(UserDefaultKey.nightDosage) {
             nightDosageTextField.text = nightDosage as? String
+        }
+        else {
+            nightDosageTextField.placeholder = "0";
         }
     
         morningTimeChanged()
@@ -181,7 +186,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
         if textField.text!.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
-            textField.text = "0"
+            textField.placeholder = "0"
+            print("textfield.text = \(textField.text)")
         }
     }
     
@@ -220,7 +226,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         if(textField == nightDosageTextField || textField == morningDosageTextField){
             let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
             if tempRange?.isEmpty == false && string == "," {
-                
                 return false
             }
         }
