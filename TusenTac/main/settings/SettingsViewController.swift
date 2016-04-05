@@ -25,16 +25,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     // MARK: Variables and constants
     var morningTimePickerHidden = true
     var nightTimePickerHidden = true
-
-    
-    
-    // MARK: On Value Changed
     @IBAction func notificationsChanged(sender: AnyObject) {
         if notificationSwitch.on {
             Notification.sharedInstance.setupNotificationSettings()
             scheduleNotifications()
         } else {
             Notification.sharedInstance.cancelAllNotifications()
+            UserDefaults.setObject(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
         }
         
         UserDefaults.setBool(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
@@ -147,8 +144,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
+        
 
-        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
+        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
         
@@ -219,7 +217,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         )
     }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print("yolo")
         if(textField == nightDosageTextField || textField == morningDosageTextField){
             let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
             if tempRange?.isEmpty == false && string == "," {

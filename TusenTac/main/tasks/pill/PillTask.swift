@@ -63,6 +63,7 @@ public var PillTask: ORKNavigableOrderedTask {
     pillCompletionStep.title = "Ferdig!".localized
     pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
     steps += [pillCompletionStep]*/
+    
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"
     waitStepIndeterminate.text = "Laster opp..."
