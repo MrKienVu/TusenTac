@@ -25,35 +25,46 @@ public var PillTask: ORKNavigableOrderedTask {
         
     }
     
-    let morningTimes = UserDefaults.objectForKey(UserDefaultKey.morningTime) as? NSDate
-    let nightTimes = UserDefaults.objectForKey(UserDefaultKey.nightTime) as? NSDate
     
-    let morningDos = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
+ //   let morningDos = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
     
-    let nightDos = UserDefaults.objectForKey(UserDefaultKey.nightDosage)
-    
+   // let nightDos = UserDefaults.objectForKey(UserDefaultKey.nightDosage)
     
      var textChoiceOneText = ""
      var textChoiceTwoText = ""
     
-    let now = NSDate().getCurrentLocalDate()
+  /*  let now = NSDate().getCurrentLocalDate()
     
-    let compareTime = now.compare(morningTimes!)
-    
-    
-    if(compareTime == NSComparisonResult.OrderedDescending){
-        //now is later than morningTime
-        isMorningDosage = false;
+    if let morningTimes = UserDefaults.objectForKey(UserDefaultKey.morningTime) as? NSDate {
+     
+     
         
-        textChoiceOneText = "✓\tTok \(morningDos!) mg medisin nå".localized
-        textChoiceTwoText = "🕐\tTok \(morningDos!) mg medisin tidligere".localized
+        let compareTime = now.compare(morningTimes)
+
+        if(compareTime == NSComparisonResult.OrderedDescending){
+            //now is later than morningTime
+            //morningTime is earlier than now, so show night dosage
+            isMorningDosage = false;
+            
+            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
+            
+            textChoiceOneText = "✓\tTok \(nightDos!) mg medisin nå".localized
+            textChoiceTwoText = "🕐\tTok \(nightDos!) mg medisin tidligere".localized
+        }
+        else if (compareTime == NSComparisonResult.OrderedAscending){
+            //now is later than nightTime
+            
+            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
+
+            isMorningDosage = true;
+            textChoiceOneText = "✓\tTok \(morningDos!) mg medisin nå".localized
+            textChoiceTwoText = "🕐\tTok \(morningDos!) mg medisin tidligere".localized
+        }
     }
-    else if (compareTime == NSComparisonResult.OrderedAscending){
-        //now is earlier than morningTime
-        isMorningDosage = true;
-        textChoiceOneText = "✓\tTok \(nightDos!) mg medisin nå".localized
-        textChoiceTwoText = "🕐\tTok \(nightDos!) mg medisin tidligere".localized
-    }
+    else { */
+        textChoiceOneText = "✓\tTok medisinen nå".localized
+        textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
+       //  }
     
     var steps = [ORKStep]()
     

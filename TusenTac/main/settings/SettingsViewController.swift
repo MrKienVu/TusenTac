@@ -141,7 +141,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
         
