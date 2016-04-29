@@ -170,6 +170,11 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                             if let answer = questionStepResult.answer  {
                                 UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
                                 UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
+                                
+                                //for decrementing notification counter on icon
+                                if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                    UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                                }
                             }
                         }
                         if taskResult.identifier == PillTask.identifier {
@@ -179,16 +184,28 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                                         timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
                                         )!
                                     UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                    
+                                    //for decrementing notification counter on icon
+                                    if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                                    }
                                 }
                             }
                             if let choiceResult = result as? ORKChoiceQuestionResult {
                                 if let _ = choiceResult.answer {
                                     if choiceResult.choiceAnswers![0] as! String == "now" {
                                         UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                        
+                                        //for decrementing notification counter on icon
+                                        if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                            UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                                        }
+
                                     }
                                 }
                             }
                         }
+
                     }
                 }
             }
@@ -212,6 +229,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                     ns.upload(data)
                 }*/
             }
+
             
         case .Failed, .Discarded, .Saved:
             break
