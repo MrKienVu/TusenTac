@@ -107,9 +107,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             print(frame.origin.x)
             print(frame.origin.y)
             
-        } else {
-            let frame = sender.frame //it's a regular UIButton
-        }
+        } 
     }
     
     // MARK: UICollectionViewDataSource
@@ -162,7 +160,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         switch reason {
         case .Completed:
-            
+            print("completed task")
             if let stepResults = taskResult.results as? [ORKStepResult] {
                 for stepResult in stepResults {
                     for result in stepResult.results! {
@@ -170,14 +168,13 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                             if let answer = questionStepResult.answer  {
                                 UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
                                 UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
-                                
-                                //for decrementing notification counter on icon
-                                if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
-                                    UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                                }
                             }
                         }
                         if taskResult.identifier == PillTask.identifier {
+                            if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                            }
+                            
                             if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
                                 if let timeAnswer = lastDosageTime.dateComponentsAnswer {
                                     dateNow = NSCalendar.currentCalendar().dateBySettingHour(
@@ -186,9 +183,9 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                                     UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
                                     
                                     //for decrementing notification counter on icon
-                                    if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                    /*if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
                                         UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                                    }
+                                    }*/
                                 }
                             }
                             if let choiceResult = result as? ORKChoiceQuestionResult {
@@ -197,9 +194,9 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                                         UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
                                         
                                         //for decrementing notification counter on icon
-                                        if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                       /* if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
                                             UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                                        }
+                                        }*/
 
                                     }
                                 }

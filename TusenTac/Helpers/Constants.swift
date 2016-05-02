@@ -37,4 +37,8 @@ struct UserDefaultKey {
     
     static let morningSwitchOn = "MorningSwitchOn"
     static let nightSwitchOn = "NightSwitchOn"
+    
+    static let hasSendtMorningNotification = "HasSendtMorningNotification"
+    static let hasSendtNightNotification = "HasSendtNightNotification"
+    static let hasSendtWeightNotification = "HasSendtWeightNotification"
 }

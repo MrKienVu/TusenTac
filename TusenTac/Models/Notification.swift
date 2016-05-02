@@ -58,6 +58,17 @@ class Notification {
         }
     }
     
+    /*func decrementIconBadgeNumber(notificationTime: NSDate?, taskCompleted: Bool){
+        //for decrementing notification counter on icon
+        if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+            if(notificationTime?.isLessThanDate(NSDate) && taskCompleted){
+                         UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+            }
+         }
+        
+        UserDefaults.setBool(false, forKey: task)
+    }*/
+    
     func cancelAllNotifications() {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
@@ -83,7 +94,11 @@ class Notification {
             morningNotification.userInfo = ["type": "medicineRegistration"]
             UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
             NSLog("Scheduled morning notifications: \n \(morningNotification)")
+            UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtMorningNotification)
+            print("sendte en morgen notif nå")
+            
         }
+        
         
         if let fireDate = evening {
             let eveningNotification = UILocalNotification()
@@ -95,6 +110,7 @@ class Notification {
             eveningNotification.userInfo = ["type": "medicineRegistration"]
             UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
             NSLog("Scheduled evening notifications: \n \(eveningNotification)")
+            UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtNightNotification)
         }
     }
     
