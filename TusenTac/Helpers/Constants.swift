@@ -11,7 +11,6 @@ import UIKit
 let UserDefaults = NSUserDefaults.standardUserDefaults()
 
 struct Color {
-
     static let primaryColor = UIColor(red: 0, green: 176/255, blue: 173/255, alpha: 1)
     static let secondaryColor = UIColor.lightGrayColor()
 }

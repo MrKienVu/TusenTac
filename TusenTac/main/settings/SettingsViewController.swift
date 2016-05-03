@@ -73,10 +73,16 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
+        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
     }
     
     @IBAction func nightDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(nightDosageTextField.text, forKey: UserDefaultKey.nightDosage)
+        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
+        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
     }
     
 
@@ -209,8 +215,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         nightDosageTextField.inputAccessoryView = doneToolbar
     }
     
-    func doneButtonAction()
-    {
+    func doneButtonAction() {
         morningDosageTextField.resignFirstResponder()
         nightDosageTextField.resignFirstResponder()
     }

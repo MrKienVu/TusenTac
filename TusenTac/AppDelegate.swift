@@ -29,19 +29,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let main = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = main.instantiateInitialViewController()
         
+        // Just for testing purposes, did not work
+        // Safe to remove
+        if let options = launchOptions {
+            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                if let userInfo = notification.userInfo {
+                    if userInfo["notificationType"] as! String == "medicineRegistration" {
+                        NSLog("Presenting medicine registration")
+                        NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
+                    }
+                }
+            }
+        }
+        
         window?.rootViewController = completedOnboarding ? mainVC : onboardingVC
         
         let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
         if !hasLaunchedBefore  {
             let uuid = NSUUID().UUIDString
             UserDefaults.setObject(uuid, forKey: UserDefaultKey.UUID)
-            print("Stored user ID \(uuid) in UserDefaults")
+            NSLog("Stored user ID \(uuid) in UserDefaults")
+            
+            // Set default dosages here temporarily
+            UserDefaults.setObject("5", forKey: UserDefaultKey.morningDosage)
+            UserDefaults.setObject("5", forKey: UserDefaultKey.nightDosage)
             
             ORKPasscodeViewController.removePasscodeFromKeychain()
-            print("Removed passcode from Keychain")
+            NSLog("Removed passcode from Keychain")
             
             UserDefaults.setBool(true, forKey: UserDefaultKey.hasLaunchedBefore)
-            print("HasLaunched flag enabled in UserDefaults")
+            NSLog("HasLaunched flag enabled in UserDefaults")
             
         }
         
@@ -73,12 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         // This method is called when a notification has been received while the app is in the foreground
-        print("Received Local Notification:")
-        print(notification.alertBody)
+        NSLog("Received Local Notification:")
+        print(notification)
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        let type = notification.userInfo!["type"] as! String
+        let type = notification.userInfo!["notificationType"] as! String
         
         application.applicationIconBadgeNumber = 0
         
