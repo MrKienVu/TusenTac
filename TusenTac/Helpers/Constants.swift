@@ -26,7 +26,9 @@ struct UserDefaultKey {
     static let UUID = "UUID"
     static let StudyID = "StudyID"
     static let PersonNumber = "PersonNumber"
+    
     static let NotificationsEnabled = "NotificationsEnabled"
+    
     static let CompletedOnboarding = "CompletedOnboarding"
     
     static let Weight = "Weight"
@@ -35,4 +37,8 @@ struct UserDefaultKey {
     
     static let morningSwitchOn = "MorningSwitchOn"
     static let nightSwitchOn = "NightSwitchOn"
+    
+    static let hasSendtMorningNotification = "HasSendtMorningNotification"
+    static let hasSendtNightNotification = "HasSendtNightNotification"
+    static let hasSendtWeightNotification = "HasSendtWeightNotification"
 }

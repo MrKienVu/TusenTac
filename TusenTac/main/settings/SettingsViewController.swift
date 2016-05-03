@@ -25,16 +25,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     // MARK: Variables and constants
     var morningTimePickerHidden = true
     var nightTimePickerHidden = true
-
-    
-    
-    // MARK: On Value Changed
     @IBAction func notificationsChanged(sender: AnyObject) {
         if notificationSwitch.on {
             Notification.sharedInstance.setupNotificationSettings()
             scheduleNotifications()
         } else {
             Notification.sharedInstance.cancelAllNotifications()
+            UserDefaults.setObject(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
         }
         
         UserDefaults.setBool(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
@@ -144,11 +141,11 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
-
-        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
+        
+        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
         
@@ -165,9 +162,15 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         if let morningDosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage) {
             morningDosageTextField.text = morningDosage as? String
         }
+        else {
+            morningDosageTextField.placeholder = "0";
+        }
         
         if let nightDosage = UserDefaults.objectForKey(UserDefaultKey.nightDosage) {
             nightDosageTextField.text = nightDosage as? String
+        }
+        else {
+            nightDosageTextField.placeholder = "0";
         }
     
         morningTimeChanged()
@@ -183,7 +186,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
         if textField.text!.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
-            textField.text = "0"
+            textField.placeholder = "0"
+            print("textfield.text = \(textField.text)")
         }
     }
     
@@ -219,11 +223,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         )
     }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print("yolo")
         if(textField == nightDosageTextField || textField == morningDosageTextField){
             let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
             if tempRange?.isEmpty == false && string == "," {
-                
                 return false
             }
         }

@@ -23,6 +23,46 @@ extension String {
 }
 
 extension NSDate {
+    func getCurrentLocalDate()-> NSDate {
+        var now = NSDate()
+        let nowComponents = NSDateComponents()
+        let calendar = NSCalendar.currentCalendar()
+        nowComponents.year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: now)
+        nowComponents.month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: now)
+        nowComponents.day = NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: now)
+        nowComponents.hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: now)
+        nowComponents.minute = NSCalendar.currentCalendar().component(NSCalendarUnit.Minute, fromDate: now)
+        nowComponents.second = NSCalendar.currentCalendar().component(NSCalendarUnit.Second, fromDate: now)
+        nowComponents.timeZone = NSTimeZone(abbreviation: "GMT")
+        now = calendar.dateFromComponents(nowComponents)!
+        return now
+    }
+    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+        //Declare Variables
+        var isGreater = false
+        
+        //Compare Values
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
+            isGreater = true
+        }
+        
+        //Return Result
+        return isGreater
+    }
+    
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        //Declare Variables
+        var isLess = false
+        
+        //Compare Values
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
+            isLess = true
+        }
+            
+        //Return Result
+        return isLess
+    }
+    
     func toStringShortStyle() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .ShortStyle

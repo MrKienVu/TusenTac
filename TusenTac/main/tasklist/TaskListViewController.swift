@@ -14,6 +14,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     @IBOutlet var collection: UICollectionView!
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    
+    var imageView: UIImageView!
+    var img: UIImage!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
     let taskListRows = TaskListRow.allCases
@@ -29,6 +33,16 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        if(UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding) == false){
+            collection.userInteractionEnabled = false
+            showOverlay()
+        } else {
+            collection.userInteractionEnabled = true
+        }
+
+        userAction(settingsIcon)
+
         collection.dataSource = self
         collection.delegate = self
   
@@ -41,6 +55,59 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         print("Completed onboarding")
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
+    }
+    
+    
+    func overlayTapped(sender: AnyObject){
+        imageView.removeFromSuperview()
+        collection.userInteractionEnabled = true
+        
+    }
+    func showOverlay(){
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        if(screenHeight == 568){
+            img = UIImage(named: "overlay-5")!
+        }
+        else if (screenHeight == 667){
+            img = UIImage(named: "overlay-6")!
+        }
+        else if(screenHeight == 736){
+            img = UIImage(named: "overlay-6plus")!
+        }
+        else {
+            return
+        }
+        
+        print("screenHeight \(screenHeight) screenWidth \(screenWidth)")
+        
+        imageView = UIImageView(image: img)
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(TaskListViewController.overlayTapped(_:)))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGest)
+        
+        self.navigationController?.view.addSubview(imageView)
+        
+    }
+    func userAction(sender: AnyObject) {
+        if let originView = sender.valueForKey("view") {
+            let frame = originView.frame  //it's a UIBarButtonItem
+            
+            print("height \(frame.height)")
+            print("width \(frame.width)")
+            print("maxX \(frame.maxX)")
+            print("minX \(frame.minX)")
+            print("midX \(frame.midX)")
+            print("maxY \(frame.maxY)")
+            print("minY \(frame.minY)")
+            print("midY \(frame.midY)")
+            print(frame.origin.x)
+            print(frame.origin.y)
+            
+        } 
     }
     
     // MARK: UICollectionViewDataSource
@@ -93,7 +160,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         switch reason {
         case .Completed:
-            
+            print("completed task")
             if let stepResults = taskResult.results as? [ORKStepResult] {
                 for stepResult in stepResults {
                     for result in stepResult.results! {
@@ -104,22 +171,38 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                             }
                         }
                         if taskResult.identifier == PillTask.identifier {
+                            if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                            }
+                            
                             if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
                                 if let timeAnswer = lastDosageTime.dateComponentsAnswer {
                                     dateNow = NSCalendar.currentCalendar().dateBySettingHour(
                                         timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
                                         )!
                                     UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                    
+                                    //for decrementing notification counter on icon
+                                    /*if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                                    }*/
                                 }
                             }
                             if let choiceResult = result as? ORKChoiceQuestionResult {
                                 if let _ = choiceResult.answer {
                                     if choiceResult.choiceAnswers![0] as! String == "now" {
                                         UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                                        
+                                        //for decrementing notification counter on icon
+                                       /* if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+                                            UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+                                        }*/
+
                                     }
                                 }
                             }
                         }
+
                     }
                 }
             }
@@ -143,6 +226,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
                     ns.upload(data)
                 }*/
             }
+
             
         case .Failed, .Discarded, .Saved:
             break

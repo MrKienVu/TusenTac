@@ -14,6 +14,8 @@ public var PillTask: ORKNavigableOrderedTask {
     
     var lastDosageText = ""
     
+    var isMorningDosage = true
+    
     if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
         
         let dateString = lastDosage.toStringShortStyle()
@@ -23,13 +25,50 @@ public var PillTask: ORKNavigableOrderedTask {
         
     }
     
+    
+ //   let morningDos = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
+    
+   // let nightDos = UserDefaults.objectForKey(UserDefaultKey.nightDosage)
+    
+     var textChoiceOneText = ""
+     var textChoiceTwoText = ""
+    
+  /*  let now = NSDate().getCurrentLocalDate()
+    
+    if let morningTimes = UserDefaults.objectForKey(UserDefaultKey.morningTime) as? NSDate {
+     
+     
+        
+        let compareTime = now.compare(morningTimes)
+
+        if(compareTime == NSComparisonResult.OrderedDescending){
+            //now is later than morningTime
+            //morningTime is earlier than now, so show night dosage
+            isMorningDosage = false;
+            
+            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
+            
+            textChoiceOneText = "✓\tTok \(nightDos!) mg medisin nå".localized
+            textChoiceTwoText = "🕐\tTok \(nightDos!) mg medisin tidligere".localized
+        }
+        else if (compareTime == NSComparisonResult.OrderedAscending){
+            //now is later than nightTime
+            
+            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
+
+            isMorningDosage = true;
+            textChoiceOneText = "✓\tTok \(morningDos!) mg medisin nå".localized
+            textChoiceTwoText = "🕐\tTok \(morningDos!) mg medisin tidligere".localized
+        }
+    }
+    else { */
+        textChoiceOneText = "✓\tTok medisinen nå".localized
+        textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
+       //  }
+    
     var steps = [ORKStep]()
     
-    let textChoiceOneText = "✓\tTok medisinen nå".localized
-    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
-    
-    
-    
+  
     // The text to display can be separate from the value coded for each choice:
     let textChoices = [
         ORKTextChoice(text: textChoiceOneText, value: "now"),
@@ -63,6 +102,7 @@ public var PillTask: ORKNavigableOrderedTask {
     pillCompletionStep.title = "Ferdig!".localized
     pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
     steps += [pillCompletionStep]*/
+    
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"
     waitStepIndeterminate.text = "Laster opp..."

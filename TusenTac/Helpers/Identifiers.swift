@@ -60,8 +60,16 @@ enum Identifier: String {
     //PillTask
     case PillOptionStep
     case EatingStep
+    
+    case TookMorningPillStep
+    case TookMorningPillEarlierStep
+    
+    case TookNightPillStep
+    case TookNightPillEarlierStep
+    
     case TookPillStep
     case TookPillEarlierStep
+    
     case TakeItLaterStep
     case DontWantPillStep
     case PillCompletionStep
@@ -82,6 +90,8 @@ enum Identifier: String {
     //side effect
     case SideEffectStep
     case SideEffectTask
+    case NewSideEffectStep
+    case OldSideEffectStep
     
     //SleepSurveyTask identifiers
     case SleepSurveyTask =                                      "SleepSurveyTask"
