@@ -42,7 +42,7 @@ class NettskjemaHandler {
             multipartFormData: { multipartFormData in
                 let tokenData = csrf.dataUsingEncoding(NSUTF8StringEncoding)
                 multipartFormData.appendBodyPart(data: tokenData!, name: self.csrfField)
-                multipartFormData.appendBodyPart(data: file, name: self.uploadField, fileName: "test1231123", mimeType: "text/plain")
+                multipartFormData.appendBodyPart(data: file, name: self.uploadField, fileName: "test1231123.csv", mimeType: "text/csv")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
