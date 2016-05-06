@@ -37,6 +37,7 @@ extension NSDate {
         now = calendar.dateFromComponents(nowComponents)!
         return now
     }
+    
     func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
         //Declare Variables
         var isGreater = false
@@ -62,6 +63,8 @@ extension NSDate {
         //Return Result
         return isLess
     }
+    
+    
     
     func toStringShortStyle() -> String {
         let dateFormatter = NSDateFormatter()

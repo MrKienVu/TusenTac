@@ -28,7 +28,7 @@ class CSVProcesser {
         csv += "\(appendResultData(taskResult))"
     }
     
-    func appendMetadata(taskResult: ORKTaskResult) -> String {
+    private func appendMetadata(taskResult: ORKTaskResult) -> String {
         return "\(taskResult.identifier)," +
             "\(rid)," +
             "\(sid)," +
@@ -38,7 +38,7 @@ class CSVProcesser {
             "\(NSInteger(taskResult.endDate!.timeIntervalSinceDate(taskResult.startDate!))),"
     }
     
-    func appendResultData(taskResult: ORKTaskResult) -> String {
+    private func appendResultData(taskResult: ORKTaskResult) -> String {
         var fields: [String] = []
         
         if let stepResults = taskResult.results as? [ORKStepResult] {

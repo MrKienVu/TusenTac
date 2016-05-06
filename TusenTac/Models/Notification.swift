@@ -77,12 +77,12 @@ class Notification {
         if !UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled) { return }
         
         if !isNotificationsEnabled() {
-            print("Notification switch on, but notifications not enabled. Not scheduling notifications.")
+            NSLog("Notification switch on, but notifications not enabled. Not scheduling notifications.")
             return
         }
         
         cancelAllNotifications()
-        print("Cancelled all previous notifications")
+        NSLog("Cancelled all previous notifications")
         
         if let fireDate = morning {
             let morningNotification = UILocalNotification()
@@ -91,7 +91,11 @@ class Notification {
             morningNotification.category = "NOTIFICATION_CATEGORY"
             morningNotification.repeatInterval = NSCalendarUnit.Day
             morningNotification.applicationIconBadgeNumber += 1
-            morningNotification.userInfo = ["type": "medicineRegistration"]
+            morningNotification.userInfo = [
+                "notificationType": "medicineRegistration",
+                "timeOfDay": "morning",
+                "dosage": UserDefaults.objectForKey(UserDefaultKey.morningDosage)!
+            ]
             UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
             NSLog("Scheduled morning notifications: \n \(morningNotification)")
             UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtMorningNotification)
@@ -107,7 +111,11 @@ class Notification {
             eveningNotification.category = "NOTIFICATION_CATEGORY"
             eveningNotification.repeatInterval = NSCalendarUnit.Day
             eveningNotification.applicationIconBadgeNumber += 1
-            eveningNotification.userInfo = ["type": "medicineRegistration"]
+            eveningNotification.userInfo = [
+                "notificationType": "medicineRegistration",
+                "timeOfDay": "evening",
+                "dosage": UserDefaults.objectForKey(UserDefaultKey.nightDosage)!
+            ]
             UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
             NSLog("Scheduled evening notifications: \n \(eveningNotification)")
             UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtNightNotification)

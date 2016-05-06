@@ -111,6 +111,7 @@ class NotificationsViewController: UIViewController {
         }
         let defaultDates = Notification.sharedInstance.getDefaultDates()
         Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
+        
     }
     
 }
