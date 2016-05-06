@@ -45,7 +45,7 @@ public var SideEffectTask: ORKOrderedTask {
     
     let oldSideEffectStep = ORKQuestionStep(identifier: Identifier.OldSideEffectStep.rawValue, title:"Registrering av bivirkninger", answer: oldSideEffectAnswer);
     
-    oldSideEffectStep.text = "Velg en eller flere forsvunnede bivirkninger"
+    oldSideEffectStep.text = "Velg en eller flere bivirkninger som er blitt borte"
     
     steps+=[oldSideEffectStep]
     

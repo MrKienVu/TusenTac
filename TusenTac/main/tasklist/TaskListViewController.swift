@@ -28,10 +28,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     */
     var taskResultFinishedCompletionHandler: (ORKResult -> Void)?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         
         if(UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding) == false){
@@ -47,15 +47,60 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.delegate = self
   
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
         animateSettingsIconWithDuration(1.7)
+        
         
         UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
         print("Completed onboarding")
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentMedicineRegistration", name: "presentMedicineRegistration", object: nil)
     }
+    
+    
+    //This function will disable the task and add overlay image
+    //boolean taskShouldBeDisable must be implemented
+    
+   /* func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let navigationBarHeight = self.navigationController?.navigationBar.frame.height
+        
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        
+        let yPos = cell.bounds.minY + navigationBarHeight! + statusBarHeight
+        
+        let point = CGPoint(x:cell.bounds.minX , y: yPos)
+        
+        let size = CGSize(width: cell.bounds.width, height: cell.bounds.height)
+        
+        let rect = CGRect(origin: point, size: size)
+        
+        let disableImage = UIImageView(frame: rect)
+        disableImage.backgroundColor = UIColor.grayColor()
+        disableImage.alpha = 0.5
+        
+        if(indexPath.row == 0) {
+            if(taskShouldBeDisabled) {
+                
+                //for disable the task
+                cell.userInteractionEnabled = false
+                
+                //adding overlay
+                self.navigationController?.view.addSubview(disableImage)
+            }
+            else if(!taskShouldBeDisabled) {
+                cell.userInteractionEnabled = true
+                self.navigationController?.view.willRemoveSubview(disableImage)
+            }
+        }
+        
+     
+     cell.userInteractionEnabled = true
+     self.navigationController?.view.willRemoveSubview(disableImage)
+    }*/
     
     
     func overlayTapped(sender: AnyObject){
