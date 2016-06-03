@@ -30,6 +30,8 @@ struct UserDefaultKey {
     
     static let CompletedOnboarding = "CompletedOnboarding"
     
+    static let overlayShown = "OverlayShown"
+    
     static let Weight = "Weight"
     static let LastWeightTime = "LastWeightTime"
     static let LastDosageTime = "LastDosageTime"

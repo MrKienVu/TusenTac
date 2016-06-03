@@ -24,23 +24,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        if(UserDefaults.boolForKey(UserDefaultKey.CompletedOnboarding) == false){
-            collection.userInteractionEnabled = false
+        if !UserDefaults.boolForKey(UserDefaultKey.overlayShown) {
             showOverlay()
-        } else {
-            collection.userInteractionEnabled = true
+            UserDefaults.setBool(true, forKey: UserDefaultKey.overlayShown)
         }
-
-        userAction(settingsIcon)
 
         collection.dataSource = self
         collection.delegate = self
   
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
         
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
@@ -101,8 +93,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     func overlayTapped(sender: AnyObject){
         imageView.removeFromSuperview()
         collection.userInteractionEnabled = true
-        
     }
+    
     func showOverlay(){
         
         let screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -116,7 +108,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             default: return
         }
         
-        print("screenHeight \(screenHeight) screenWidth \(screenWidth)")
+        NSLog("screenHeight \(screenHeight) screenWidth \(screenWidth)")
         
         imageView = UIImageView(image: img)
         
@@ -126,23 +118,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         self.navigationController?.view.addSubview(imageView)
         
-    }
-    func userAction(sender: AnyObject) {
-        if let originView = sender.valueForKey("view") {
-            let frame = originView.frame  //it's a UIBarButtonItem
-            
-            print("height \(frame.height)")
-            print("width \(frame.width)")
-            print("maxX \(frame.maxX)")
-            print("minX \(frame.minX)")
-            print("midX \(frame.midX)")
-            print("maxY \(frame.maxY)")
-            print("minY \(frame.minY)")
-            print("midY \(frame.midY)")
-            print(frame.origin.x)
-            print(frame.origin.y)
-            
-        } 
     }
     
     // MARK: UICollectionViewDataSource
@@ -237,7 +212,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let taskListRow = taskListRows[0]
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
-        self.navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
+        navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
     }
     
     func showAlert(){
