@@ -45,10 +45,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
         animateSettingsIconWithDuration(1.7)
-        
-        
-        UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
-        print("Completed onboarding")
     }
     
     override func viewWillAppear(animated: Bool) {

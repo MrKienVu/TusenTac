@@ -9,7 +9,7 @@
 import UIKit
 import ResearchKit
 
-class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
+class PasscodeViewController: UIViewController {
     
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var createCodeButton: UIButton!
@@ -44,6 +44,9 @@ class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
             preferredStyle: .Alert
         )
         alert.addAction(UIAlertAction(title: "Fortsett uten app kode", style: .Default, handler: { action in
+            UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
+            NSLog("Completed onboarding")
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
             self.presentViewController(vc!, animated: true, completion: nil)
@@ -90,9 +93,16 @@ class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
         createCodeButton.hidden = true
     }
     
+}
+
+extension PasscodeViewController: ORKTaskViewControllerDelegate {
+    
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
         switch reason {
         case .Completed:
+            UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
+            NSLog("Completed onboarding")
+            
             checkmarkLabel.hidden = false
             codeCreatedLabel.hidden = false
             enableNextButton()
@@ -102,10 +112,5 @@ class PasscodeViewController: UIViewController, ORKTaskViewControllerDelegate {
             taskViewController.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    } 
     
 }
