@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320A664C1D01924D00357601 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A664B1D01924D00357601 /* Reachability.swift */; };
 		3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */; };
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		1AEA7A6259262939FF6E27F8 /* Pods-TusenTac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac.debug.xcconfig"; sourceTree = "<group>"; };
+		320A664B1D01924D00357601 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				5F39E3D81C240D2B00133C86 /* Identifiers.swift */,
 				5F39E3E81C241DF400133C86 /* Extensions.swift */,
 				5F3D85751C27F2EA001CBEB6 /* hideSections.js */,
+				320A664B1D01924D00357601 /* Reachability.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				5F2FA6151CA003D2007736C7 /* ContactTableViewController.swift in Sources */,
 				5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */,
 				32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */,
+				320A664C1D01924D00357601 /* Reachability.swift in Sources */,
 				5F3D856A1C27EE07001CBEB6 /* Nettskjema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -191,6 +191,8 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        if !Reachability.isConnected() { showAlert() }
+        
         // Present the task view controller that the user asked for.
         let taskListRow = taskListRows[indexPath.row]
         
@@ -240,6 +242,14 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         self.navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
+    }
+    
+    func showAlert(){
+        let alertController = UIAlertController(title: "INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
