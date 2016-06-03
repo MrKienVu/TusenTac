@@ -32,7 +32,6 @@
 		5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */; };
 		5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
 		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
-		5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D85751C27F2EA001CBEB6 /* hideSections.js */; };
 		5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85791C281150001CBEB6 /* PillTask.swift */; };
 		5F3E047D1C75CE2F002798F9 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */; };
 		5F3EB2A91C3E5F2E000710B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3EB2AB1C3E5F2E000710B3 /* Localizable.strings */; };
@@ -95,7 +94,6 @@
 		5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaView.swift; sourceTree = "<group>"; };
 		5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStep.swift; sourceTree = "<group>"; };
 		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
-		5F3D85751C27F2EA001CBEB6 /* hideSections.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hideSections.js; sourceTree = "<group>"; };
 		5F3D85791C281150001CBEB6 /* PillTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillTask.swift; sourceTree = "<group>"; };
 		5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		5F3E04811C75E1A8002798F9 /* ss-gizmo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ss-gizmo.otf"; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				5F39E3D61C240D2100133C86 /* Constants.swift */,
 				5F39E3D81C240D2B00133C86 /* Identifiers.swift */,
 				5F39E3E81C241DF400133C86 /* Extensions.swift */,
-				5F3D85751C27F2EA001CBEB6 /* hideSections.js */,
 				320A664B1D01924D00357601 /* Reachability.swift */,
 			);
 			path = helpers;
@@ -453,7 +450,6 @@
 				5F37F9EA1C240968000ABF26 /* LaunchScreen.storyboard in Resources */,
 				5F7656261C84E40300C39A0C /* ss-gizmo.otf in Resources */,
 				5F37F9E71C240968000ABF26 /* Assets.xcassets in Resources */,
-				5F3D85761C27F2EA001CBEB6 /* hideSections.js in Resources */,
 				5F37F9E51C240968000ABF26 /* Main.storyboard in Resources */,
 				5F76562C1C856A3900C39A0C /* onboarding.storyboard in Resources */,
 			);
