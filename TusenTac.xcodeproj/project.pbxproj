@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3266F7D01C9031A20048E9B7 /* CSVProcesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */; };
+		3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */; };
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
@@ -27,7 +27,7 @@
 		5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DF1C240DA500133C86 /* TaskListRow.swift */; };
 		5F39E3E41C240E0400133C86 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E31C240E0400133C86 /* SettingsViewController.swift */; };
 		5F39E3E91C241DF400133C86 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* Extensions.swift */; };
-		5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */; };
+		5F3D856A1C27EE07001CBEB6 /* Nettskjema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85691C27EE07001CBEB6 /* Nettskjema.swift */; };
 		5F3D856E1C27EF71001CBEB6 /* NettskjemaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */; };
 		5F3D85701C27EFCA001CBEB6 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
 		5F3D85721C27EFEC001CBEB6 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
@@ -64,7 +64,7 @@
 
 /* Begin PBXFileReference section */
 		1AEA7A6259262939FF6E27F8 /* Pods-TusenTac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac.debug.xcconfig"; sourceTree = "<group>"; };
-		3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVProcesser.swift; sourceTree = "<group>"; };
+		3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		5F39E3DF1C240DA500133C86 /* TaskListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListRow.swift; sourceTree = "<group>"; };
 		5F39E3E31C240E0400133C86 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		5F39E3E81C241DF400133C86 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaHandler.swift; sourceTree = "<group>"; };
+		5F3D85691C27EE07001CBEB6 /* Nettskjema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nettskjema.swift; sourceTree = "<group>"; };
 		5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaView.swift; sourceTree = "<group>"; };
 		5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStep.swift; sourceTree = "<group>"; };
 		5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NettskjemaStepViewController.swift; sourceTree = "<group>"; };
@@ -291,9 +291,9 @@
 		5F39E3C71C240A9600133C86 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				5F3D85691C27EE07001CBEB6 /* NettskjemaHandler.swift */,
+				5F3D85691C27EE07001CBEB6 /* Nettskjema.swift */,
 				32E04C931C3D1F5E006AFB85 /* Notification.swift */,
-				3266F7CF1C9031A20048E9B7 /* CSVProcesser.swift */,
+				3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -534,7 +534,7 @@
 				32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
-				3266F7D01C9031A20048E9B7 /* CSVProcesser.swift in Sources */,
+				3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */,
 				32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */,
 				5F76562E1C856A8F00C39A0C /* StudyIDViewController.swift in Sources */,
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,
@@ -548,7 +548,7 @@
 				5F2FA6151CA003D2007736C7 /* ContactTableViewController.swift in Sources */,
 				5F3D857A1C281150001CBEB6 /* PillTask.swift in Sources */,
 				32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */,
-				5F3D856A1C27EE07001CBEB6 /* NettskjemaHandler.swift in Sources */,
+				5F3D856A1C27EE07001CBEB6 /* Nettskjema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

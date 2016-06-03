@@ -11,16 +11,16 @@ import UIKit
 import ResearchKit
 import Alamofire
 
-class NettskjemaHandler {
-    private let pingUrl = "https://nettskjema.uio.no/ping.html"
-    private let formUrl = "https://nettskjema.uio.no/answer/deliver.json?formId=69861"
-    private let csrfField = "NETTSKJEMA_CSRF_PREVENTION"
-    private let uploadField = "answersAsMap[492013].attachment.upload"
+class Nettskjema {
+    private static let pingUrl = "https://nettskjema.uio.no/ping.html"
+    private static let formUrl = "https://nettskjema.uio.no/answer/deliver.json?formId=69861"
+    private static let csrfField = "NETTSKJEMA_CSRF_PREVENTION"
+    private static let uploadField = "answersAsMap[492013].attachment.upload"
     
-    private var csrfToken: String?
+    private static var csrfToken: String?
     
     
-    private func getCsrfToken(completion: (String?, NSError?) -> Void) -> () {
+    private class func getCsrfToken(completion: (String?, NSError?) -> Void) -> () {
         Alamofire.request(.GET, pingUrl)
             .validate()
             .responseString { response in
@@ -35,20 +35,20 @@ class NettskjemaHandler {
             }
     }
     
-    private func post(file: NSData, csrf: String) {
+    private class func post(file: NSData, csrf: String) {
         Alamofire.upload(
             .POST,
             formUrl,
             multipartFormData: { multipartFormData in
                 let tokenData = csrf.dataUsingEncoding(NSUTF8StringEncoding)
                 multipartFormData.appendBodyPart(data: tokenData!, name: self.csrfField)
-                multipartFormData.appendBodyPart(data: file, name: self.uploadField, fileName: "test1231123.csv", mimeType: "text/csv")
+                multipartFormData.appendBodyPart(data: file, name: self.uploadField, fileName: "answer.csv", mimeType: "text/csv")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseString { response in
-                        NSLog("Upload success: \(response.response)")
+                        NSLog("Upload success. Status code: \(response.response)")
                     }
                 case .Failure(let encodingError):
                     NSLog("Upload failed. Error: \(encodingError)")
@@ -56,7 +56,7 @@ class NettskjemaHandler {
         })
     }
     
-    func upload(file: NSData) {
+    class func upload(file: NSData) {
         getCsrfToken { (data, error) in
             if let token = data {
                 self.post(file, csrf: token)
