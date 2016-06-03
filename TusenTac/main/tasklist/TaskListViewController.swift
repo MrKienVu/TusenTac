@@ -212,7 +212,9 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let taskListRow = taskListRows[0]
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
-        navigationController!.presentViewController(taskViewController, animated: false, completion: nil)
+        taskViewController.delegate = self
+        
+        self.navigationController?.topViewController?.presentViewController(taskViewController, animated: false, completion: nil)
     }
     
     func showAlert(){
@@ -303,7 +305,7 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    private func delay(delay:Double, closure:()->()) {
+    func delay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,
