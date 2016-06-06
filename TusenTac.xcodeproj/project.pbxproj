@@ -402,7 +402,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "ingeborg ødegård oftedal";
+				ORGANIZATIONNAME = UiO;
 				TargetAttributes = {
 					5F37F9DB1C240968000ABF26 = {
 						CreatedOnToolsVersion = 7.2;
