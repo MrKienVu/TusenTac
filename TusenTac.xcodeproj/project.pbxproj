@@ -43,6 +43,41 @@
 		5F7656321C856AD600C39A0C /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656311C856AD600C39A0C /* PasscodeViewController.swift */; };
 		5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
 		5FB8EAD41C75C78E000E5F93 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
+		98AF3DE01D12B55000457A34 /* SideEffectTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DD1C240D6C00133C86 /* SideEffectTask.swift */; };
+		98AF3DE11D12B55000457A34 /* NettskjemaStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856F1C27EFCA001CBEB6 /* NettskjemaStep.swift */; };
+		98AF3DE21D12B55000457A34 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656211C849FDC00C39A0C /* FooterView.swift */; };
+		98AF3DE31D12B55000457A34 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656311C856AD600C39A0C /* PasscodeViewController.swift */; };
+		98AF3DE41D12B55000457A34 /* NettskjemaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D856D1C27EF71001CBEB6 /* NettskjemaView.swift */; };
+		98AF3DE51D12B55000457A34 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3E047C1C75CE2F002798F9 /* TaskListViewController.swift */; };
+		98AF3DE61D12B55000457A34 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
+		98AF3DE71D12B55000457A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37F9DF1C240968000ABF26 /* AppDelegate.swift */; };
+		98AF3DE81D12B55000457A34 /* TaskListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DF1C240DA500133C86 /* TaskListRow.swift */; };
+		98AF3DE91D12B55000457A34 /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */; };
+		98AF3DEA1D12B55000457A34 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
+		98AF3DEB1D12B55000457A34 /* StudyIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F76562D1C856A8F00C39A0C /* StudyIDViewController.swift */; };
+		98AF3DEC1D12B55000457A34 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
+		98AF3DED1D12B55000457A34 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3D81C240D2B00133C86 /* Identifiers.swift */; };
+		98AF3DEE1D12B55000457A34 /* NettskjemaStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85711C27EFEC001CBEB6 /* NettskjemaStepViewController.swift */; };
+		98AF3DEF1D12B55000457A34 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E81C241DF400133C86 /* Extensions.swift */; };
+		98AF3DF01D12B55000457A34 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F76562F1C856ABC00C39A0C /* NotificationsViewController.swift */; };
+		98AF3DF11D12B55000457A34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3D61C240D2100133C86 /* Constants.swift */; };
+		98AF3DF21D12B55000457A34 /* WeightTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3DB1C240D6100133C86 /* WeightTask.swift */; };
+		98AF3DF31D12B55000457A34 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39E3E31C240E0400133C86 /* SettingsViewController.swift */; };
+		98AF3DF41D12B55000457A34 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */; };
+		98AF3DF51D12B55000457A34 /* PillTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85791C281150001CBEB6 /* PillTask.swift */; };
+		98AF3DF61D12B55000457A34 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
+		98AF3DF71D12B55000457A34 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A664B1D01924D00357601 /* Reachability.swift */; };
+		98AF3DF81D12B55000457A34 /* Nettskjema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D85691C27EE07001CBEB6 /* Nettskjema.swift */; };
+		98AF3DFA1D12B55000457A34 /* Pods_TusenTac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11E4EA60937DDA9CC557517 /* Pods_TusenTac.framework */; };
+		98AF3DFC1D12B55000457A34 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
+		98AF3DFD1D12B55000457A34 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5F37FA0D1C24099D000ABF26 /* .gitignore */; };
+		98AF3DFE1D12B55000457A34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3EB2AB1C3E5F2E000710B3 /* Localizable.strings */; };
+		98AF3DFF1D12B55000457A34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E81C240968000ABF26 /* LaunchScreen.storyboard */; };
+		98AF3E001D12B55000457A34 /* ss-gizmo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3E04811C75E1A8002798F9 /* ss-gizmo.otf */; };
+		98AF3E011D12B55000457A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E61C240968000ABF26 /* Assets.xcassets */; };
+		98AF3E021D12B55000457A34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37F9E31C240968000ABF26 /* Main.storyboard */; };
+		98AF3E031D12B55000457A34 /* onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F76562B1C856A3900C39A0C /* onboarding.storyboard */; };
+		98AF3E0C1D12B5BF00457A34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98AF3E0B1D12B5BF00457A34 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +143,9 @@
 		5F7656311C856AD600C39A0C /* PasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCollectionCell.xib; sourceTree = "<group>"; };
+		98AF3E091D12B55000457A34 /* TusenTac-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TusenTac-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98AF3E0B1D12B5BF00457A34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		98AF3E0D1D12B5FA00457A34 /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		9E316CE4FB098B809DDA9323 /* Pods-TusenTac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTac.release.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac.release.xcconfig"; sourceTree = "<group>"; };
 		D11E4EA60937DDA9CC557517 /* Pods_TusenTac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TusenTac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,6 +170,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98AF3DF91D12B55000457A34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AF3E0C1D12B5BF00457A34 /* CFNetwork.framework in Frameworks */,
+				98AF3DFA1D12B55000457A34 /* Pods_TusenTac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +269,7 @@
 		5F37F9D31C240968000ABF26 = {
 			isa = PBXGroup;
 			children = (
+				98AF3E0D1D12B5FA00457A34 /* calabash.framework */,
 				5F37FA0D1C24099D000ABF26 /* .gitignore */,
 				5F37F9DE1C240968000ABF26 /* TusenTac */,
 				5F37F9F31C240968000ABF26 /* TusenTacTests */,
@@ -238,6 +286,7 @@
 				5F37F9DC1C240968000ABF26 /* TusenTac.app */,
 				5F37F9F01C240968000ABF26 /* TusenTacTests.xctest */,
 				5F37F9FB1C240968000ABF26 /* TusenTacUITests.xctest */,
+				98AF3E091D12B55000457A34 /* TusenTac-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,6 +370,7 @@
 		C28A8CC852080211272C7E51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98AF3E0B1D12B5BF00457A34 /* CFNetwork.framework */,
 				D11E4EA60937DDA9CC557517 /* Pods_TusenTac.framework */,
 			);
 			name = Frameworks;
@@ -394,6 +444,26 @@
 			productReference = 5F37F9FB1C240968000ABF26 /* TusenTacUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		98AF3DDD1D12B55000457A34 /* TusenTac-cal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98AF3E061D12B55000457A34 /* Build configuration list for PBXNativeTarget "TusenTac-cal" */;
+			buildPhases = (
+				98AF3DDE1D12B55000457A34 /* Check Pods Manifest.lock */,
+				98AF3DDF1D12B55000457A34 /* Sources */,
+				98AF3DF91D12B55000457A34 /* Frameworks */,
+				98AF3DFB1D12B55000457A34 /* Resources */,
+				98AF3E041D12B55000457A34 /* Embed Pods Frameworks */,
+				98AF3E051D12B55000457A34 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TusenTac-cal";
+			productName = TusenTac;
+			productReference = 98AF3E091D12B55000457A34 /* TusenTac-cal.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -435,6 +505,7 @@
 				5F37F9DB1C240968000ABF26 /* TusenTac */,
 				5F37F9EF1C240968000ABF26 /* TusenTacTests */,
 				5F37F9FA1C240968000ABF26 /* TusenTacUITests */,
+				98AF3DDD1D12B55000457A34 /* TusenTac-cal */,
 			);
 		};
 /* End PBXProject section */
@@ -469,6 +540,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98AF3DFB1D12B55000457A34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AF3DFC1D12B55000457A34 /* TaskCollectionCell.xib in Resources */,
+				98AF3DFD1D12B55000457A34 /* .gitignore in Resources */,
+				98AF3DFE1D12B55000457A34 /* Localizable.strings in Resources */,
+				98AF3DFF1D12B55000457A34 /* LaunchScreen.storyboard in Resources */,
+				98AF3E001D12B55000457A34 /* ss-gizmo.otf in Resources */,
+				98AF3E011D12B55000457A34 /* Assets.xcassets in Resources */,
+				98AF3E021D12B55000457A34 /* Main.storyboard in Resources */,
+				98AF3E031D12B55000457A34 /* onboarding.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -485,6 +571,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98AF3DDE1D12B55000457A34 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98AF3E041D12B55000457A34 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98AF3E051D12B55000457A34 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D9F093178CA3CC67AFD4ADCF /* Embed Pods Frameworks */ = {
@@ -565,6 +696,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F37FA001C240968000ABF26 /* TusenTacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98AF3DDF1D12B55000457A34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AF3DE01D12B55000457A34 /* SideEffectTask.swift in Sources */,
+				98AF3DE11D12B55000457A34 /* NettskjemaStep.swift in Sources */,
+				98AF3DE21D12B55000457A34 /* FooterView.swift in Sources */,
+				98AF3DE31D12B55000457A34 /* PasscodeViewController.swift in Sources */,
+				98AF3DE41D12B55000457A34 /* NettskjemaView.swift in Sources */,
+				98AF3DE51D12B55000457A34 /* TaskListViewController.swift in Sources */,
+				98AF3DE61D12B55000457A34 /* EatTask.swift in Sources */,
+				98AF3DE71D12B55000457A34 /* AppDelegate.swift in Sources */,
+				98AF3DE81D12B55000457A34 /* TaskListRow.swift in Sources */,
+				98AF3DE91D12B55000457A34 /* ResultHandler.swift in Sources */,
+				98AF3DEA1D12B55000457A34 /* PersonNumberViewController.swift in Sources */,
+				98AF3DEB1D12B55000457A34 /* StudyIDViewController.swift in Sources */,
+				98AF3DEC1D12B55000457A34 /* TaskCollectionCell.swift in Sources */,
+				98AF3DED1D12B55000457A34 /* Identifiers.swift in Sources */,
+				98AF3DEE1D12B55000457A34 /* NettskjemaStepViewController.swift in Sources */,
+				98AF3DEF1D12B55000457A34 /* Extensions.swift in Sources */,
+				98AF3DF01D12B55000457A34 /* NotificationsViewController.swift in Sources */,
+				98AF3DF11D12B55000457A34 /* Constants.swift in Sources */,
+				98AF3DF21D12B55000457A34 /* WeightTask.swift in Sources */,
+				98AF3DF31D12B55000457A34 /* SettingsViewController.swift in Sources */,
+				98AF3DF41D12B55000457A34 /* ContactTableViewController.swift in Sources */,
+				98AF3DF51D12B55000457A34 /* PillTask.swift in Sources */,
+				98AF3DF61D12B55000457A34 /* Notification.swift in Sources */,
+				98AF3DF71D12B55000457A34 /* Reachability.swift in Sources */,
+				98AF3DF81D12B55000457A34 /* Nettskjema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +935,60 @@
 			};
 			name = Release;
 		};
+		98AF3E071D12B55000457A34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AEA7A6259262939FF6E27F8 /* Pods-TusenTac.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TusenTac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"ResearchKit\"",
+					"-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "no.usit.uio.no.TusenTac-cal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		98AF3E081D12B55000457A34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E316CE4FB098B809DDA9323 /* Pods-TusenTac.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TusenTac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"ResearchKit\"",
+					"-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n-ObjC",
+					"-force_load",
+					"\"$(SOURCE_ROOT)/calabash.framework/calabash\"\n",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "no.usit.uio.no.TusenTac-cal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -807,6 +1024,15 @@
 			buildConfigurations = (
 				5F37FA0B1C240968000ABF26 /* Debug */,
 				5F37FA0C1C240968000ABF26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98AF3E061D12B55000457A34 /* Build configuration list for PBXNativeTarget "TusenTac-cal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98AF3E071D12B55000457A34 /* Debug */,
+				98AF3E081D12B55000457A34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
