@@ -32,7 +32,7 @@ public var SideEffectTask: ORKOrderedTask {
     let newSideEffectStep = ORKQuestionStep(identifier: Identifier.NewSideEffectStep.rawValue, title: "Registrering av bivirkninger".localized, answer: newSideEffectAnswer);
     
     //let italics = "nye/forverring"
-    let quesText = "Velg en eller flere nye/forverring nye/forverring av bivirkninger"
+    let quesText = "Velg en eller flere nye/forverring av bivirkninger"
     
 
     
