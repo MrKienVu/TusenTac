@@ -25,46 +25,8 @@ public var PillTask: ORKNavigableOrderedTask {
         
     }
     
-    
- //   let morningDos = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
-    
-   // let nightDos = UserDefaults.objectForKey(UserDefaultKey.nightDosage)
-    
-     var textChoiceOneText = ""
-     var textChoiceTwoText = ""
-    
-  /*  let now = NSDate().getCurrentLocalDate()
-    
-    if let morningTimes = UserDefaults.objectForKey(UserDefaultKey.morningTime) as? NSDate {
-     
-     
-        
-        let compareTime = now.compare(morningTimes)
-
-        if(compareTime == NSComparisonResult.OrderedDescending){
-            //now is later than morningTime
-            //morningTime is earlier than now, so show night dosage
-            isMorningDosage = false;
-            
-            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
-            
-            textChoiceOneText = "✓\tTok \(nightDos!) mg medisin nå".localized
-            textChoiceTwoText = "🕐\tTok \(nightDos!) mg medisin tidligere".localized
-        }
-        else if (compareTime == NSComparisonResult.OrderedAscending){
-            //now is later than nightTime
-            
-            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
-
-            isMorningDosage = true;
-            textChoiceOneText = "✓\tTok \(morningDos!) mg medisin nå".localized
-            textChoiceTwoText = "🕐\tTok \(morningDos!) mg medisin tidligere".localized
-        }
-    }
-    else { */
-        textChoiceOneText = "✓\tTok medisinen nå".localized
-        textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
-       //  }
+    let textChoiceOneText = "✓\tTok medisinen nå".localized
+    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
     
     var steps = [ORKStep]()
     
@@ -96,12 +58,6 @@ public var PillTask: ORKNavigableOrderedTask {
     tookPillEarlierStep.optional = false
     
     steps += [tookPillEarlierStep]
-    
-    // SUMMARY STEP
-    /*let pillCompletionStep = ORKCompletionStep(identifier: Identifier.PillCompletionStep.rawValue)
-    pillCompletionStep.title = "Ferdig!".localized
-    pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
-    steps += [pillCompletionStep]*/
     
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"
