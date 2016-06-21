@@ -36,7 +36,7 @@ class Notification {
             
             let snoozeAction = UIMutableUserNotificationAction()
             snoozeAction.identifier = "SNOOZE_ACTION"
-            snoozeAction.title = "Slumre 30 min"
+            snoozeAction.title = "Slumre \(Notifications.snoozeDelayInMinutes) min"
             snoozeAction.activationMode = UIUserNotificationActivationMode.Background
             snoozeAction.destructive = false
             snoozeAction.authenticationRequired = false

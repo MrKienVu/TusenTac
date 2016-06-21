@@ -15,6 +15,10 @@ struct Color {
     static let secondaryColor = UIColor.lightGrayColor()
 }
 
+struct Notifications {
+    static let snoozeDelayInMinutes = 60
+}
+
 struct UserDefaultKey {
     static let morningTime = "TusenTacMorningTime"
     static let nightTime = "TusenTacNightTime"

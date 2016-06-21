@@ -103,10 +103,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         
-        if identifier == "GO_ACTION" {
-            if type == "medicineRegistration" {
-                NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
-            }
+        switch identifier {
+            case "GO_ACTION"?:
+                if type == "medicineRegistration" {
+                    NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
+                }
+            case "SNOOZE_ACTION"?:
+                notification.fireDate = NSDate().dateByAddingTimeInterval(Double(60 * Notifications.snoozeDelayInMinutes))
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            default: break
         }
         
         completionHandler()
