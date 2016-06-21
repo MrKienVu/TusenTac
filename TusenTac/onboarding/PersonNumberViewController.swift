@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 class PersonNumberViewController: UIViewController, UITextFieldDelegate {
     
@@ -102,7 +103,9 @@ class PersonNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        UserDefaults.setObject(personNumberTextField.text!, forKey: UserDefaultKey.PersonNumber)
+        var accountDictionary = Locksmith.loadDataForUserAccount(Encrypted.account)!
+        accountDictionary[Encrypted.personNumber] = personNumberTextField.text!
+        try! Locksmith.updateData(accountDictionary, forUserAccount: Encrypted.account)
     }
     
     override func didReceiveMemoryWarning() {
