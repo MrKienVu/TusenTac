@@ -55,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Stored user ID \(uuid) in UserDefaults")
             
             // Set default dosages here temporarily
-            UserDefaults.setObject("5", forKey: UserDefaultKey.morningDosage)
-            UserDefaults.setObject("5", forKey: UserDefaultKey.nightDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
             
             ORKPasscodeViewController.removePasscodeFromKeychain()
             NSLog("Removed passcode from Keychain")
