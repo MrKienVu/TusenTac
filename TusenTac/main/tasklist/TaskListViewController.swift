@@ -28,10 +28,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             showOverlay()
             UserDefaults.setBool(true, forKey: UserDefaultKey.overlayShown)
         }
-
+        
         collection.dataSource = self
         collection.delegate = self
-  
+        
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
@@ -51,43 +51,43 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     //This function will disable the task and add overlay image
     //boolean taskShouldBeDisable must be implemented
     
-   /* func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let navigationBarHeight = self.navigationController?.navigationBar.frame.height
-        
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        
-        let yPos = cell.bounds.minY + navigationBarHeight! + statusBarHeight
-        
-        let point = CGPoint(x:cell.bounds.minX , y: yPos)
-        
-        let size = CGSize(width: cell.bounds.width, height: cell.bounds.height)
-        
-        let rect = CGRect(origin: point, size: size)
-        
-        let disableImage = UIImageView(frame: rect)
-        disableImage.backgroundColor = UIColor.grayColor()
-        disableImage.alpha = 0.5
-        
-        if(indexPath.row == 0) {
-            if(taskShouldBeDisabled) {
-                
-                //for disable the task
-                cell.userInteractionEnabled = false
-                
-                //adding overlay
-                self.navigationController?.view.addSubview(disableImage)
-            }
-            else if(!taskShouldBeDisabled) {
-                cell.userInteractionEnabled = true
-                self.navigationController?.view.willRemoveSubview(disableImage)
-            }
-        }
-        
+    /* func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+     
+     let navigationBarHeight = self.navigationController?.navigationBar.frame.height
+     
+     let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+     
+     let yPos = cell.bounds.minY + navigationBarHeight! + statusBarHeight
+     
+     let point = CGPoint(x:cell.bounds.minX , y: yPos)
+     
+     let size = CGSize(width: cell.bounds.width, height: cell.bounds.height)
+     
+     let rect = CGRect(origin: point, size: size)
+     
+     let disableImage = UIImageView(frame: rect)
+     disableImage.backgroundColor = UIColor.grayColor()
+     disableImage.alpha = 0.5
+     
+     if(indexPath.row == 0) {
+     if(taskShouldBeDisabled) {
+     
+     //for disable the task
+     cell.userInteractionEnabled = false
+     
+     //adding overlay
+     self.navigationController?.view.addSubview(disableImage)
+     }
+     else if(!taskShouldBeDisabled) {
+     cell.userInteractionEnabled = true
+     self.navigationController?.view.willRemoveSubview(disableImage)
+     }
+     }
+     
      
      cell.userInteractionEnabled = true
      self.navigationController?.view.willRemoveSubview(disableImage)
-    }*/
+     }*/
     
     
     func overlayTapped(sender: AnyObject){
@@ -102,10 +102,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let screenHeight = screenSize.height
         
         switch screenHeight {
-            case 568: img = UIImage(named: "overlay-5")
-            case 667: img = UIImage(named: "overlay-6")
-            case 736: img = UIImage(named: "overlay-6plus")
-            default: return
+        case 568: img = UIImage(named: "overlay-5")
+        case 667: img = UIImage(named: "overlay-6")
+        case 736: img = UIImage(named: "overlay-6plus")
+        default: return
         }
         
         NSLog("screenHeight \(screenHeight) screenWidth \(screenWidth)")
@@ -171,9 +171,9 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let task = taskListRow.representedTask
         
         /*
-        Passing `nil` for the `taskRunUUID` lets the task view controller
-        generate an identifier for this run of the task.
-        */
+         Passing `nil` for the `taskRunUUID` lets the task view controller
+         generate an identifier for this run of the task.
+         */
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         
         // Make sure we receive events from `taskViewController`.
@@ -181,10 +181,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         
         /*
-        We present the task directly, but it is also possible to use segues.
-        The task property of the task view controller can be set any time before
-        the task view controller is presented.
-        */
+         We present the task directly, but it is also possible to use segues.
+         The task property of the task view controller can be set any time before
+         the task view controller is presented.
+         */
         presentViewController(taskViewController, animated: true, completion: nil)
     }
     

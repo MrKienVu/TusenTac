@@ -29,23 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let main = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = main.instantiateInitialViewController()
         
-        // Just for testing purposes, did not work
-        // Safe to remove
-        /*if let options = launchOptions {
-            print("LOL1")
-            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-                print("LOL2")
-                if let userInfo = notification.userInfo {
-                    print("LOL3")
-                    if userInfo["notificationType"] as! String == "medicineRegistration" {
-                        print("LOL4")
-                        NSLog("Presenting medicine registration")
-                        NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
-                    }
-                }
-            }
-        }*/
-        
         window?.rootViewController = completedOnboarding ? mainVC : onboardingVC
         
         let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
