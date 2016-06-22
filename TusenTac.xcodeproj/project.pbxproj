@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0762CC6D9A0F900530D8EB36 /* Pods_TusenTacUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059E7DBFF837EEC72C5F50F /* Pods_TusenTacUITests.framework */; };
 		320A664C1D01924D00357601 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A664B1D01924D00357601 /* Reachability.swift */; };
 		3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */; };
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
@@ -43,8 +42,9 @@
 		5F7656321C856AD600C39A0C /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656311C856AD600C39A0C /* PasscodeViewController.swift */; };
 		5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
 		5FB8EAD41C75C78E000E5F93 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
-		77E29C7C7423563B1C8FC4E5 /* Pods_TusenTacTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6680B3D293D1F936526FED6 /* Pods_TusenTacTests.framework */; };
-		88233B0A3D7A171C2ACA0C39 /* Pods_TusenTac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20072D2E3FFA4749B4583AE5 /* Pods_TusenTac.framework */; };
+		98A799EE1D1AABCD004463AD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799EB1D1AABCD004463AD /* Alamofire.framework */; };
+		98A799EF1D1AABCD004463AD /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799EC1D1AABCD004463AD /* Locksmith.framework */; };
+		98A799F01D1AABCD004463AD /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799ED1D1AABCD004463AD /* ResearchKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,16 +65,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		084AFABCE8258ADE1E9840CD /* Pods-TusenTacTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTacTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTacTests/Pods-TusenTacTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1C672227FC36F8782E908702 /* Pods-TusenTac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTac.release.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac.release.xcconfig"; sourceTree = "<group>"; };
-		20072D2E3FFA4749B4583AE5 /* Pods_TusenTac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TusenTac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2059E7DBFF837EEC72C5F50F /* Pods_TusenTacUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TusenTacUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320A664B1D01924D00357601 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
-		42255069EBA4A52E78053F30 /* Pods-TusenTacUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTacUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTacUITests/Pods-TusenTacUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		5F37F9DC1C240968000ABF26 /* TusenTac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TusenTac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F37F9DF1C240968000ABF26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,10 +109,9 @@
 		5F7656311C856AD600C39A0C /* PasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCollectionCell.xib; sourceTree = "<group>"; };
-		9AC7A9A8ADC7B445D85E2780 /* Pods-TusenTacTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTacTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTacTests/Pods-TusenTacTests.release.xcconfig"; sourceTree = "<group>"; };
-		A6680B3D293D1F936526FED6 /* Pods_TusenTacTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TusenTacTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1CBF4FFCE08458304986CC9 /* Pods-TusenTac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac.debug.xcconfig"; sourceTree = "<group>"; };
-		F5A1CFCC8D27CD997939507A /* Pods-TusenTacUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TusenTacUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TusenTacUITests/Pods-TusenTacUITests.release.xcconfig"; sourceTree = "<group>"; };
+		98A799EB1D1AABCD004463AD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		98A799EC1D1AABCD004463AD /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
+		98A799ED1D1AABCD004463AD /* ResearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ResearchKit.framework; path = Carthage/Build/iOS/ResearchKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88233B0A3D7A171C2ACA0C39 /* Pods_TusenTac.framework in Frameworks */,
+				98A799EE1D1AABCD004463AD /* Alamofire.framework in Frameworks */,
+				98A799EF1D1AABCD004463AD /* Locksmith.framework in Frameworks */,
+				98A799F01D1AABCD004463AD /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77E29C7C7423563B1C8FC4E5 /* Pods_TusenTacTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0762CC6D9A0F900530D8EB36 /* Pods_TusenTacUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,13 +226,14 @@
 		5F37F9D31C240968000ABF26 = {
 			isa = PBXGroup;
 			children = (
+				98A799EB1D1AABCD004463AD /* Alamofire.framework */,
+				98A799EC1D1AABCD004463AD /* Locksmith.framework */,
+				98A799ED1D1AABCD004463AD /* ResearchKit.framework */,
 				5F37FA0D1C24099D000ABF26 /* .gitignore */,
 				5F37F9DE1C240968000ABF26 /* TusenTac */,
 				5F37F9F31C240968000ABF26 /* TusenTacTests */,
 				5F37F9FE1C240968000ABF26 /* TusenTacUITests */,
 				5F37F9DD1C240968000ABF26 /* Products */,
-				A0D946AC269BA3C6FCB19E63 /* Pods */,
-				AAC4F291F4BD29C0CBC7A99D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,29 +323,6 @@
 			path = onboarding;
 			sourceTree = "<group>";
 		};
-		A0D946AC269BA3C6FCB19E63 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C1CBF4FFCE08458304986CC9 /* Pods-TusenTac.debug.xcconfig */,
-				1C672227FC36F8782E908702 /* Pods-TusenTac.release.xcconfig */,
-				084AFABCE8258ADE1E9840CD /* Pods-TusenTacTests.debug.xcconfig */,
-				9AC7A9A8ADC7B445D85E2780 /* Pods-TusenTacTests.release.xcconfig */,
-				42255069EBA4A52E78053F30 /* Pods-TusenTacUITests.debug.xcconfig */,
-				F5A1CFCC8D27CD997939507A /* Pods-TusenTacUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		AAC4F291F4BD29C0CBC7A99D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				20072D2E3FFA4749B4583AE5 /* Pods_TusenTac.framework */,
-				A6680B3D293D1F936526FED6 /* Pods_TusenTacTests.framework */,
-				2059E7DBFF837EEC72C5F50F /* Pods_TusenTacUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -358,12 +330,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F37FA041C240968000ABF26 /* Build configuration list for PBXNativeTarget "TusenTac" */;
 			buildPhases = (
-				610E472E89FE031BE7E06AB5 /* [CP] Check Pods Manifest.lock */,
 				5F37F9D81C240968000ABF26 /* Sources */,
 				5F37F9D91C240968000ABF26 /* Frameworks */,
 				5F37F9DA1C240968000ABF26 /* Resources */,
-				70C4189EA6AC951E77685FB9 /* [CP] Embed Pods Frameworks */,
-				FF5BEA13BD4E26F219A8AADB /* [CP] Copy Pods Resources */,
+				98A799F11D1AAC3B004463AD /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -523,36 +493,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		610E472E89FE031BE7E06AB5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		70C4189EA6AC951E77685FB9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		879C3B744C76EC91ABC98A18 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -567,6 +507,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTacTests/Pods-TusenTacTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		98A799F11D1AAC3B004463AD /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ResearchKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/LockSmith.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		BFDC099B9A7F8375782EBADC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -596,21 +553,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTacUITests/Pods-TusenTacUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF5BEA13BD4E26F219A8AADB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TusenTac/Pods-TusenTac-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -796,10 +738,13 @@
 		};
 		5F37FA051C240968000ABF26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1CBF4FFCE08458304986CC9 /* Pods-TusenTac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TusenTac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.usit.uio.no.TusenTac;
@@ -809,10 +754,13 @@
 		};
 		5F37FA061C240968000ABF26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C672227FC36F8782E908702 /* Pods-TusenTac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TusenTac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.usit.uio.no.TusenTac;
@@ -822,7 +770,6 @@
 		};
 		5F37FA081C240968000ABF26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 084AFABCE8258ADE1E9840CD /* Pods-TusenTacTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TusenTacTests/Info.plist;
@@ -835,7 +782,6 @@
 		};
 		5F37FA091C240968000ABF26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AC7A9A8ADC7B445D85E2780 /* Pods-TusenTacTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TusenTacTests/Info.plist;
@@ -848,7 +794,6 @@
 		};
 		5F37FA0B1C240968000ABF26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42255069EBA4A52E78053F30 /* Pods-TusenTacUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TusenTacUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -861,7 +806,6 @@
 		};
 		5F37FA0C1C240968000ABF26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5A1CFCC8D27CD997939507A /* Pods-TusenTacUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TusenTacUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
