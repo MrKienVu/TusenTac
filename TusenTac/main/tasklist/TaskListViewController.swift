@@ -230,6 +230,39 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
 }
 
+func parseTaskResult(taskResult: ORKTaskResult) {
+    var dateNow = NSDate()
+
+    if taskResult.identifier == PillTask.identifier && (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+    }
+    if let stepResults = taskResult.results as? [ORKStepResult] {
+        for stepResult in stepResults {
+            for result in stepResult.results! {
+                if result.identifier == Identifier.WeightStep.rawValue {
+                    let answer = (result as! ORKNumericQuestionResult).answer
+                    UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
+                    UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
+                }
+                if result.identifier == Identifier.PillOptionStep.rawValue {
+                    if let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![0] as! String) == "now" {
+                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                    }
+                }
+                if result.identifier == Identifier.TookPillEarlierStep.rawValue {
+                    if let lastDosageTime = result as? ORKTimeOfDayQuestionResult,
+                        timeAnswer = lastDosageTime.dateComponentsAnswer {
+                        dateNow = NSCalendar.currentCalendar().dateBySettingHour(
+                            timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
+                            )!
+                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
+                    }
+                }
+            }
+        }
+    }
+}
+
 extension TaskListViewController: ORKTaskViewControllerDelegate {
     // All ORKTaskViewControllerDelegate methods are handled here.
     
@@ -247,57 +280,21 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
         }
     }
     
+    
+    
     // MARK: ORKTaskViewControllerDelegate
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
         
         let taskResult = taskViewController.result
-        var dateNow = NSDate()
         
-        switch reason {
-        case .Completed:
-            if let stepResults = taskResult.results as? [ORKStepResult] {
-                for stepResult in stepResults {
-                    for result in stepResult.results! {
-                        if let questionStepResult = result as? ORKNumericQuestionResult {
-                            if let answer = questionStepResult.answer  {
-                                UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
-                                UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
-                            }
-                        }
-                        if taskResult.identifier == PillTask.identifier {
-                            if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
-                                UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                            }
-                            
-                            if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                                if let timeAnswer = lastDosageTime.dateComponentsAnswer {
-                                    dateNow = NSCalendar.currentCalendar().dateBySettingHour(
-                                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
-                                        )!
-                                    UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                }
-                            }
-                            if let choiceResult = result as? ORKChoiceQuestionResult {
-                                if let _ = choiceResult.answer {
-                                    if choiceResult.choiceAnswers![0] as! String == "now" {
-                                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-            }
+        if reason == .Completed {
+            parseTaskResult(taskResult)
             
             if let csv = ResultHandler.createCSVFromResult(taskResult) {
                 Nettskjema.upload(csv)
             } else {
                 NSLog("Failed to encode task result as NSData")
             }
-            
-        case .Failed, .Discarded, .Saved:
-            break
         }
         
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
@@ -311,5 +308,5 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             ),
             dispatch_get_main_queue(), closure)
     }
-
+    
 }
