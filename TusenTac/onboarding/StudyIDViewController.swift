@@ -128,14 +128,12 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let studyID = repeatIdTextField.text!
-        var accountDictionary = Locksmith.loadDataForUserAccount(Encrypted.account)
-        if accountDictionary == nil {
-            accountDictionary = [Encrypted.studyID: studyID]
+        if var accountDictionary = Locksmith.loadDataForUserAccount(Encrypted.account) {
+            accountDictionary[Encrypted.studyID] = studyID
+            try! Locksmith.updateData(accountDictionary, forUserAccount: Encrypted.account)
         } else {
-            accountDictionary![Encrypted.studyID] = studyID
+            try! Locksmith.updateData([Encrypted.studyID: studyID], forUserAccount: Encrypted.account)
         }
-        
-        try! Locksmith.updateData(accountDictionary!, forUserAccount: Encrypted.account)
     }
     
 }
