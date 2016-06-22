@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 class StudyIDViewController: UIViewController, UITextFieldDelegate {
     
@@ -125,9 +126,14 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        UserDefaults.setObject(repeatIdTextField.text!, forKey: UserDefaultKey.StudyID)
+        let studyID = repeatIdTextField.text!
+        if var accountDictionary = Locksmith.loadDataForUserAccount(Encrypted.account) {
+            accountDictionary[Encrypted.studyID] = studyID
+            try! Locksmith.updateData(accountDictionary, forUserAccount: Encrypted.account)
+        } else {
+            try! Locksmith.updateData([Encrypted.studyID: studyID], forUserAccount: Encrypted.account)
+        }
     }
     
 }

@@ -40,6 +40,7 @@
 		5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
 		5FB8EAD41C75C78E000E5F93 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
 		98A799EE1D1AABCD004463AD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799EB1D1AABCD004463AD /* Alamofire.framework */; };
+		98A799EF1D1AABCD004463AD /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799EC1D1AABCD004463AD /* Locksmith.framework */; };
 		98A799F01D1AABCD004463AD /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A799ED1D1AABCD004463AD /* ResearchKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCollectionCell.xib; sourceTree = "<group>"; };
 		98A799EB1D1AABCD004463AD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		98A799EC1D1AABCD004463AD /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		98A799ED1D1AABCD004463AD /* ResearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ResearchKit.framework; path = Carthage/Build/iOS/ResearchKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98A799EE1D1AABCD004463AD /* Alamofire.framework in Frameworks */,
+				98A799EF1D1AABCD004463AD /* Locksmith.framework in Frameworks */,
 				98A799F01D1AABCD004463AD /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				98A799EB1D1AABCD004463AD /* Alamofire.framework */,
+				98A799EC1D1AABCD004463AD /* Locksmith.framework */,
 				98A799ED1D1AABCD004463AD /* ResearchKit.framework */,
 				5F37FA0D1C24099D000ABF26 /* .gitignore */,
 				5F37F9DE1C240968000ABF26 /* TusenTac */,
@@ -335,9 +339,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F37FA071C240968000ABF26 /* Build configuration list for PBXNativeTarget "TusenTacTests" */;
 			buildPhases = (
+				5E29BFCE6B3BDFFDFF1D00D5 /* [CP] Check Pods Manifest.lock */,
 				5F37F9EC1C240968000ABF26 /* Sources */,
 				5F37F9ED1C240968000ABF26 /* Frameworks */,
 				5F37F9EE1C240968000ABF26 /* Resources */,
+				45885BBA46401EC4B2CCD34A /* [CP] Embed Pods Frameworks */,
+				879C3B744C76EC91ABC98A18 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,9 +360,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F37FA0A1C240968000ABF26 /* Build configuration list for PBXNativeTarget "TusenTacUITests" */;
 			buildPhases = (
+				BFDC099B9A7F8375782EBADC /* [CP] Check Pods Manifest.lock */,
 				5F37F9F71C240968000ABF26 /* Sources */,
 				5F37F9F81C240968000ABF26 /* Frameworks */,
 				5F37F9F91C240968000ABF26 /* Resources */,
+				C31830C16E2C01816CADEEF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
