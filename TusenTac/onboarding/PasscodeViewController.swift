@@ -70,8 +70,8 @@ class PasscodeViewController: UIViewController {
         // Setting defaults
         let defaultDates = Notification.sharedInstance.getDefaultDates()
         Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
-        UserDefaults.setObject("200", forKey: UserDefaultKey.morningDosage)
-        UserDefaults.setObject("200", forKey: UserDefaultKey.nightDosage)
+        UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
+        UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
         
         // Presenting main storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
