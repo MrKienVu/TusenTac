@@ -42,7 +42,7 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func repeatIdChanged(sender: AnyObject) {
-        if equalTextFields() {
+        if validStudyID() {
             animateEqualTextfields()
         } else {
             animateInequalTextFields()
@@ -50,19 +50,24 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func IdChanged(sender: AnyObject) {
-        if equalTextFields() {
+        if validStudyID() {
             animateEqualTextfields()
         } else {
             animateInequalTextFields()
         }
     }
     
+    func validStudyID() -> Bool {
+        return equalTextFields() && patternIsCorrect()
+    }
+    
     func equalTextFields() -> Bool {
-        if idTextField.text == repeatIdTextField.text && repeatIdTextField.text?.characters.count >= 3 {
-            return true
-        }
-        
-        return false
+        return idTextField.text == repeatIdTextField.text
+    }
+    
+    func patternIsCorrect() -> Bool {
+        return repeatIdTextField.text?.characters.count == 7 &&
+               repeatIdTextField.text?.rangeOfString("[a-zA-Z]{4}[0-9]{3}", options: .RegularExpressionSearch) != nil
     }
     
     func animateEqualTextfields() {
