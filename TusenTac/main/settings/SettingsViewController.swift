@@ -151,7 +151,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["anders.asberg@farmasi.uio.no"])
+            mail.setToRecipients(["\(Configuration.contactMailAddress)"])
             mail.setSubject("MinDag")
             
             presentViewController(mail, animated: true, completion: nil)

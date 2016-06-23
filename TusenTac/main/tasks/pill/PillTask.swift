@@ -44,7 +44,7 @@ public var PillTask: ORKNavigableOrderedTask {
         title: "Medisinregistrering",
         answer: pillOptionAnswer
     )
-    pillOptionStep.text = "\(lastDosageText) \n\nFor å registrere en ny dosering, trykk på et av valgene nedenfor."
+    pillOptionStep.text = "\(lastDosageText) \n\nRegistrer ny dosering ved å trykke på et av valgene nedenfor"
 
     pillOptionStep.optional = false
     
