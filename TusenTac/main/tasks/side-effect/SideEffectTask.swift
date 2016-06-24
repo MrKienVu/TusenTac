@@ -9,14 +9,22 @@
 import Foundation
 import ResearchKit
 
+struct SideEffect {
+    static let shivering = "skjelving"
+    static let diarrhea = "diare"
+    static let nausea = "kvalme"
+    static let headache = "hodepine"
+    static let other = "annet"
+}
+
 public var SideEffectTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
-    let textChoices = [ORKTextChoice(text: "Skjelving", value: "Skjelving"),
-                       ORKTextChoice(text: "Diaré", value: "Diaré"),
-                       ORKTextChoice(text: "Kvalme", value: "Kvalme"),
-                       ORKTextChoice(text: "Hodepine", value: "Hodepine"),
-                       ORKTextChoice(text: "Annet", value: "Annet"),
+    let textChoices = [ORKTextChoice(text: "Skjelving", value: SideEffect.shivering),
+                       ORKTextChoice(text: "Diaré", value: SideEffect.diarrhea),
+                       ORKTextChoice(text: "Kvalme", value: SideEffect.nausea),
+                       ORKTextChoice(text: "Hodepine", value: SideEffect.headache),
+                       ORKTextChoice(text: "Annet", value: SideEffect.other),
     ]
     
     let newSideEffectAnswer = ORKAnswerFormat.choiceAnswerFormatWithStyle(.MultipleChoice, textChoices: textChoices)

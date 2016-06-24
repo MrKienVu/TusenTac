@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		320A664C1D01924D00357601 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A664B1D01924D00357601 /* Reachability.swift */; };
-		3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */; };
 		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
@@ -63,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		320A664B1D01924D00357601 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 			children = (
 				5F3D85691C27EE07001CBEB6 /* Nettskjema.swift */,
 				32E04C931C3D1F5E006AFB85 /* Notification.swift */,
-				3266F7CF1C9031A20048E9B7 /* ResultHandler.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -484,7 +481,6 @@
 				32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
-				3266F7D01C9031A20048E9B7 /* ResultHandler.swift in Sources */,
 				32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */,
 				5F76562E1C856A8F00C39A0C /* StudyIDViewController.swift in Sources */,
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,

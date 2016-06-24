@@ -230,6 +230,81 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
 }
 
+
+private func <(lhs: NSDate, rhs: NSDate) -> Bool
+{
+    return lhs.compare(rhs) == .OrderedAscending
+}
+
+private func >(lhs: NSDate, rhs: NSDate) -> Bool
+{
+    return lhs.compare(rhs) == .OrderedDescending
+}
+
+private func getDosageForTime(time: NSDate) -> Int {
+    let morningDoseStart = NSCalendar.currentCalendar().dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions()
+        )!
+    let nightDoseStart = NSCalendar.currentCalendar().dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
+    let key = time > morningDoseStart && time < nightDoseStart ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
+    return Int(UserDefaults.objectForKey(key)! as! String)!
+}
+
+func parseTaskResult(taskResult: ORKTaskResult) {
+    
+    if taskResult.identifier == PillTask.identifier && (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+    }
+    if let stepResults = taskResult.results as? [ORKStepResult] {
+        for stepResult in stepResults {
+            for result in stepResult.results! {
+                if result.identifier == Identifier.WeightStep.rawValue {
+                    let weight = (result as! ORKNumericQuestionResult).numericAnswer!
+                    let weightTime = taskResult.endDate!;
+                    UserDefaults.setObject(weight, forKey: UserDefaultKey.Weight)
+                    UserDefaults.setObject(weightTime, forKey: UserDefaultKey.LastWeightTime)
+                    Nettskjema.submit(weight: weight, weightTime: weightTime)
+                }
+                if result.identifier == Identifier.PillOptionStep.rawValue,
+                    let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![0] as! String) == "now" {
+                    let medicationTime = taskResult.endDate!
+                    UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
+                    Nettskjema.submit(dosage: getDosageForTime(medicationTime), medicationTime: medicationTime)
+                    
+                }
+                if result.identifier == Identifier.TookPillEarlierStep.rawValue,
+                    let lastDosageTime = result as? ORKTimeOfDayQuestionResult,
+                    timeAnswer = lastDosageTime.dateComponentsAnswer {
+                    let medicationTime = NSCalendar.currentCalendar().dateBySettingHour(
+                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions()
+                        )!
+                    UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
+                    Nettskjema.submit(dosage: getDosageForTime(medicationTime), medicationTime: medicationTime)
+                }
+                if result.identifier == Identifier.NewSideEffectStep.rawValue,
+                    let newSideEffectsAnswer = result as? ORKChoiceQuestionResult,
+                    newSideEffects = newSideEffectsAnswer.answer as? [String],
+                    answerTime = newSideEffectsAnswer.endDate {
+                    Nettskjema.submit(newSideEffects: newSideEffects, answerTime: answerTime)
+                }
+                if result.identifier == Identifier.OldSideEffectStep.rawValue,
+                    let goneSideEffectsAnswer = result as? ORKChoiceQuestionResult,
+                    goneSideEffects = goneSideEffectsAnswer.answer as? [String],
+                    answerTime = goneSideEffectsAnswer.endDate {
+                    Nettskjema.submit(goneSideEffects: goneSideEffects, answerTime: answerTime)
+                }
+                if result.identifier == Identifier.EatingStep.rawValue,
+                    let mealAnswer = result as? ORKTimeOfDayQuestionResult,
+                    submitDate = result.endDate,
+                    selectedMealTime = mealAnswer.dateComponentsAnswer {
+                    let mealTime = NSCalendar.currentCalendar().dateBySettingHour(selectedMealTime.hour, minute: selectedMealTime.minute, second: 0, ofDate: submitDate, options: NSCalendarOptions())!
+                    Nettskjema.submit(mealTime: mealTime)
+                }
+                
+            }
+        }
+    }
+}
+
 extension TaskListViewController: ORKTaskViewControllerDelegate {
     // All ORKTaskViewControllerDelegate methods are handled here.
     
@@ -247,59 +322,15 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
         }
     }
     
+    
+    
     // MARK: ORKTaskViewControllerDelegate
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
         
         let taskResult = taskViewController.result
-        var dateNow = NSDate()
-        
-        switch reason {
-        case .Completed:
-            if let stepResults = taskResult.results as? [ORKStepResult] {
-                for stepResult in stepResults {
-                    for result in stepResult.results! {
-                        if let questionStepResult = result as? ORKNumericQuestionResult {
-                            if let answer = questionStepResult.answer  {
-                                UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
-                                UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
-                            }
-                        }
-                        if taskResult.identifier == PillTask.identifier {
-                            if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
-                                UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                            }
-                            
-                            if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                                if let timeAnswer = lastDosageTime.dateComponentsAnswer {
-                                    dateNow = NSCalendar.currentCalendar().dateBySettingHour(
-                                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
-                                        )!
-                                    UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                }
-                            }
-                            if let choiceResult = result as? ORKChoiceQuestionResult {
-                                if let _ = choiceResult.answer {
-                                    if choiceResult.choiceAnswers![0] as! String == "now" {
-                                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-            }
-            
-            if let csv = ResultHandler.createCSVFromResult(taskResult) {
-                Nettskjema.upload(csv)
-            } else {
-                NSLog("Failed to encode task result as NSData")
-            }
-            
-        case .Failed, .Discarded, .Saved:
-            break
+        if reason == .Completed {
+            parseTaskResult(taskResult)
         }
-        
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -311,5 +342,5 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             ),
             dispatch_get_main_queue(), closure)
     }
-
+    
 }
