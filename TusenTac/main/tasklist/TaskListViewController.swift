@@ -36,16 +36,14 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentMedicineRegistration), name: UserDefaultKey.medicineRegistration, object: nil)
+        /* Add more notification observers here. */
+        
         animateSettingsIconWithDuration(1.7)
     }
     
     override func viewWillAppear(animated: Bool) {
         collection.reloadData()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentMedicineRegistration), name: "presentMedicineRegistration", object: nil)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     //This function will disable the task and add overlay image
