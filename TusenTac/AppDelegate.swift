@@ -71,6 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func handleNotificationTap(userInfo: [NSObject: AnyObject]) {
+        let type = userInfo[UserDefaultKey.notificationType] as! String
+        NSNotificationCenter.defaultCenter().postNotificationName(type, object: nil)
+    }
+    
     func lock() {
         guard ORKPasscodeViewController.isPasscodeStoredInKeychain()
             && !(window?.rootViewController?.presentedViewController is ORKPasscodeViewController)
@@ -93,21 +98,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        // This method is called when a notification has been received while the app is in the foreground
-        NSLog("Received Local Notification:")
-        print(notification)
+        if (application.applicationState != UIApplicationState.Active) {
+            handleNotificationTap(notification.userInfo!)
+        }
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        let type = notification.userInfo!["notificationType"] as! String
-        
         application.applicationIconBadgeNumber = 0
         
         switch identifier {
             case "GO_ACTION"?:
-                if type == "medicineRegistration" {
-                    NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
-                }
+                handleNotificationTap(notification.userInfo!)
             case "SNOOZE_ACTION"?:
                 notification.fireDate = NSDate().dateByAddingTimeInterval(Double(60 * Notifications.snoozeDelayInMinutes))
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)

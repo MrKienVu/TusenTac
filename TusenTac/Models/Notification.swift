@@ -87,14 +87,14 @@ class Notification {
         if let fireDate = morning {
             let morningNotification = UILocalNotification()
             morningNotification.fireDate = fireDate
-            morningNotification.alertBody = "Du har en ny oppgave å gjøre."
+            morningNotification.alertBody = Notifications.alertBody
             morningNotification.category = "NOTIFICATION_CATEGORY"
             morningNotification.repeatInterval = NSCalendarUnit.Day
             morningNotification.applicationIconBadgeNumber += 1
             morningNotification.userInfo = [
-                "notificationType": "medicineRegistration",
-                "timeOfDay": "morning",
-                "dosage": UserDefaults.objectForKey(UserDefaultKey.morningDosage)!
+                UserDefaultKey.notificationType: UserDefaultKey.medicineRegistration,
+                UserDefaultKey.timeOfDay: UserDefaultKey.morningTime,
+                UserDefaultKey.dosage: UserDefaults.objectForKey(UserDefaultKey.morningDosage)!
             ]
             UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
             NSLog("Scheduled morning notifications: \n \(morningNotification)")
@@ -107,14 +107,14 @@ class Notification {
         if let fireDate = evening {
             let eveningNotification = UILocalNotification()
             eveningNotification.fireDate = fireDate
-            eveningNotification.alertBody = "Du har en ny oppgave å gjøre."
+            eveningNotification.alertBody = Notifications.alertBody
             eveningNotification.category = "NOTIFICATION_CATEGORY"
             eveningNotification.repeatInterval = NSCalendarUnit.Day
             eveningNotification.applicationIconBadgeNumber += 1
             eveningNotification.userInfo = [
-                "notificationType": "medicineRegistration",
-                "timeOfDay": "evening",
-                "dosage": UserDefaults.objectForKey(UserDefaultKey.nightDosage)!
+                UserDefaultKey.notificationType: UserDefaultKey.medicineRegistration,
+                UserDefaultKey.timeOfDay: UserDefaultKey.nightTime,
+                UserDefaultKey.dosage: UserDefaults.objectForKey(UserDefaultKey.nightDosage)!
             ]
             UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
             NSLog("Scheduled evening notifications: \n \(eveningNotification)")
