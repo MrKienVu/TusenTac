@@ -64,5 +64,4 @@ struct UserDefaultKey {
 struct Encrypted {
     static let account = "user"
     static let studyID = "StudyID"
-    static let personNumber = "PersonNumber"
 }
