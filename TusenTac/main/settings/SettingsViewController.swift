@@ -6,8 +6,9 @@
 //  Copyright © 2015 Paul Philip Mitchell. All rights reserved.
 //
 import UIKit
+import MessageUI
 
-class SettingsViewController: UITableViewController, UITextFieldDelegate {
+class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var notificationSwitch: UISwitch!
@@ -93,6 +94,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         else if indexPath.section == 1 && indexPath.row == 3 { morningDosageTextField.becomeFirstResponder() }
         else if indexPath.section == 2 && indexPath.row == 1 { toggleDatepicker(2) } // nightTimePicker
         else if indexPath.section == 2 && indexPath.row == 3 { nightDosageTextField.becomeFirstResponder() }
+        else if indexPath.section == 3 { sendEmail() }
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -144,6 +146,28 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         )
     }
     
+    func sendEmail() {
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["\(Configuration.contactMailAddress)"])
+            mail.setSubject("MinDag")
+            
+            presentViewController(mail, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "MAIL_FAILED_TITLE".localized, message: "MAIL_FAILED_TEXT".localized, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

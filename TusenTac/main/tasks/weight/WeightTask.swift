@@ -41,6 +41,8 @@ public var WeightTask: ORKOrderedTask {
     
     steps += [questionStep1]
     
+    
+    
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"
     waitStepIndeterminate.text = "Laster opp..."
