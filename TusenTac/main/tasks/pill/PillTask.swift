@@ -10,23 +10,26 @@
 import Foundation
 import ResearchKit
 
+public func getDosageForTime(time: NSDate) -> Int {
+    let morningDoseStart = NSCalendar.currentCalendar().dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions()
+        )!
+    let nightDoseStart = NSCalendar.currentCalendar().dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
+    let key = time.isGreaterThanDate(morningDoseStart) && time.isLessThanDate(nightDoseStart) ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
+    return Int(UserDefaults.objectForKey(key)! as! String)!
+}
+
 public var PillTask: ORKNavigableOrderedTask {
     
     var lastDosageText = ""
-    
-    var isMorningDosage = true
-    
     if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
         
         let dateString = lastDosage.toStringShortStyle()
-        if let dosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage) {
-            lastDosageText = "Din forrige dosering var \(dosage) mg og ble registrert \(dateString)."
-        }
-        
+        lastDosageText = "Din forrige dosering var \(UserDefaults.valueForKey(UserDefaultKey.earlierDosage)!) mg  og ble registrert \(dateString)."
     }
     
-    let textChoiceOneText = "✓\tTok medisinen nå".localized
-    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
+    let textChoiceOneText = "✓\tTok \(getDosageForTime(NSDate())) mg nå".localized
+    let textChoiceTwoText = "🕐\tTok \(getDosageForTime(NSDate())) mg tidligere".localized
+    
     
     var steps = [ORKStep]()
     
