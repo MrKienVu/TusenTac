@@ -398,10 +398,43 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Vekt" id="LOf-gF-b3C">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e8u-6k-bR2">
+                                        <rect key="frame" x="0.0" y="827.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e8u-6k-bR2" id="9hd-IR-rnL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qz3-r2-xYQ">
+                                                    <rect key="frame" x="543" y="7" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="weightSwitchChanged:" destination="qqB-4u-Dka" eventType="valueChanged" id="SvQ-z0-rwj"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vektpåminnelser" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-Cu-bn4">
+                                                    <rect key="frame" x="16" y="12" width="128" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kkg-Cu-bn4" firstAttribute="leading" secondItem="9hd-IR-rnL" secondAttribute="leadingMargin" constant="8" id="Dhk-M4-M50"/>
+                                                <constraint firstItem="kkg-Cu-bn4" firstAttribute="centerY" secondItem="9hd-IR-rnL" secondAttribute="centerY" id="Pav-X0-Mmw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qz3-r2-xYQ" secondAttribute="trailing" id="PmC-z1-gvx"/>
+                                                <constraint firstItem="Qz3-r2-xYQ" firstAttribute="centerY" secondItem="9hd-IR-rnL" secondAttribute="centerY" id="b0K-D8-wkq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Kontakt" id="3va-ou-bmB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ss5-gS-Avq" style="IBUITableViewCellStyleDefault" id="dqh-gP-fOq">
-                                        <rect key="frame" x="0.0" y="827.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="921.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dqh-gP-fOq" id="67m-UT-P3D">
                                             <rect key="frame" x="0.0" y="0.0" width="533" height="43.5"/>
@@ -423,10 +456,6 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="qqB-4u-Dka" id="m9w-GS-aU1"/>
-                            <outlet property="delegate" destination="qqB-4u-Dka" id="Kwm-OA-Vix"/>
-                        </connections>
                     </tableView>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -442,6 +471,7 @@
                         <outlet property="nightTimeLabel" destination="AdS-W3-b4k" id="ZGb-1P-Ve7"/>
                         <outlet property="nightTimePicker" destination="PLh-8r-DKZ" id="9kz-Nr-fU1"/>
                         <outlet property="notificationSwitch" destination="wdF-lL-ZH5" id="tBb-vs-YWe"/>
+                        <outlet property="weightSwitch" destination="Qz3-r2-xYQ" id="AVO-np-Jd2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1SA-BG-386" userLabel="First Responder" sceneMemberID="firstResponder"/>

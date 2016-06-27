@@ -10,6 +10,11 @@ import UIKit
 import Foundation
 import ResearchKit
 
+private let medicineIndex = 0
+private let mealIndex = 1
+private let weightIndex = 2
+private let sideEffectIndex = 3
+
 class TaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet var collection: UICollectionView!
@@ -37,6 +42,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentMedicineRegistration), name: UserDefaultKey.medicineRegistration, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentWeightRegistration), name: UserDefaultKey.weightRegistration, object: nil)
         /* Add more notification observers here. */
         
         animateSettingsIconWithDuration(1.7)
@@ -131,14 +137,14 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
-        if indexPath.row == 0 {
+        if indexPath.row == medicineIndex {
             if let lastDosageTime = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
                 let dateString = (lastDosageTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
                 cell.lastDosageLabel.hidden = false
             }
             
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == weightIndex {
             if let lastWeightTime = UserDefaults.objectForKey(UserDefaultKey.LastWeightTime) {
                 let dateString = (lastWeightTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
@@ -207,7 +213,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func presentMedicineRegistration() {
-        let taskListRow = taskListRows[0]
+        presentChoice(medicineIndex)
+    }
+    
+    func presentWeightRegistration() {
+        presentChoice(weightIndex)
+    }
+    
+    func presentChoice(cell: Int) {
+        let taskListRow = taskListRows[cell]
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         taskViewController.delegate = self
@@ -263,9 +277,10 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     UserDefaults.setObject(weight, forKey: UserDefaultKey.Weight)
                     UserDefaults.setObject(weightTime, forKey: UserDefaultKey.LastWeightTime)
                     Nettskjema.submit(weight: weight, weightTime: weightTime)
+                    Notification.sharedInstance.scheduleWeightNotification()
                 }
                 if result.identifier == Identifier.PillOptionStep.rawValue,
-                    let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![0] as! String) == "now" {
+                    let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![medicineIndex] as! String) == "now" {
                     let medicationTime = taskResult.endDate!
                     UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
                     Nettskjema.submit(dosage: getDosageForTime(medicationTime), medicationTime: medicationTime)

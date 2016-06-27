@@ -22,13 +22,18 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var nightSwitch: UISwitch!
     @IBOutlet weak var nightDosageTextField: UITextField!
     
+    @IBOutlet weak var weightSwitch: UISwitch!
+    
     // MARK: Variables and constants
     var morningTimePickerHidden = true
     var nightTimePickerHidden = true
     @IBAction func notificationsChanged(sender: AnyObject) {
         if notificationSwitch.on {
             Notification.sharedInstance.setupNotificationSettings()
-            scheduleNotifications()
+            Notification.sharedInstance.scheduleMedicineNotifications(
+                morningTimePicker.date,
+                evening: nightTimePicker.date
+            )
         } else {
             Notification.sharedInstance.cancelAllNotifications()
             UserDefaults.setObject(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
@@ -40,10 +45,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func morningSwitchChanged(sender: AnyObject) {
-        UserDefaults.setObject(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
+        UserDefaults.setBool(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningDate)
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -51,15 +55,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func morningTimeChanged(sender: AnyObject) {
         morningTimeChanged()
         UserDefaults.setObject(morningTimePicker.date, forKey: UserDefaultKey.morningTime)
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningTimePicker.date, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningTimePicker.date)
     }
     
     @IBAction func nightSwitchChanged(sender: AnyObject) {
-        UserDefaults.setObject(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        UserDefaults.setBool(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightDate)
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -67,25 +69,25 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func nightTimeChanged(sender: AnyObject) {
         nightTimeChanged()
         UserDefaults.setObject(nightTimePicker.date, forKey: UserDefaultKey.nightTime)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightTimePicker.date)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightTimePicker.date)
     }
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningDate)
     }
     
     @IBAction func nightDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(nightDosageTextField.text, forKey: UserDefaultKey.nightDosage)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightDate)
     }
     
-
+    @IBAction func weightSwitchChanged(sender: AnyObject) {
+        UserDefaults.setBool(weightSwitch.on, forKey: UserDefaultKey.weightSwitchOn)
+        Notification.sharedInstance.scheduleWeightNotification()
+    }
     
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -144,7 +146,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         )
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -154,6 +155,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
+        weightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.weightSwitchOn)
         
         addDoneButtonOnKeyboard()
     
@@ -181,7 +183,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
         morningTimeChanged()
         nightTimeChanged()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -220,13 +221,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         nightDosageTextField.resignFirstResponder()
     }
 
-    
-    func scheduleNotifications() {
-        Notification.sharedInstance.scheduleNotifications(
-            morningTimePicker.date,
-            evening: nightTimePicker.date
-        )
-    }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if(textField == nightDosageTextField || textField == morningDosageTextField){
             let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
