@@ -316,7 +316,16 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             stepViewController.cancelButtonItem = nil
             delay(2.0, closure: { () -> () in
                 if let stepViewController = stepViewController as? ORKWaitStepViewController {
-                    stepViewController.goForward()
+                    if Reachability.isConnected() {
+                        stepViewController.goForward()
+                    } else {
+                        stepViewController.goBackward()
+                        let alertController = UIAlertController(title: "INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized, preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alertController.addAction(defaultAction)
+                        
+                        taskViewController.presentViewController(alertController, animated: true, completion: nil)
+                    }
                 }
             })
         }
