@@ -7,12 +7,14 @@
 //
 import UIKit
 import MessageUI
+import ResearchKit
 
 private let notificationSection = 0
-private let morningSection = 1
-private let nightSection = 2
-private let weightSection = 3
-private let contactSection = 4
+private let securitySection = 1
+private let morningSection = 2
+private let nightSection = 3
+private let weightSection = 4
+private let contactSection = 5
 
 class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
     
@@ -30,10 +32,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     @IBOutlet weak var nightDosageTextField: UITextField!
     
     @IBOutlet weak var weightSwitch: UISwitch!
+    @IBOutlet weak var passcodeSwitch: UISwitch!
     
     // MARK: Variables and constants
     var morningTimePickerHidden = true
     var nightTimePickerHidden = true
+    var isRemovingPasscode = false
+    
     @IBAction func notificationsChanged(sender: AnyObject) {
         if notificationSwitch.on {
             Notification.sharedInstance.setupNotificationSettings()
@@ -47,16 +52,14 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         }
         
         UserDefaults.setBool(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateTableView()
     }
     
     @IBAction func morningSwitchChanged(sender: AnyObject) {
         UserDefaults.setBool(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
         Notification.sharedInstance.scheduleMedicineNotifications(morningDate)
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateTableView()
     }
     
     @IBAction func morningTimeChanged(sender: AnyObject) {
@@ -69,8 +72,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         UserDefaults.setBool(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
         Notification.sharedInstance.scheduleMedicineNotifications(evening: nightDate)
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateTableView()
     }
     
     @IBAction func nightTimeChanged(sender: AnyObject) {
@@ -78,7 +80,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         UserDefaults.setObject(nightTimePicker.date, forKey: UserDefaultKey.nightTime)
         Notification.sharedInstance.scheduleMedicineNotifications(evening: nightTimePicker.date)
     }
-
+    
     @IBAction func morningDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
@@ -95,6 +97,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         UserDefaults.setBool(weightSwitch.on, forKey: UserDefaultKey.weightSwitchOn)
         Notification.sharedInstance.scheduleWeightNotification()
     }
+
+    @IBAction func passcodeSwitchChanged(sender: AnyObject) {
+        passcodeSwitch.on ? createPasscode() : authenticatePasscode()
+    }
     
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -102,28 +108,31 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         else if indexPath.section == morningSection && indexPath.row == 3 { morningDosageTextField.becomeFirstResponder() }
         else if indexPath.section == nightSection && indexPath.row == 1 { toggleDatepicker(nightSection) }
         else if indexPath.section == nightSection && indexPath.row == 3 { nightDosageTextField.becomeFirstResponder() }
+        else if indexPath.section == securitySection && indexPath.row == 1 { changeExistingPasscode() }
         else if indexPath.section == contactSection { sendEmail() }
-    
+
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    
+        
         // Hide / Show datepickers
         if  (morningTimePickerHidden && indexPath.section == morningSection && indexPath.row == 2) ||
-            (nightTimePickerHidden && indexPath.section == nightSection && indexPath.row == 2)
+            (nightTimePickerHidden && indexPath.section == nightSection && indexPath.row == 2) ||
+            (passcodeSwitch.on && indexPath.section == securitySection && indexPath.row == 2)
         {
             return 0
         }
             
         else if
             (!morningSwitch.on && indexPath.section == morningSection && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3)) ||
-                (!nightSwitch.on && indexPath.section == nightSection && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3))
+                (!nightSwitch.on && indexPath.section == nightSection && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3)) ||
+                (!passcodeSwitch.on && indexPath.section == securitySection && (indexPath.row == 1))
         {
             return 0
         }
             
-    
+            
         else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }
@@ -134,8 +143,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         if      cell == morningSection { morningTimePickerHidden = !morningTimePickerHidden }
         else if cell == nightSection { nightTimePickerHidden =  !nightTimePickerHidden }
         
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateTableView()
+    }
+    
+    func togglePasscodeSwitch(enabled: Bool) {
+        passcodeSwitch.on = enabled
+        UserDefaults.setBool(passcodeSwitch.on, forKey: UserDefaultKey.passcodeSwitchOn)
+        updateTableView()
     }
     
     func morningTimeChanged() {
@@ -154,8 +168,12 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         )
     }
     
+    func updateTableView() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     func sendEmail() {
-        
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -179,21 +197,22 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         morningDosageTextField.delegate = self
         nightDosageTextField.delegate = self
         
-        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
+        notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
         weightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.weightSwitchOn)
+        passcodeSwitch.on = UserDefaults.boolForKey(UserDefaultKey.passcodeSwitchOn)
         
         addDoneButtonOnKeyboard()
-    
+        
         if let morningTime = UserDefaults.objectForKey(UserDefaultKey.morningTime) {
             morningTimePicker.setDate(morningTime as! NSDate, animated: true)
         }
-    
+        
         if let nightTime = UserDefaults.objectForKey(UserDefaultKey.nightTime) {
             nightTimePicker.setDate(nightTime as! NSDate, animated: true)
         }
@@ -211,7 +230,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         else {
             nightDosageTextField.placeholder = "0";
         }
-    
+        
         morningTimeChanged()
         nightTimeChanged()
     }
@@ -261,4 +280,77 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         }
         return true
     }
+    
+    func createPasscode() {
+        if !ORKPasscodeViewController.isPasscodeStoredInKeychain() {
+            let passcodeStep = ORKPasscodeStep(identifier: "Passcode")
+            let task = ORKOrderedTask(identifier: "PasscodeTask", steps: [passcodeStep])
+            passcodeStep.text = "Opprett en PIN-kode"
+            passcodeStep.passcodeType = ORKPasscodeType.Type4Digit
+            let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
+            taskViewController.delegate = self
+            presentViewController(taskViewController, animated: false, completion: nil)
+        }
+    }
+    
+    func authenticatePasscode() {
+        if ORKPasscodeViewController.isPasscodeStoredInKeychain() {
+            isRemovingPasscode = true
+            let passcodeViewController = ORKPasscodeViewController
+                .passcodeAuthenticationViewControllerWithText(
+                    "Oppgi eksisterende PIN", delegate: self) as! ORKPasscodeViewController
+            presentViewController(passcodeViewController, animated: false, completion: nil)
+        }
+    }
+    
+    func changeExistingPasscode() {
+        if ORKPasscodeViewController.isPasscodeStoredInKeychain() {
+            isRemovingPasscode = false
+            let passcodeViewController = ORKPasscodeViewController.passcodeEditingViewControllerWithText(
+                "Endre PIN-kode", delegate: self, passcodeType: ORKPasscodeType.Type4Digit) as! ORKPasscodeViewController
+            presentViewController(passcodeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func removePasscode() {
+        if ORKPasscodeViewController.isPasscodeStoredInKeychain() {
+            ORKPasscodeViewController.removePasscodeFromKeychain()
+            togglePasscodeSwitch(false)
+        }
+    }
 }
+
+/* Handles passcode removal or modification */
+extension SettingsViewController: ORKPasscodeDelegate {
+    func passcodeViewControllerDidFinishWithSuccess(viewController: UIViewController) {
+        viewController.dismissViewControllerAnimated(true, completion: nil)
+        if isRemovingPasscode {
+            removePasscode()
+        }
+    }
+    
+    func passcodeViewControllerDidCancel(viewController: UIViewController) {
+        viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func passcodeViewControllerDidFailAuthentication(viewController: UIViewController) {
+        // Default action.
+    }
+}
+
+/* Handles passcode creation */
+extension SettingsViewController: ORKTaskViewControllerDelegate {
+    func taskViewController(taskViewController: ORKTaskViewController,
+                            didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
+        switch reason {
+        case .Completed:
+            taskViewController.dismissViewControllerAnimated(true, completion: nil)
+            togglePasscodeSwitch(true)
+            
+        case .Failed, .Discarded, .Saved:
+            taskViewController.dismissViewControllerAnimated(true, completion: nil)
+            togglePasscodeSwitch(false)
+        }
+    }
+}
+
