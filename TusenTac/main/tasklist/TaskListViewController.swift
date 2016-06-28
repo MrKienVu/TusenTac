@@ -230,25 +230,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
 }
 
-
-private func <(lhs: NSDate, rhs: NSDate) -> Bool
-{
-    return lhs.compare(rhs) == .OrderedAscending
-}
-
-private func >(lhs: NSDate, rhs: NSDate) -> Bool
-{
-    return lhs.compare(rhs) == .OrderedDescending
-}
-
-private func getDosageForTime(time: NSDate) -> Int {
-    let morningDoseStart = NSCalendar.currentCalendar().dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions()
-        )!
-    let nightDoseStart = NSCalendar.currentCalendar().dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
-    let key = time > morningDoseStart && time < nightDoseStart ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
-    return Int(UserDefaults.objectForKey(key)! as! String)!
-}
-
 func parseTaskResult(taskResult: ORKTaskResult) {
     
     if taskResult.identifier == PillTask.identifier && (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
@@ -267,8 +248,10 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                 if result.identifier == Identifier.PillOptionStep.rawValue,
                     let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![0] as! String) == "now" {
                     let medicationTime = taskResult.endDate!
+                    let dosage = getDosageForTime(medicationTime)
                     UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
-                    Nettskjema.submit(dosage: getDosageForTime(medicationTime), medicationTime: medicationTime)
+                    UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
+                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime)
                     
                 }
                 if result.identifier == Identifier.TookPillEarlierStep.rawValue,
@@ -277,8 +260,10 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     let medicationTime = NSCalendar.currentCalendar().dateBySettingHour(
                         timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions()
                         )!
+                    let dosage = getDosageForTime(medicationTime)
                     UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
-                    Nettskjema.submit(dosage: getDosageForTime(medicationTime), medicationTime: medicationTime)
+                    UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
+                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime)
                 }
                 if result.identifier == Identifier.NewSideEffectStep.rawValue,
                     let newSideEffectsAnswer = result as? ORKChoiceQuestionResult,
@@ -316,16 +301,7 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             stepViewController.cancelButtonItem = nil
             delay(2.0, closure: { () -> () in
                 if let stepViewController = stepViewController as? ORKWaitStepViewController {
-                    if Reachability.isConnected() {
-                        stepViewController.goForward()
-                    } else {
-                        stepViewController.goBackward()
-                        let alertController = UIAlertController(title: "INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized, preferredStyle: .Alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                        alertController.addAction(defaultAction)
-                        
-                        taskViewController.presentViewController(alertController, animated: true, completion: nil)
-                    }
+                    stepViewController.goForward()
                 }
             })
         }
