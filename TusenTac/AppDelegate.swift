@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Set default dosages here temporarily
             UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
             UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.earlierDosage)
             
             ORKPasscodeViewController.removePasscodeFromKeychain()
             NSLog("Removed passcode from Keychain")
