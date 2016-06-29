@@ -45,7 +45,7 @@ class PasscodeViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: "Fortsett uten app kode", style: .Default, handler: { action in
             UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
-            NSLog("Completed onboarding")
+            UserDefaults.setBool(false, forKey: UserDefaultKey.passcodeSwitchOn)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
@@ -101,6 +101,8 @@ extension PasscodeViewController: ORKTaskViewControllerDelegate {
         switch reason {
         case .Completed:
             UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
+            UserDefaults.setBool(true, forKey: UserDefaultKey.passcodeSwitchOn)
+            
             NSLog("Completed onboarding")
             
             checkmarkLabel.hidden = false
