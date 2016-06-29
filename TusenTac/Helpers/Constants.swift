@@ -33,7 +33,7 @@ struct UserDefaultKey {
     static let weightTime = "TusenTacWeightTime"
     static let morningDosage = "TusenTacMorningDosage"
     static let nightDosage = "TusenTacNightDosage"
-
+    static let earlierDosage = "TusenTacEarlierDosage"
     static let timeOfDay = "TimeOfDay"
     static let dosage = "Dosage"
     
