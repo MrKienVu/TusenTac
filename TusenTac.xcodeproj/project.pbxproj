@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		320A664C1D01924D00357601 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A664B1D01924D00357601 /* Reachability.swift */; };
-		32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */; };
 		32E04C941C3D1F5E006AFB85 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C931C3D1F5E006AFB85 /* Notification.swift */; };
 		32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E04C961C3D743C006AFB85 /* EatTask.swift */; };
 		5F2FA6151CA003D2007736C7 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */; };
@@ -62,7 +61,6 @@
 
 /* Begin PBXFileReference section */
 		320A664B1D01924D00357601 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonNumberViewController.swift; sourceTree = "<group>"; };
 		32E04C931C3D1F5E006AFB85 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		32E04C961C3D743C006AFB85 /* EatTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTask.swift; sourceTree = "<group>"; };
 		5F2FA6141CA003D2007736C7 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 			children = (
 				5F76562B1C856A3900C39A0C /* onboarding.storyboard */,
 				5F76562D1C856A8F00C39A0C /* StudyIDViewController.swift */,
-				32BA61DE1C9C52E900FBFE97 /* PersonNumberViewController.swift */,
 				5F76562F1C856ABC00C39A0C /* NotificationsViewController.swift */,
 				5F7656311C856AD600C39A0C /* PasscodeViewController.swift */,
 			);
@@ -477,7 +474,6 @@
 				32E04C971C3D743C006AFB85 /* EatTask.swift in Sources */,
 				5F37F9E01C240968000ABF26 /* AppDelegate.swift in Sources */,
 				5F39E3E01C240DA500133C86 /* TaskListRow.swift in Sources */,
-				32BA61DF1C9C52E900FBFE97 /* PersonNumberViewController.swift in Sources */,
 				5F76562E1C856A8F00C39A0C /* StudyIDViewController.swift in Sources */,
 				5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */,
 				5F39E3D91C240D2B00133C86 /* Identifiers.swift in Sources */,

@@ -12,8 +12,6 @@
             <string>SSGizmo</string>
             <string>SSGizmo</string>
             <string>SSGizmo</string>
-            <string>SSGizmo</string>
-            <string>SSGizmo</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -40,7 +38,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4B9-4y-sWp" kind="show" id="FkF-9m-bTc"/>
+                                    <segue destination="7Yz-ow-plY" kind="show" id="TOX-sh-FVd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studie-ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Krb-M2-KDg">
@@ -85,7 +83,7 @@
                                 <color key="textColor" red="0.0" green="0.69019607843137254" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fyll inn din studie-ID i feltene nedenfor (4 bokstaver etterfulgt av 3 tall). Du kan ikke gå videre før feltene er samstemte." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLj-3X-Pzw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fyll inn din studie-ID i feltene nedenfor. Du kan ikke gå videre før feltene er samstemte." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLj-3X-Pzw">
                                 <rect key="frame" x="150" y="242" width="300" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Nn9-YW-UNl"/>
@@ -128,103 +126,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEt-gH-dSc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="825" y="458"/>
-        </scene>
-        <!--Person Number View Controller-->
-        <scene sceneID="Q5P-dc-Cri">
-            <objects>
-                <viewController id="4B9-4y-sWp" customClass="PersonNumberViewController" customModule="TusenTac" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Hj-dG-ipi"/>
-                        <viewControllerLayoutGuide type="bottom" id="22X-RM-LD9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XZJ-2Z-kZh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personnummer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eV-px3">
-                                <rect key="frame" x="181" y="28" width="239" height="43"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTP-zL-laN">
-                                <rect key="frame" x="240" y="87" width="120" height="165"/>
-                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="120"/>
-                                <color key="textColor" red="0.0" green="0.69019607839999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Personnummer (11 siffer)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kfb-EP-uKm">
-                                <rect key="frame" x="175" y="322" width="250" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DtH-YY-7ZA"/>
-                                    <constraint firstAttribute="width" constant="250" id="zf9-h3-400"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="IdChanged:" destination="c8y-3O-nv4" eventType="editingChanged" id="2Va-cN-yDU"/>
-                                    <action selector="personNumberChanged:" destination="4B9-4y-sWp" eventType="editingChanged" id="VzL-UP-ktg"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tx-0h-Eq4">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="kNK-4m-dGp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Neste">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="7Yz-ow-plY" kind="show" id="kRT-b4-0Xg"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ca-G6-O0b">
-                                <rect key="frame" x="400" y="331" width="24" height="33"/>
-                                <fontDescription key="fontDescription" name="SSGizmo" family="SS Gizmo" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.1555452387" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For å være med i denne studien trenger vi å vite ditt personnummer." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIL-vp-8bd">
-                                <rect key="frame" x="150" y="242" width="300" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="GDt-0q-8xN"/>
-                                    <constraint firstAttribute="width" constant="300" id="loM-Hu-uYv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6tx-0h-Eq4" secondAttribute="trailing" id="0P1-G0-Moi"/>
-                            <constraint firstItem="22X-RM-LD9" firstAttribute="top" secondItem="6tx-0h-Eq4" secondAttribute="bottom" id="6VP-YZ-woC"/>
-                            <constraint firstItem="DVu-eV-px3" firstAttribute="top" secondItem="9Hj-dG-ipi" secondAttribute="bottom" constant="8" id="Fre-65-kge"/>
-                            <constraint firstItem="Kfb-EP-uKm" firstAttribute="top" secondItem="oIL-vp-8bd" secondAttribute="bottom" constant="40" id="KdN-rd-3xe"/>
-                            <constraint firstItem="8ca-G6-O0b" firstAttribute="top" secondItem="oIL-vp-8bd" secondAttribute="bottom" constant="49" id="OaC-Ld-1sJ"/>
-                            <constraint firstItem="DVu-eV-px3" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="XQg-cm-JLa"/>
-                            <constraint firstItem="oIL-vp-8bd" firstAttribute="top" secondItem="PTP-zL-laN" secondAttribute="bottom" constant="-10" id="YqV-pJ-6cW"/>
-                            <constraint firstItem="PTP-zL-laN" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="fGn-3y-DeM"/>
-                            <constraint firstItem="6tx-0h-Eq4" firstAttribute="leading" secondItem="XZJ-2Z-kZh" secondAttribute="leading" id="jGj-gg-BFZ"/>
-                            <constraint firstItem="8ca-G6-O0b" firstAttribute="leading" secondItem="Kfb-EP-uKm" secondAttribute="trailing" constant="-25" id="qqw-qA-ezd"/>
-                            <constraint firstItem="oIL-vp-8bd" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="v1q-NO-0Vl"/>
-                            <constraint firstItem="Kfb-EP-uKm" firstAttribute="centerX" secondItem="XZJ-2Z-kZh" secondAttribute="centerX" id="vwz-7D-KBq"/>
-                            <constraint firstItem="PTP-zL-laN" firstAttribute="top" secondItem="DVu-eV-px3" secondAttribute="bottom" constant="16" id="yRH-GF-Zdb"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="checkmark" destination="8ca-G6-O0b" id="cZl-4M-qiR"/>
-                        <outlet property="nextButton" destination="6tx-0h-Eq4" id="yce-lZ-DMK"/>
-                        <outlet property="nextButtonBottomConstraint" destination="6VP-YZ-woC" id="gwY-Gb-7yV"/>
-                        <outlet property="personNumberTextField" destination="Kfb-EP-uKm" id="tk8-Ug-MbI"/>
-                        <outlet property="personNumberTopConstraint" destination="Fre-65-kge" id="ZUW-MK-6Mh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9BF-WR-qqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1477" y="458"/>
         </scene>
         <!--Notifications View Controller-->
         <scene sceneID="nPs-vX-DFL">
@@ -362,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqh-bU-Ebu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="458"/>
+            <point key="canvasLocation" x="1510" y="458"/>
         </scene>
         <!--Passcode View Controller-->
         <scene sceneID="Pae-F3-VUY">
@@ -496,7 +397,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOn-QY-H46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2755" y="458"/>
+            <point key="canvasLocation" x="2186" y="458"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aHj-3U-cOn">
@@ -518,6 +419,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ivZ-9M-Vm7"/>
+        <segue reference="vyW-mq-WVG"/>
     </inferredMetricsTieBreakers>
 </document>
