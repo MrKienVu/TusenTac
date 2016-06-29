@@ -17,6 +17,8 @@ struct Color {
 
 struct Notifications {
     static let snoozeDelayInMinutes = 60
+    static let weightTimeUnit = NSCalendarUnit.Day
+    static let weightTimeValue = 3
     static let alertBody = "Du har en ny oppgave å gjøre."
 }
 struct Configuration {
@@ -25,15 +27,16 @@ struct Configuration {
 
 struct UserDefaultKey {
     static let medicineRegistration = "MedicineRegistration"
+    static let weightRegistration = "WeightRegistration"
     static let morningTime = "TusenTacMorningTime"
     static let nightTime = "TusenTacNightTime"
+    static let weightTime = "TusenTacWeightTime"
     static let morningDosage = "TusenTacMorningDosage"
     static let nightDosage = "TusenTacNightDosage"
 
     static let timeOfDay = "TimeOfDay"
     static let dosage = "Dosage"
-
-
+    
     static let hasLaunchedBefore = "HasLaunchedBefore"
     static let UUID = "UUID"
     
@@ -50,6 +53,7 @@ struct UserDefaultKey {
     
     static let morningSwitchOn = "MorningSwitchOn"
     static let nightSwitchOn = "NightSwitchOn"
+    static let weightSwitchOn = "WeightSwitchOn"
     
     static let hasSendtMorningNotification = "HasSendtMorningNotification"
     static let hasSendtNightNotification = "HasSendtNightNotification"

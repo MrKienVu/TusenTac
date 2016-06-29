@@ -8,6 +8,12 @@
 import UIKit
 import MessageUI
 
+private let notificationSection = 0
+private let morningSection = 1
+private let nightSection = 2
+private let weightSection = 3
+private let contactSection = 4
+
 class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
     
     // MARK: Outlets
@@ -23,13 +29,18 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     @IBOutlet weak var nightSwitch: UISwitch!
     @IBOutlet weak var nightDosageTextField: UITextField!
     
+    @IBOutlet weak var weightSwitch: UISwitch!
+    
     // MARK: Variables and constants
     var morningTimePickerHidden = true
     var nightTimePickerHidden = true
     @IBAction func notificationsChanged(sender: AnyObject) {
         if notificationSwitch.on {
             Notification.sharedInstance.setupNotificationSettings()
-            scheduleNotifications()
+            Notification.sharedInstance.scheduleMedicineNotifications(
+                morningTimePicker.date,
+                evening: nightTimePicker.date
+            )
         } else {
             Notification.sharedInstance.cancelAllNotifications()
             UserDefaults.setObject(notificationSwitch.on, forKey: UserDefaultKey.NotificationsEnabled)
@@ -41,10 +52,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     }
     
     @IBAction func morningSwitchChanged(sender: AnyObject) {
-        UserDefaults.setObject(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
+        UserDefaults.setBool(morningSwitch.on, forKey: UserDefaultKey.morningSwitchOn)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningDate)
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -52,15 +62,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     @IBAction func morningTimeChanged(sender: AnyObject) {
         morningTimeChanged()
         UserDefaults.setObject(morningTimePicker.date, forKey: UserDefaultKey.morningTime)
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningTimePicker.date, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningTimePicker.date)
     }
     
     @IBAction func nightSwitchChanged(sender: AnyObject) {
-        UserDefaults.setObject(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
+        UserDefaults.setBool(nightSwitch.on, forKey: UserDefaultKey.nightSwitchOn)
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightDate)
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -68,33 +76,33 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     @IBAction func nightTimeChanged(sender: AnyObject) {
         nightTimeChanged()
         UserDefaults.setObject(nightTimePicker.date, forKey: UserDefaultKey.nightTime)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightTimePicker.date)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightTimePicker.date)
     }
 
     @IBAction func morningDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(morningDosageTextField.text, forKey: UserDefaultKey.morningDosage)
         let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
-        let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(morningDate)
     }
     
     @IBAction func nightDosageChanged(sender: AnyObject) {
         UserDefaults.setObject(nightDosageTextField.text, forKey: UserDefaultKey.nightDosage)
-        let morningDate: NSDate? = morningSwitch.on ? morningTimePicker.date : nil
         let nightDate: NSDate? = nightSwitch.on ? nightTimePicker.date : nil
-        Notification.sharedInstance.scheduleNotifications(morningDate, evening: nightDate)
+        Notification.sharedInstance.scheduleMedicineNotifications(evening: nightDate)
     }
     
-
+    @IBAction func weightSwitchChanged(sender: AnyObject) {
+        UserDefaults.setBool(weightSwitch.on, forKey: UserDefaultKey.weightSwitchOn)
+        Notification.sharedInstance.scheduleWeightNotification()
+    }
     
     // MARK: TableView delegates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if      indexPath.section == 1 && indexPath.row == 1 { toggleDatepicker(1) } // morningTimePicker
-        else if indexPath.section == 1 && indexPath.row == 3 { morningDosageTextField.becomeFirstResponder() }
-        else if indexPath.section == 2 && indexPath.row == 1 { toggleDatepicker(2) } // nightTimePicker
-        else if indexPath.section == 2 && indexPath.row == 3 { nightDosageTextField.becomeFirstResponder() }
-        else if indexPath.section == 3 { sendEmail() }
+        if      indexPath.section == morningSection && indexPath.row == 1 { toggleDatepicker(morningSection) }
+        else if indexPath.section == morningSection && indexPath.row == 3 { morningDosageTextField.becomeFirstResponder() }
+        else if indexPath.section == nightSection && indexPath.row == 1 { toggleDatepicker(nightSection) }
+        else if indexPath.section == nightSection && indexPath.row == 3 { nightDosageTextField.becomeFirstResponder() }
+        else if indexPath.section == contactSection { sendEmail() }
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -102,15 +110,15 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     
         // Hide / Show datepickers
-        if  (morningTimePickerHidden && indexPath.section == 1 && indexPath.row == 2) ||
-            (nightTimePickerHidden && indexPath.section == 2 && indexPath.row == 2)
+        if  (morningTimePickerHidden && indexPath.section == morningSection && indexPath.row == 2) ||
+            (nightTimePickerHidden && indexPath.section == nightSection && indexPath.row == 2)
         {
             return 0
         }
             
         else if
-            (!morningSwitch.on && indexPath.section == 1 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3)) ||
-            (!nightSwitch.on && indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3))
+            (!morningSwitch.on && indexPath.section == morningSection && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3)) ||
+                (!nightSwitch.on && indexPath.section == nightSection && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3))
         {
             return 0
         }
@@ -123,8 +131,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     }
     
     func toggleDatepicker(cell: Int) {
-        if      cell == 1 { morningTimePickerHidden = !morningTimePickerHidden }
-        else if cell == 2 { nightTimePickerHidden =  !nightTimePickerHidden }
+        if      cell == morningSection { morningTimePickerHidden = !morningTimePickerHidden }
+        else if cell == nightSection { nightTimePickerHidden =  !nightTimePickerHidden }
         
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -178,6 +186,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         notificationSwitch.on = UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)        
         morningSwitch.on = UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn)
         nightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn)
+        weightSwitch.on = UserDefaults.boolForKey(UserDefaultKey.weightSwitchOn)
         
         addDoneButtonOnKeyboard()
     
@@ -205,7 +214,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
     
         morningTimeChanged()
         nightTimeChanged()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -244,13 +252,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, MFMail
         nightDosageTextField.resignFirstResponder()
     }
 
-    
-    func scheduleNotifications() {
-        Notification.sharedInstance.scheduleNotifications(
-            morningTimePicker.date,
-            evening: nightTimePicker.date
-        )
-    }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if(textField == nightDosageTextField || textField == morningDosageTextField){
             let tempRange = textField.text!.rangeOfString(",", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)

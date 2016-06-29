@@ -108,10 +108,11 @@ class NotificationsViewController: UIViewController {
             UserDefaults.setBool(true, forKey: UserDefaultKey.NotificationsEnabled)
             UserDefaults.setBool(true, forKey: UserDefaultKey.morningSwitchOn)
             UserDefaults.setBool(true, forKey: UserDefaultKey.nightSwitchOn)
+            UserDefaults.setBool(true, forKey: UserDefaultKey.weightSwitchOn)
         }
         let defaultDates = Notification.sharedInstance.getDefaultDates()
-        Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
-        
+        Notification.sharedInstance.scheduleMedicineNotifications(defaultDates[0], evening: defaultDates[1])
+        Notification.sharedInstance.scheduleWeightNotification()
     }
     
 }

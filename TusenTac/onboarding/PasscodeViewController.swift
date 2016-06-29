@@ -69,7 +69,7 @@ class PasscodeViewController: UIViewController {
     @IBAction func getStartedClicked(sender: AnyObject) {
         // Setting defaults
         let defaultDates = Notification.sharedInstance.getDefaultDates()
-        Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
+        Notification.sharedInstance.scheduleMedicineNotifications(defaultDates[0], evening: defaultDates[1])
         UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
         UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
         
