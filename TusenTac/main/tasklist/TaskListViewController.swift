@@ -24,6 +24,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     var img: UIImage!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
+    let greyIcons = ["medication-grey", "eating-grey", "weight-grey", "side-effects-grey"]
     let taskListRows = TaskListRow.allCases
     
     override func viewDidLoad() {
@@ -49,50 +50,43 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.viewWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: UIApplication.sharedApplication())
         collection.reloadData()
     }
     
-    //This function will disable the task and add overlay image
-    //boolean taskShouldBeDisable must be implemented
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
-    /* func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-     
-     let navigationBarHeight = self.navigationController?.navigationBar.frame.height
-     
-     let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-     
-     let yPos = cell.bounds.minY + navigationBarHeight! + statusBarHeight
-     
-     let point = CGPoint(x:cell.bounds.minX , y: yPos)
-     
-     let size = CGSize(width: cell.bounds.width, height: cell.bounds.height)
-     
-     let rect = CGRect(origin: point, size: size)
-     
-     let disableImage = UIImageView(frame: rect)
-     disableImage.backgroundColor = UIColor.grayColor()
-     disableImage.alpha = 0.5
-     
-     if(indexPath.row == 0) {
-     if(taskShouldBeDisabled) {
-     
-     //for disable the task
-     cell.userInteractionEnabled = false
-     
-     //adding overlay
-     self.navigationController?.view.addSubview(disableImage)
-     }
-     else if(!taskShouldBeDisabled) {
-     cell.userInteractionEnabled = true
-     self.navigationController?.view.willRemoveSubview(disableImage)
-     }
-     }
-     
-     
-     cell.userInteractionEnabled = true
-     self.navigationController?.view.willRemoveSubview(disableImage)
-     }*/
+    func viewWillEnterForeground() {
+        collection.reloadData()
+    }
     
+    func taskDisabled(taskIndex: Int) -> Bool {
+        return taskIndex == medicineIndex ? !medicineTaskAvailable() : false
+    }
+    
+    func medicineTaskAvailable() -> Bool {
+        if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
+            let currentTime = NSDate()
+            
+            let midnight = NSCalendar.currentCalendar().dateBySettingHour(
+                0, minute: 0, second: 0, ofDate: currentTime, options: NSCalendarOptions())!
+            let threeAtNight = midnight.dateByAddingTimeInterval(Double(60 * 60 * 3))
+
+            let time = currentTime.isGreaterThanDate(midnight) && currentTime.isLessThanDate(threeAtNight) ?
+                currentTime.dateByAddingTimeInterval(Double(60 * 60 * -24)) : currentTime
+            
+            let interval = getMedicineInterval(time)
+            let isMorning = currentTime.isBetween(interval.morningStart, and: interval.nightStart)
+            if isMorning && lastDosage.isGreaterThanDate(interval.morningStart) ||
+              !isMorning && lastDosage.isGreaterThanDate(interval.nightStart) {
+                return false
+            }
+        }
+        
+        return true
+    }
     
     func overlayTapped(sender: AnyObject){
         imageView.removeFromSuperview()
@@ -134,29 +128,34 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
-        if indexPath.row == medicineIndex {
+        switch indexPath.row {
+        case medicineIndex:
             if let lastDosageTime = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
                 let dateString = (lastDosageTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
                 cell.lastDosageLabel.hidden = false
             }
-            
-        } else if indexPath.row == weightIndex {
+        case weightIndex:
             if let lastWeightTime = UserDefaults.objectForKey(UserDefaultKey.LastWeightTime) {
                 let dateString = (lastWeightTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
                 cell.lastDosageLabel.hidden = false
             }
-        } else {
+        default:
             cell.lastDosageLabel.hidden = true;
         }
+    
+        if taskDisabled(indexPath.row) {
+            cell.iconImage.image = UIImage(named: greyIcons[indexPath.row])
+            cell.userInteractionEnabled = false
+        } else {
+            cell.iconImage.image = UIImage(named: icons[indexPath.row])
+            cell.userInteractionEnabled = true
+        }
         
-        cell.iconImage.image = UIImage(named: icons[indexPath.row])
         cell.taskLabel.text = "\(taskListRows[indexPath.row])"
-        
         return cell
     }
     

@@ -11,10 +11,25 @@ import Foundation
 import ResearchKit
 
 public func getDosageForTime(time: NSDate) -> Int {
-    let morningDoseStart = NSCalendar.currentCalendar().dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions())!
-    let nightDoseStart = NSCalendar.currentCalendar().dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
-    let key = time.isGreaterThanDate(morningDoseStart) && time.isLessThanDate(nightDoseStart) ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
+    let currentTime = NSDate()
+    let interval = getMedicineInterval(currentTime)
+    let isMorning = currentTime.isBetween(interval.morningStart, and: interval.nightStart)
+    let key = isMorning ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
     return Int(UserDefaults.objectForKey(key)! as! String)!
+}
+
+public extension NSDate {
+    public func isBetween(date: NSDate, and: NSDate) -> Bool {
+        return self.isGreaterThanDate(date) && self.isLessThanDate(and)
+    }
+}
+
+public func getMedicineInterval(time: NSDate) -> (morningStart: NSDate, nightStart: NSDate) {
+    let morningDoseStart = NSCalendar.currentCalendar()
+        .dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions())!
+    let nightDoseStart = NSCalendar.currentCalendar()
+        .dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
+    return (morningDoseStart, nightDoseStart)
 }
 
 public var PillTask: ORKNavigableOrderedTask {
