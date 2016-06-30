@@ -66,8 +66,11 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     }
     
     func patternIsCorrect() -> Bool {
-        return repeatIdTextField.text?.characters.count == 7 &&
-               repeatIdTextField.text?.rangeOfString("[a-zA-Z]{4}[0-9]{3}", options: .RegularExpressionSearch) != nil
+        let testModeEnabled = repeatIdTextField.text?.lowercaseString == "test"
+        UserDefaults.setBool(testModeEnabled, forKey: UserDefaultKey.testModeEnabled)
+        return testModeEnabled ||
+            (repeatIdTextField.text?.characters.count == 7 &&
+             repeatIdTextField.text?.rangeOfString("[a-zA-Z]{4}[0-9]{3}", options: .RegularExpressionSearch) != nil)
     }
     
     func animateEqualTextfields() {
