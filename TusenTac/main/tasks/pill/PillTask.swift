@@ -10,12 +10,15 @@
 import Foundation
 import ResearchKit
 
-public func getDosageForTime(time: NSDate) -> Int {
-    let currentTime = NSDate()
-    let interval = getMedicineInterval(currentTime)
-    let isMorning = currentTime.isBetween(interval.morningStart, and: interval.nightStart)
+public func getDosageForTime(time: NSDate, currentTime: NSDate) -> Int {
+    let interval = getMedicineInterval(time)
+    let isMorning = time.isBetween(interval.morningStart, and: interval.nightStart)
     let key = isMorning ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
     return Int(UserDefaults.objectForKey(key)! as! String)!
+}
+
+public func getDosageForTime(time: NSDate) -> Int {
+    return getDosageForTime(time, currentTime: NSDate())
 }
 
 public extension NSDate {
@@ -41,7 +44,7 @@ public var PillTask: ORKNavigableOrderedTask {
     }
     
     let textChoiceOneText = "✓\tTok \(getDosageForTime(NSDate())) mg nå".localized
-    let textChoiceTwoText = "🕐\tTok \(getDosageForTime(NSDate())) mg tidligere".localized
+    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
 
     
     var steps = [ORKStep]()
@@ -68,9 +71,12 @@ public var PillTask: ORKNavigableOrderedTask {
     
     
     // EARLIER STEP
-    let tookPillEarlierAnswer = ORKAnswerFormat.timeOfDayAnswerFormat()
+    let calendar = NSCalendar.currentCalendar()
+    let today = NSDate()
+    let threeDaysEarlier = calendar.dateByAddingUnit(.Day, value: -3, toDate: today, options: [])
+    let tookPillEarlierAnswer = ORKAnswerFormat.dateTimeAnswerFormatWithDefaultDate(today, minimumDate: threeDaysEarlier, maximumDate: today, calendar: calendar)
     let tookPillEarlierStep = ORKQuestionStep(identifier: Identifier.TookPillEarlierStep.rawValue, title: "Når tok du den?", answer: tookPillEarlierAnswer)
-    tookPillEarlierStep.text = ""
+    tookPillEarlierStep.text = "Det er ikke mulig å registrere for mer enn tre dager tilbake i tid."
     tookPillEarlierStep.optional = false
     
     steps += [tookPillEarlierStep]
