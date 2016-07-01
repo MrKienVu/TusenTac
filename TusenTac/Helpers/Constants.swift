@@ -39,6 +39,7 @@ struct UserDefaultKey {
     
     static let hasLaunchedBefore = "HasLaunchedBefore"
     static let UUID = "UUID"
+    static let testModeEnabled = "TestModeEnabled"
     
     static let NotificationsEnabled = "NotificationsEnabled"
     static let notificationType = "NotificationType"
