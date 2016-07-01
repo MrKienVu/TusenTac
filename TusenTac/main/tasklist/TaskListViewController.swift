@@ -269,15 +269,11 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     
                 }
                 if result.identifier == Identifier.TookPillEarlierStep.rawValue,
-                    let lastDosageTime = result as? ORKTimeOfDayQuestionResult,
-                    timeAnswer = lastDosageTime.dateComponentsAnswer {
-                    let medicationTime = NSCalendar.currentCalendar().dateBySettingHour(
-                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions()
-                        )!
-                    let dosage = getDosageForTime(medicationTime)
-                    UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
+                    let lastDosageTime = (result as? ORKDateQuestionResult)?.dateAnswer {
+                    let dosage = getDosageForTime(lastDosageTime)
+                    UserDefaults.setObject(lastDosageTime, forKey: UserDefaultKey.LastDosageTime)
                     UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
-                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime)
+                    Nettskjema.submit(dosage: dosage, medicationTime: lastDosageTime)
                 }
                 if result.identifier == Identifier.NewSideEffectStep.rawValue,
                     let newSideEffectsAnswer = result as? ORKChoiceQuestionResult,
