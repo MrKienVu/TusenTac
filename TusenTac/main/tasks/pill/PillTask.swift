@@ -10,61 +10,42 @@
 import Foundation
 import ResearchKit
 
+public func getDosageForTime(time: NSDate, currentTime: NSDate) -> Int {
+    let interval = getMedicineInterval(time)
+    let isMorning = time.isBetween(interval.morningStart, and: interval.nightStart)
+    let key = isMorning ? UserDefaultKey.morningDosage : UserDefaultKey.nightDosage
+    return Int(UserDefaults.objectForKey(key)! as! String)!
+}
+
+public func getDosageForTime(time: NSDate) -> Int {
+    return getDosageForTime(time, currentTime: NSDate())
+}
+
+public extension NSDate {
+    public func isBetween(date: NSDate, and: NSDate) -> Bool {
+        return self.isGreaterThanDate(date) && self.isLessThanDate(and)
+    }
+}
+
+public func getMedicineInterval(time: NSDate) -> (morningStart: NSDate, nightStart: NSDate) {
+    let morningDoseStart = NSCalendar.currentCalendar()
+        .dateBySettingHour(2, minute: 59, second: 59, ofDate: time, options: NSCalendarOptions())!
+    let nightDoseStart = NSCalendar.currentCalendar()
+        .dateBySettingHour(15, minute: 0, second: 0, ofDate: time, options: NSCalendarOptions())!
+    return (morningDoseStart, nightDoseStart)
+}
+
 public var PillTask: ORKNavigableOrderedTask {
     
     var lastDosageText = ""
-    
-    var isMorningDosage = true
-    
     if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
-        
         let dateString = lastDosage.toStringShortStyle()
-        if let dosage = UserDefaults.objectForKey(UserDefaultKey.morningDosage) {
-            lastDosageText = "Din forrige dosering var \(dosage) mg og ble registrert \(dateString)."
-        }
-        
+        lastDosageText = "Din forrige dosering var \(UserDefaults.valueForKey(UserDefaultKey.earlierDosage)!) mg  og ble registrert \(dateString)."
     }
     
-    
- //   let morningDos = UserDefaults.objectForKey(UserDefaultKey.morningDosage)
-    
-   // let nightDos = UserDefaults.objectForKey(UserDefaultKey.nightDosage)
-    
-     var textChoiceOneText = ""
-     var textChoiceTwoText = ""
-    
-  /*  let now = NSDate().getCurrentLocalDate()
-    
-    if let morningTimes = UserDefaults.objectForKey(UserDefaultKey.morningTime) as? NSDate {
-     
-     
-        
-        let compareTime = now.compare(morningTimes)
+    let textChoiceOneText = "✓\tTok \(getDosageForTime(NSDate())) mg nå".localized
+    let textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
 
-        if(compareTime == NSComparisonResult.OrderedDescending){
-            //now is later than morningTime
-            //morningTime is earlier than now, so show night dosage
-            isMorningDosage = false;
-            
-            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
-            
-            textChoiceOneText = "✓\tTok \(nightDos!) mg medisin nå".localized
-            textChoiceTwoText = "🕐\tTok \(nightDos!) mg medisin tidligere".localized
-        }
-        else if (compareTime == NSComparisonResult.OrderedAscending){
-            //now is later than nightTime
-            
-            print("Now:\(now), morningTime: \(morningTimes.getCurrentLocalDate())")
-
-            isMorningDosage = true;
-            textChoiceOneText = "✓\tTok \(morningDos!) mg medisin nå".localized
-            textChoiceTwoText = "🕐\tTok \(morningDos!) mg medisin tidligere".localized
-        }
-    }
-    else { */
-        textChoiceOneText = "✓\tTok medisinen nå".localized
-        textChoiceTwoText = "🕐\tTok medisinen tidligere".localized
-       //  }
     
     var steps = [ORKStep]()
     
@@ -82,7 +63,7 @@ public var PillTask: ORKNavigableOrderedTask {
         title: "Medisinregistrering",
         answer: pillOptionAnswer
     )
-    pillOptionStep.text = "\(lastDosageText) \n\nFor å registrere en ny dosering, trykk på et av valgene nedenfor."
+    pillOptionStep.text = "\(lastDosageText) \n\nRegistrer ny dosering ved å trykke på et av valgene nedenfor"
 
     pillOptionStep.optional = false
     
@@ -90,18 +71,15 @@ public var PillTask: ORKNavigableOrderedTask {
     
     
     // EARLIER STEP
-    let tookPillEarlierAnswer = ORKAnswerFormat.timeOfDayAnswerFormat()
+    let calendar = NSCalendar.currentCalendar()
+    let today = NSDate()
+    let threeDaysEarlier = calendar.dateByAddingUnit(.Day, value: -3, toDate: today, options: [])
+    let tookPillEarlierAnswer = ORKAnswerFormat.dateTimeAnswerFormatWithDefaultDate(today, minimumDate: threeDaysEarlier, maximumDate: today, calendar: calendar)
     let tookPillEarlierStep = ORKQuestionStep(identifier: Identifier.TookPillEarlierStep.rawValue, title: "Når tok du den?", answer: tookPillEarlierAnswer)
-    tookPillEarlierStep.text = ""
+    tookPillEarlierStep.text = "Det er ikke mulig å registrere for mer enn tre dager tilbake i tid."
     tookPillEarlierStep.optional = false
     
     steps += [tookPillEarlierStep]
-    
-    // SUMMARY STEP
-    /*let pillCompletionStep = ORKCompletionStep(identifier: Identifier.PillCompletionStep.rawValue)
-    pillCompletionStep.title = "Ferdig!".localized
-    pillCompletionStep.text = "Dine svar har blitt levert til Nettskjema.".localized
-    steps += [pillCompletionStep]*/
     
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"

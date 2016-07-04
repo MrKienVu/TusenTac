@@ -9,35 +9,30 @@
 import Foundation
 import ResearchKit
 
+struct SideEffect {
+    static let shivering = "skjelving"
+    static let diarrhea = "diare"
+    static let nausea = "kvalme"
+    static let headache = "hodepine"
+    static let other = "annet"
+}
+
 public var SideEffectTask: ORKOrderedTask {
     
     var steps = [ORKStep]()
-    
-    // INSTRUCTION STEP
-   /* let instructionStep = ORKInstructionStep(identifier: Identifier.IntroStep.rawValue)
-    instructionStep.title = "Registrering av bivirkninger".localized
-    instructionStep.text = "På den neste siden kan du registrere eventuelle bivirkninger du har opplevd.".localized
-    steps += [instructionStep]*/
-    
-    
-    let textChoices = [ORKTextChoice(text: "Skjelving", value: "Skjelving"),
-                       ORKTextChoice(text: "Diaré", value: "Diaré"),
-                       ORKTextChoice(text: "Kvalme", value: "Kvalme"),
-                       ORKTextChoice(text: "Hodepine", value: "Hodepine"),
-                       ORKTextChoice(text: "Annet", value: "Annet"),
+    let textChoices = [ORKTextChoice(text: "Skjelving", value: SideEffect.shivering),
+                       ORKTextChoice(text: "Diaré", value: SideEffect.diarrhea),
+                       ORKTextChoice(text: "Kvalme", value: SideEffect.nausea),
+                       ORKTextChoice(text: "Hodepine", value: SideEffect.headache),
+                       ORKTextChoice(text: "Annet", value: SideEffect.other),
     ]
     
     let newSideEffectAnswer = ORKAnswerFormat.choiceAnswerFormatWithStyle(.MultipleChoice, textChoices: textChoices)
     
     let newSideEffectStep = ORKQuestionStep(identifier: Identifier.NewSideEffectStep.rawValue, title: "Registrering av bivirkninger".localized, answer: newSideEffectAnswer);
     
-    //let italics = "nye/forverring"
     let quesText = "Velg en eller flere nye/forverring av bivirkninger"
-    
-
-    
     newSideEffectStep.text = quesText
-    
     
     steps+=[newSideEffectStep]
     
@@ -48,13 +43,7 @@ public var SideEffectTask: ORKOrderedTask {
     oldSideEffectStep.text = "Velg en eller flere bivirkninger som er blitt borte"
     
     steps+=[oldSideEffectStep]
-    
-    // SUMMARY STEP
-    /*let summaryStep = ORKCompletionStep(identifier: Identifier.SummaryStep.rawValue)
-    summaryStep.title = "Levert!".localized
-    summaryStep.text = "Dine bivirkninger har blitt registrert.".localized
-    steps += [summaryStep] */
-    
+        
     
     let waitStepIndeterminate = ORKWaitStep(identifier: Identifier.WaitCompletionStep.rawValue)
     waitStepIndeterminate.title = "Ferdig"

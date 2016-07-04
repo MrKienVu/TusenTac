@@ -14,11 +14,11 @@ class Notification {
     func isNotificationsEnabled() -> Bool {
         let currentNotificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
         
-        if currentNotificationSettings?.types == UIUserNotificationType.None {
-            return false
-        }
-        
-        return true
+        return !(currentNotificationSettings?.types == UIUserNotificationType.None)
+    }
+    
+    func doSendNotifications() -> Bool {
+        return isNotificationsEnabled() && UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled)
     }
     
     func setupNotificationSettings() {
@@ -36,7 +36,7 @@ class Notification {
             
             let snoozeAction = UIMutableUserNotificationAction()
             snoozeAction.identifier = "SNOOZE_ACTION"
-            snoozeAction.title = "Slumre 30 min"
+            snoozeAction.title = "Slumre \(Notifications.snoozeDelayInMinutes) min"
             snoozeAction.activationMode = UIUserNotificationActivationMode.Background
             snoozeAction.destructive = false
             snoozeAction.authenticationRequired = false
@@ -73,53 +73,61 @@ class Notification {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
     
-    func scheduleNotifications(morning: NSDate?, evening: NSDate?) {
-        if !UserDefaults.boolForKey(UserDefaultKey.NotificationsEnabled) { return }
+    func cancelNotifications(withType: String) {
+        let notifyArray = UIApplication.sharedApplication().scheduledLocalNotifications
+        for notifyCancel in notifyArray! {
+            if notifyCancel.userInfo![UserDefaultKey.notificationType] as! String == withType {
+                UIApplication.sharedApplication().cancelLocalNotification(notifyCancel)
+            }
+        }
+    }
+    
+    func scheduleWeightNotification() {
+        cancelNotifications(UserDefaultKey.weightRegistration)
+        if !(doSendNotifications() && UserDefaults.boolForKey(UserDefaultKey.weightSwitchOn)) { return }
+    
+        let nextWeightRegistrationTime = NSCalendar.currentCalendar().dateByAddingUnit(
+            Notifications.weightTimeUnit, value: Notifications.weightTimeValue, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))!
+        scheduleNotification(nextWeightRegistrationTime, hasSent: UserDefaultKey.hasSendtWeightNotification, userInfo: [
+            UserDefaultKey.notificationType: UserDefaultKey.weightRegistration,
+            UserDefaultKey.timeOfDay: UserDefaultKey.weightTime, ])
+    }
+    
+    func scheduleMedicineNotifications(morning: NSDate? = nil, evening: NSDate? = nil) {
+        cancelNotifications(UserDefaultKey.medicineRegistration)
+        if !doSendNotifications() { return }
         
-        if !isNotificationsEnabled() {
-            NSLog("Notification switch on, but notifications not enabled. Not scheduling notifications.")
-            return
+        if morning != nil && UserDefaults.boolForKey(UserDefaultKey.morningSwitchOn) {
+            scheduleNotification(morning!, repeatInterval: NSCalendarUnit.Day, hasSent: UserDefaultKey.hasSendtMorningNotification, userInfo: [
+                UserDefaultKey.notificationType: UserDefaultKey.medicineRegistration,
+                UserDefaultKey.timeOfDay: UserDefaultKey.morningTime,
+                UserDefaultKey.dosage: UserDefaults.objectForKey(UserDefaultKey.morningDosage)! ])
         }
         
-        cancelAllNotifications()
-        NSLog("Cancelled all previous notifications")
+        if evening != nil && UserDefaults.boolForKey(UserDefaultKey.nightSwitchOn) {
+            scheduleNotification(evening!, repeatInterval: NSCalendarUnit.Day, hasSent: UserDefaultKey.hasSendtNightNotification, userInfo: [
+                UserDefaultKey.notificationType: UserDefaultKey.medicineRegistration,
+                UserDefaultKey.timeOfDay: UserDefaultKey.nightTime,
+                UserDefaultKey.dosage: UserDefaults.objectForKey(UserDefaultKey.nightDosage)! ])
+        }
+    }
+
+    func scheduleNotification(fireDate: NSDate, repeatInterval: NSCalendarUnit? = nil, hasSent: String, userInfo: [NSObject: AnyObject]) {
+        let notification = UILocalNotification()
         
-        if let fireDate = morning {
-            let morningNotification = UILocalNotification()
-            morningNotification.fireDate = fireDate
-            morningNotification.alertBody = "Du har en ny oppgave å gjøre."
-            morningNotification.category = "NOTIFICATION_CATEGORY"
-            morningNotification.repeatInterval = NSCalendarUnit.Day
-            morningNotification.applicationIconBadgeNumber += 1
-            morningNotification.userInfo = [
-                "notificationType": "medicineRegistration",
-                "timeOfDay": "morning",
-                "dosage": UserDefaults.objectForKey(UserDefaultKey.morningDosage)!
-            ]
-            UIApplication.sharedApplication().scheduleLocalNotification(morningNotification)
-            NSLog("Scheduled morning notifications: \n \(morningNotification)")
-            UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtMorningNotification)
-            print("sendte en morgen notif nå")
-            
+        notification.fireDate = fireDate
+        notification.userInfo = userInfo
+        if let optionalRepeatInterval = repeatInterval {
+            notification.repeatInterval = optionalRepeatInterval
         }
         
+        // Default settings.
+        notification.alertBody = Notifications.alertBody
+        notification.category = "NOTIFICATION_CATEGORY"
+        notification.applicationIconBadgeNumber += 1
         
-        if let fireDate = evening {
-            let eveningNotification = UILocalNotification()
-            eveningNotification.fireDate = fireDate
-            eveningNotification.alertBody = "Du har en ny oppgave å gjøre."
-            eveningNotification.category = "NOTIFICATION_CATEGORY"
-            eveningNotification.repeatInterval = NSCalendarUnit.Day
-            eveningNotification.applicationIconBadgeNumber += 1
-            eveningNotification.userInfo = [
-                "notificationType": "medicineRegistration",
-                "timeOfDay": "evening",
-                "dosage": UserDefaults.objectForKey(UserDefaultKey.nightDosage)!
-            ]
-            UIApplication.sharedApplication().scheduleLocalNotification(eveningNotification)
-            NSLog("Scheduled evening notifications: \n \(eveningNotification)")
-            UserDefaults.setBool(true, forKey: UserDefaultKey.hasSendtNightNotification)
-        }
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UserDefaults.setBool(true, forKey: hasSent)
     }
     
     func getDefaultDates() -> [NSDate] {

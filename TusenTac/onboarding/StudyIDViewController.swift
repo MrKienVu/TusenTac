@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 class StudyIDViewController: UIViewController, UITextFieldDelegate {
     
@@ -41,7 +42,7 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func repeatIdChanged(sender: AnyObject) {
-        if equalTextFields() {
+        if validStudyID() {
             animateEqualTextfields()
         } else {
             animateInequalTextFields()
@@ -49,19 +50,27 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func IdChanged(sender: AnyObject) {
-        if equalTextFields() {
+        if validStudyID() {
             animateEqualTextfields()
         } else {
             animateInequalTextFields()
         }
     }
     
+    func validStudyID() -> Bool {
+        return equalTextFields() && patternIsCorrect()
+    }
+    
     func equalTextFields() -> Bool {
-        if idTextField.text == repeatIdTextField.text && repeatIdTextField.text?.characters.count >= 3 {
-            return true
-        }
-        
-        return false
+        return idTextField.text == repeatIdTextField.text
+    }
+    
+    func patternIsCorrect() -> Bool {
+        let testModeEnabled = repeatIdTextField.text?.lowercaseString == "test"
+        UserDefaults.setBool(testModeEnabled, forKey: UserDefaultKey.testModeEnabled)
+        return testModeEnabled ||
+            (repeatIdTextField.text?.characters.count == 7 &&
+             repeatIdTextField.text?.rangeOfString("[a-zA-Z]{4}[0-9]{3}", options: .RegularExpressionSearch) != nil)
     }
     
     func animateEqualTextfields() {
@@ -125,9 +134,14 @@ class StudyIDViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        UserDefaults.setObject(repeatIdTextField.text!, forKey: UserDefaultKey.StudyID)
+        let studyID = repeatIdTextField.text!
+        if var accountDictionary = Locksmith.loadDataForUserAccount(Encrypted.account) {
+            accountDictionary[Encrypted.studyID] = studyID
+            try! Locksmith.updateData(accountDictionary, forUserAccount: Encrypted.account)
+        } else {
+            try! Locksmith.updateData([Encrypted.studyID: studyID], forUserAccount: Encrypted.account)
+        }
     }
     
 }

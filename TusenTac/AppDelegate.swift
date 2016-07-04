@@ -29,23 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let main = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = main.instantiateInitialViewController()
         
-        // Just for testing purposes, did not work
-        // Safe to remove
-        /*if let options = launchOptions {
-            print("LOL1")
-            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-                print("LOL2")
-                if let userInfo = notification.userInfo {
-                    print("LOL3")
-                    if userInfo["notificationType"] as! String == "medicineRegistration" {
-                        print("LOL4")
-                        NSLog("Presenting medicine registration")
-                        NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
-                    }
-                }
-            }
-        }*/
-        
         window?.rootViewController = completedOnboarding ? mainVC : onboardingVC
         
         let hasLaunchedBefore = UserDefaults.boolForKey(UserDefaultKey.hasLaunchedBefore)
@@ -55,8 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Stored user ID \(uuid) in UserDefaults")
             
             // Set default dosages here temporarily
-            UserDefaults.setObject("5", forKey: UserDefaultKey.morningDosage)
-            UserDefaults.setObject("5", forKey: UserDefaultKey.nightDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
+            UserDefaults.setObject("0", forKey: UserDefaultKey.earlierDosage)
             
             ORKPasscodeViewController.removePasscodeFromKeychain()
             NSLog("Removed passcode from Keychain")
@@ -69,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lock()
         
         return true
+    }
+    
+    func handleNotificationTap(userInfo: [NSObject: AnyObject]) {
+        let type = userInfo[UserDefaultKey.notificationType] as! String
+        NSNotificationCenter.defaultCenter().postNotificationName(type, object: nil)
     }
     
     func lock() {
@@ -93,20 +82,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        // This method is called when a notification has been received while the app is in the foreground
-        NSLog("Received Local Notification:")
-        print(notification)
+        if (application.applicationState != UIApplicationState.Active) {
+            handleNotificationTap(notification.userInfo!)
+        }
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        let type = notification.userInfo!["notificationType"] as! String
-        
         application.applicationIconBadgeNumber = 0
         
-        if identifier == "GO_ACTION" {
-            if type == "medicineRegistration" {
-                NSNotificationCenter.defaultCenter().postNotificationName("presentMedicineRegistration", object: nil)
-            }
+        switch identifier {
+            case "GO_ACTION"?:
+                handleNotificationTap(notification.userInfo!)
+            case "SNOOZE_ACTION"?:
+                notification.fireDate = NSDate().dateByAddingTimeInterval(Double(60 * Notifications.snoozeDelayInMinutes))
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            default: break
         }
         
         completionHandler()

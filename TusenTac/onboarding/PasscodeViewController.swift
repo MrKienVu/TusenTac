@@ -45,7 +45,7 @@ class PasscodeViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: "Fortsett uten app kode", style: .Default, handler: { action in
             UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
-            NSLog("Completed onboarding")
+            UserDefaults.setBool(false, forKey: UserDefaultKey.passcodeSwitchOn)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
@@ -69,9 +69,9 @@ class PasscodeViewController: UIViewController {
     @IBAction func getStartedClicked(sender: AnyObject) {
         // Setting defaults
         let defaultDates = Notification.sharedInstance.getDefaultDates()
-        Notification.sharedInstance.scheduleNotifications(defaultDates[0], evening: defaultDates[1])
-        UserDefaults.setObject("200", forKey: UserDefaultKey.morningDosage)
-        UserDefaults.setObject("200", forKey: UserDefaultKey.nightDosage)
+        Notification.sharedInstance.scheduleMedicineNotifications(defaultDates[0], evening: defaultDates[1])
+        UserDefaults.setObject("0", forKey: UserDefaultKey.morningDosage)
+        UserDefaults.setObject("0", forKey: UserDefaultKey.nightDosage)
         
         // Presenting main storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -101,6 +101,8 @@ extension PasscodeViewController: ORKTaskViewControllerDelegate {
         switch reason {
         case .Completed:
             UserDefaults.setBool(true, forKey: UserDefaultKey.CompletedOnboarding)
+            UserDefaults.setBool(true, forKey: UserDefaultKey.passcodeSwitchOn)
+            
             NSLog("Completed onboarding")
             
             checkmarkLabel.hidden = false

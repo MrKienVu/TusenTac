@@ -10,6 +10,11 @@ import UIKit
 import Foundation
 import ResearchKit
 
+private let medicineIndex = 0
+private let mealIndex = 1
+private let weightIndex = 2
+private let sideEffectIndex = 3
+
 class TaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet var collection: UICollectionView!
@@ -19,6 +24,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     var img: UIImage!
     
     let icons = ["medication", "eating", "weight", "side-effects"]
+    let greyIcons = ["medication-grey", "eating-grey", "weight-grey", "side-effects-grey"]
     let taskListRows = TaskListRow.allCases
     
     override func viewDidLoad() {
@@ -28,67 +34,59 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
             showOverlay()
             UserDefaults.setBool(true, forKey: UserDefaultKey.overlayShown)
         }
-
+        
         collection.dataSource = self
         collection.delegate = self
-  
+        
         collection.registerNib(UINib(nibName: "TaskCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentMedicineRegistration), name: UserDefaultKey.medicineRegistration, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentWeightRegistration), name: UserDefaultKey.weightRegistration, object: nil)
+        /* Add more notification observers here. */
         
         animateSettingsIconWithDuration(1.7)
     }
     
     override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.viewWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: UIApplication.sharedApplication())
         collection.reloadData()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskListViewController.presentMedicineRegistration), name: "presentMedicineRegistration", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    //This function will disable the task and add overlay image
-    //boolean taskShouldBeDisable must be implemented
+    func viewWillEnterForeground() {
+        collection.reloadData()
+    }
     
-   /* func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let navigationBarHeight = self.navigationController?.navigationBar.frame.height
-        
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        
-        let yPos = cell.bounds.minY + navigationBarHeight! + statusBarHeight
-        
-        let point = CGPoint(x:cell.bounds.minX , y: yPos)
-        
-        let size = CGSize(width: cell.bounds.width, height: cell.bounds.height)
-        
-        let rect = CGRect(origin: point, size: size)
-        
-        let disableImage = UIImageView(frame: rect)
-        disableImage.backgroundColor = UIColor.grayColor()
-        disableImage.alpha = 0.5
-        
-        if(indexPath.row == 0) {
-            if(taskShouldBeDisabled) {
-                
-                //for disable the task
-                cell.userInteractionEnabled = false
-                
-                //adding overlay
-                self.navigationController?.view.addSubview(disableImage)
-            }
-            else if(!taskShouldBeDisabled) {
-                cell.userInteractionEnabled = true
-                self.navigationController?.view.willRemoveSubview(disableImage)
+    func taskDisabled(taskIndex: Int) -> Bool {
+        return taskIndex == medicineIndex ? !medicineTaskAvailable() : false
+    }
+    
+    func medicineTaskAvailable() -> Bool {
+        if let lastDosage = UserDefaults.valueForKey(UserDefaultKey.LastDosageTime) as? NSDate {
+            let currentTime = NSDate()
+            
+            let midnight = NSCalendar.currentCalendar().dateBySettingHour(
+                0, minute: 0, second: 0, ofDate: currentTime, options: NSCalendarOptions())!
+            let threeAtNight = midnight.dateByAddingTimeInterval(Double(60 * 60 * 3))
+
+            let time = currentTime.isGreaterThanDate(midnight) && currentTime.isLessThanDate(threeAtNight) ?
+                currentTime.dateByAddingTimeInterval(Double(60 * 60 * -24)) : currentTime
+            
+            let interval = getMedicineInterval(time)
+            let isMorning = currentTime.isBetween(interval.morningStart, and: interval.nightStart)
+            if isMorning && lastDosage.isGreaterThanDate(interval.morningStart) ||
+              !isMorning && lastDosage.isGreaterThanDate(interval.nightStart) {
+                return false
             }
         }
         
-     
-     cell.userInteractionEnabled = true
-     self.navigationController?.view.willRemoveSubview(disableImage)
-    }*/
-    
+        return true
+    }
     
     func overlayTapped(sender: AnyObject){
         imageView.removeFromSuperview()
@@ -102,10 +100,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let screenHeight = screenSize.height
         
         switch screenHeight {
-            case 568: img = UIImage(named: "overlay-5")
-            case 667: img = UIImage(named: "overlay-6")
-            case 736: img = UIImage(named: "overlay-6plus")
-            default: return
+        case 568: img = UIImage(named: "overlay-5")
+        case 667: img = UIImage(named: "overlay-6")
+        case 736: img = UIImage(named: "overlay-6plus")
+        default: return
         }
         
         NSLog("screenHeight \(screenHeight) screenWidth \(screenWidth)")
@@ -130,29 +128,34 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! TaskCollectionCell
         
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case medicineIndex:
             if let lastDosageTime = UserDefaults.objectForKey(UserDefaultKey.LastDosageTime) {
                 let dateString = (lastDosageTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
                 cell.lastDosageLabel.hidden = false
             }
-            
-        } else if indexPath.row == 2 {
+        case weightIndex:
             if let lastWeightTime = UserDefaults.objectForKey(UserDefaultKey.LastWeightTime) {
                 let dateString = (lastWeightTime as! NSDate).toStringShortStyle()
                 cell.lastDosageLabel.text = "Sist registrert \(dateString)"
                 cell.lastDosageLabel.hidden = false
             }
-        } else {
+        default:
             cell.lastDosageLabel.hidden = true;
         }
+    
+        if taskDisabled(indexPath.row) {
+            cell.iconImage.image = UIImage(named: greyIcons[indexPath.row])
+            cell.userInteractionEnabled = false
+        } else {
+            cell.iconImage.image = UIImage(named: icons[indexPath.row])
+            cell.userInteractionEnabled = true
+        }
         
-        cell.iconImage.image = UIImage(named: icons[indexPath.row])
         cell.taskLabel.text = "\(taskListRows[indexPath.row])"
-        
         return cell
     }
     
@@ -162,7 +165,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if !Reachability.isConnected() { showAlert() }
+        if !Reachability.isConnected() { showAlert("INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized) }
         
         // Present the task view controller that the user asked for.
         let taskListRow = taskListRows[indexPath.row]
@@ -171,9 +174,9 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         let task = taskListRow.representedTask
         
         /*
-        Passing `nil` for the `taskRunUUID` lets the task view controller
-        generate an identifier for this run of the task.
-        */
+         Passing `nil` for the `taskRunUUID` lets the task view controller
+         generate an identifier for this run of the task.
+         */
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         
         // Make sure we receive events from `taskViewController`.
@@ -181,10 +184,10 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         
         
         /*
-        We present the task directly, but it is also possible to use segues.
-        The task property of the task view controller can be set any time before
-        the task view controller is presented.
-        */
+         We present the task directly, but it is also possible to use segues.
+         The task property of the task view controller can be set any time before
+         the task view controller is presented.
+         */
         presentViewController(taskViewController, animated: true, completion: nil)
     }
     
@@ -209,7 +212,15 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func presentMedicineRegistration() {
-        let taskListRow = taskListRows[0]
+        presentChoice(medicineIndex)
+    }
+    
+    func presentWeightRegistration() {
+        presentChoice(weightIndex)
+    }
+    
+    func presentChoice(cell: Int) {
+        let taskListRow = taskListRows[cell]
         let task = taskListRow.representedTask
         let taskViewController = ORKTaskViewController(task: task, taskRunUUID: nil)
         taskViewController.delegate = self
@@ -217,12 +228,20 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         self.navigationController?.topViewController?.presentViewController(taskViewController, animated: false, completion: nil)
     }
     
-    func showAlert(){
-        let alertController = UIAlertController(title: "INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized, preferredStyle: .Alert)
+    func createAlertController(title: String, message: String) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        return alertController
+    }
+    
+    func showAlert(title: String, message: String) {
+        presentViewController(createAlertController(title, message: message), animated: true, completion: nil)
+    }
+    
+    func showAlert(title: String, message: String, taskViewController: ORKTaskViewController) {
+        taskViewController.presentViewController(createAlertController(title, message: message), animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -230,6 +249,63 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+func parseTaskResult(taskResult: ORKTaskResult) {
+    
+    if taskResult.identifier == PillTask.identifier && (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
+    }
+    if let stepResults = taskResult.results as? [ORKStepResult] {
+        for stepResult in stepResults {
+            for result in stepResult.results! {
+                if result.identifier == Identifier.WeightStep.rawValue {
+                    let weight = (result as! ORKNumericQuestionResult).numericAnswer!
+                    let weightTime = taskResult.endDate!;
+                    UserDefaults.setObject(weight, forKey: UserDefaultKey.Weight)
+                    UserDefaults.setObject(weightTime, forKey: UserDefaultKey.LastWeightTime)
+                    Nettskjema.submit(weight: weight, weightTime: weightTime)
+                    Notification.sharedInstance.scheduleWeightNotification()
+                }
+                if result.identifier == Identifier.PillOptionStep.rawValue,
+                    let choiceResult = result as? ORKChoiceQuestionResult where (choiceResult.choiceAnswers![medicineIndex] as! String) == "now" {
+                    let medicationTime = taskResult.endDate!
+                    let dosage = getDosageForTime(medicationTime)
+                    UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
+                    UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
+                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime)
+                    
+                }
+                if result.identifier == Identifier.TookPillEarlierStep.rawValue,
+                    let lastDosageTime = (result as? ORKDateQuestionResult)?.dateAnswer {
+                    let dosage = getDosageForTime(lastDosageTime)
+                    UserDefaults.setObject(lastDosageTime, forKey: UserDefaultKey.LastDosageTime)
+                    UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
+                    Nettskjema.submit(dosage: dosage, medicationTime: lastDosageTime)
+                }
+                if result.identifier == Identifier.NewSideEffectStep.rawValue,
+                    let newSideEffectsAnswer = result as? ORKChoiceQuestionResult,
+                    newSideEffects = newSideEffectsAnswer.answer as? [String],
+                    answerTime = newSideEffectsAnswer.endDate {
+                    Nettskjema.submit(newSideEffects: newSideEffects, answerTime: answerTime)
+                }
+                if result.identifier == Identifier.OldSideEffectStep.rawValue,
+                    let goneSideEffectsAnswer = result as? ORKChoiceQuestionResult,
+                    goneSideEffects = goneSideEffectsAnswer.answer as? [String],
+                    answerTime = goneSideEffectsAnswer.endDate {
+                    Nettskjema.submit(goneSideEffects: goneSideEffects, answerTime: answerTime)
+                }
+                if result.identifier == Identifier.EatingStep.rawValue,
+                    let mealAnswer = result as? ORKTimeOfDayQuestionResult,
+                    submitDate = result.endDate,
+                    selectedMealTime = mealAnswer.dateComponentsAnswer {
+                    let mealTime = NSCalendar.currentCalendar().dateBySettingHour(selectedMealTime.hour, minute: selectedMealTime.minute, second: 0, ofDate: submitDate, options: NSCalendarOptions())!
+                    Nettskjema.submit(mealTime: mealTime)
+                }
+                
+            }
+        }
+    }
 }
 
 extension TaskListViewController: ORKTaskViewControllerDelegate {
@@ -243,65 +319,26 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             stepViewController.cancelButtonItem = nil
             delay(2.0, closure: { () -> () in
                 if let stepViewController = stepViewController as? ORKWaitStepViewController {
-                    stepViewController.goForward()
+                    if Reachability.isConnected() {
+                        stepViewController.goForward()
+                    } else {
+                        stepViewController.goBackward()
+                        self.showAlert("INTERNET_UNAVAILABLE_TITLE".localized, message: "INTERNET_UNAVAILABLE_TEXT".localized, taskViewController: taskViewController)
+                    }
                 }
             })
         }
     }
     
+    
+    
     // MARK: ORKTaskViewControllerDelegate
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
         
         let taskResult = taskViewController.result
-        var dateNow = NSDate()
-        
-        switch reason {
-        case .Completed:
-            if let stepResults = taskResult.results as? [ORKStepResult] {
-                for stepResult in stepResults {
-                    for result in stepResult.results! {
-                        if let questionStepResult = result as? ORKNumericQuestionResult {
-                            if let answer = questionStepResult.answer  {
-                                UserDefaults.setObject(answer, forKey: UserDefaultKey.Weight)
-                                UserDefaults.setObject(taskResult.endDate, forKey: UserDefaultKey.LastWeightTime)
-                            }
-                        }
-                        if taskResult.identifier == PillTask.identifier {
-                            if (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
-                                UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
-                            }
-                            
-                            if let lastDosageTime = result as? ORKTimeOfDayQuestionResult {
-                                if let timeAnswer = lastDosageTime.dateComponentsAnswer {
-                                    dateNow = NSCalendar.currentCalendar().dateBySettingHour(
-                                        timeAnswer.hour, minute: timeAnswer.minute, second: 0, ofDate: dateNow, options: NSCalendarOptions()
-                                        )!
-                                    UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                }
-                            }
-                            if let choiceResult = result as? ORKChoiceQuestionResult {
-                                if let _ = choiceResult.answer {
-                                    if choiceResult.choiceAnswers![0] as! String == "now" {
-                                        UserDefaults.setObject(dateNow, forKey: UserDefaultKey.LastDosageTime)
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-            }
-            
-            if let csv = ResultHandler.createCSVFromResult(taskResult) {
-                Nettskjema.upload(csv)
-            } else {
-                NSLog("Failed to encode task result as NSData")
-            }
-            
-        case .Failed, .Discarded, .Saved:
-            break
+        if reason == .Completed {
+            parseTaskResult(taskResult)
         }
-        
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -313,5 +350,5 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
             ),
             dispatch_get_main_queue(), closure)
     }
-
+    
 }
