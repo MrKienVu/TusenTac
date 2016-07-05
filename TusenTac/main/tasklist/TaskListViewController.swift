@@ -251,7 +251,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     
 }
 
-func parseTaskResult(taskResult: ORKTaskResult) {
+func parseTaskResult(taskResult: ORKTaskResult, showAlert: () -> Void) {
     
     if taskResult.identifier == PillTask.identifier && (UIApplication.sharedApplication().applicationIconBadgeNumber > 0) {
         UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber - 1
@@ -264,7 +264,7 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     let weightTime = taskResult.endDate!;
                     UserDefaults.setObject(weight, forKey: UserDefaultKey.Weight)
                     UserDefaults.setObject(weightTime, forKey: UserDefaultKey.LastWeightTime)
-                    Nettskjema.submit(weight: weight, weightTime: weightTime)
+                    Nettskjema.submit(weight: weight, weightTime: weightTime, onFailure: showAlert)
                     Notification.sharedInstance.scheduleWeightNotification()
                 }
                 if result.identifier == Identifier.PillOptionStep.rawValue,
@@ -273,7 +273,7 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     let dosage = getDosageForTime(medicationTime)
                     UserDefaults.setObject(medicationTime, forKey: UserDefaultKey.LastDosageTime)
                     UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
-                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime)
+                    Nettskjema.submit(dosage: dosage, medicationTime: medicationTime, onFailure: showAlert)
                     
                 }
                 if result.identifier == Identifier.TookPillEarlierStep.rawValue,
@@ -281,26 +281,26 @@ func parseTaskResult(taskResult: ORKTaskResult) {
                     let dosage = getDosageForTime(lastDosageTime)
                     UserDefaults.setObject(lastDosageTime, forKey: UserDefaultKey.LastDosageTime)
                     UserDefaults.setObject(dosage, forKey: UserDefaultKey.earlierDosage)
-                    Nettskjema.submit(dosage: dosage, medicationTime: lastDosageTime)
+                    Nettskjema.submit(dosage: dosage, medicationTime: lastDosageTime, onFailure: showAlert)
                 }
                 if result.identifier == Identifier.NewSideEffectStep.rawValue,
                     let newSideEffectsAnswer = result as? ORKChoiceQuestionResult,
                     newSideEffects = newSideEffectsAnswer.answer as? [String],
                     answerTime = newSideEffectsAnswer.endDate {
-                    Nettskjema.submit(newSideEffects: newSideEffects, answerTime: answerTime)
+                    Nettskjema.submit(newSideEffects: newSideEffects, answerTime: answerTime, onFailure: showAlert)
                 }
                 if result.identifier == Identifier.OldSideEffectStep.rawValue,
                     let goneSideEffectsAnswer = result as? ORKChoiceQuestionResult,
                     goneSideEffects = goneSideEffectsAnswer.answer as? [String],
                     answerTime = goneSideEffectsAnswer.endDate {
-                    Nettskjema.submit(goneSideEffects: goneSideEffects, answerTime: answerTime)
+                    Nettskjema.submit(goneSideEffects: goneSideEffects, answerTime: answerTime, onFailure: showAlert )
                 }
                 if result.identifier == Identifier.EatingStep.rawValue,
                     let mealAnswer = result as? ORKTimeOfDayQuestionResult,
                     submitDate = result.endDate,
                     selectedMealTime = mealAnswer.dateComponentsAnswer {
                     let mealTime = NSCalendar.currentCalendar().dateBySettingHour(selectedMealTime.hour, minute: selectedMealTime.minute, second: 0, ofDate: submitDate, options: NSCalendarOptions())!
-                    Nettskjema.submit(mealTime: mealTime)
+                    Nettskjema.submit(mealTime: mealTime, onFailure: showAlert)
                 }
                 
             }
@@ -337,7 +337,7 @@ extension TaskListViewController: ORKTaskViewControllerDelegate {
         
         let taskResult = taskViewController.result
         if reason == .Completed {
-            parseTaskResult(taskResult)
+            parseTaskResult(taskResult, showAlert: { self.showAlert("UPLOAD_REQUEST_FAILED_TITLE".localized, message: "UPLOAD_REQUEST_FAILED_TEXT".localized) })
         }
         taskViewController.dismissViewControllerAnimated(true, completion: nil)
     }
