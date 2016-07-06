@@ -9,3 +9,6 @@
 "INTERNET_UNAVAILABLE_TITLE" = "Ingen internett tilkobling";
 "INTERNET_UNAVAILABLE_TEXT" = "Sørg for at enheten din er koblet til internett for å fortsette";
 "INTERNET_UNAVAILABLE_STEP_TEXT" = "Sørg for at enheten din er koblet til internett for å sende inn resultatene";
+
+"UPLOAD_REQUEST_FAILED_TITLE" = "Besvarelsen ble ikke levert";
+"UPLOAD_REQUEST_FAILED_TEXT" = "Besvarelsen ble ikke levert på grunn av en teknisk feil. Prøv igjen senere.";

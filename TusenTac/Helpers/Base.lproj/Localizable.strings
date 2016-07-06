@@ -6,6 +6,9 @@
   Copyright © 2016 ingeborg ødegård oftedal. All rights reserved.
 */
 
-"INTERNET_UNAVAILABLE_TITLE" = "No Internet Connection";
-"INTERNET_UNAVAILABLE_TEXT" = "Make sure your device is connected to the internet to continue";
-"INTERNET_UNAVAILABLE_STEP_TEXT" = "Make sure your device is connected to the internet to send in the results";
+"INTERNET_UNAVAILABLE_TITLE" = "Ingen internettilkobling";
+"INTERNET_UNAVAILABLE_TEXT" = "Sørg for at telefonen er koblet til internett for å fortsette";
+"INTERNET_UNAVAILABLE_STEP_TEXT" = "Sørg for at telefonen er koblet til internett for å sende inn resultatene";
+
+"UPLOAD_REQUEST_FAILED_TITLE" = "Besvarelsen ble ikke levert";
+"UPLOAD_REQUEST_FAILED_TEXT" = "Besvarelsen ble ikke levert på grunn av en teknisk feil. Prøv igjen senere.";

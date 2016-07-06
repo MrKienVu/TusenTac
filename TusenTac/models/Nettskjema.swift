@@ -131,7 +131,7 @@ class Nettskjema {
         }
     }
     
-    private class func post(valueAdder: (MultipartFormData) -> Void, time: NSDate, csrf: String) {
+    private class func post(valueAdder: (MultipartFormData) -> Void, time: NSDate, csrf: String, onFailure: () -> Void) {
         Alamofire.upload(
             .POST,
             deliverBaseUrl + form.formId,
@@ -148,51 +148,62 @@ class Nettskjema {
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseString { response in
+                        if String(response).containsString("failure") {
+                            onFailure()
+                            handleNettskjemaError(response)
+                        }
                         NSLog("Upload success. Status code: \(response.response)")
                     }
                 case .Failure(let encodingError):
+                    onFailure()
                     NSLog("Upload failed. Error: \(encodingError)")
                 }
         })
     }
     
-    private class func submit(using dataAdder: (MultipartFormData) -> Void, time: NSDate) {
+    private class func handleNettskjemaError(response: Response<String, NSError>) {
+        NSLog(response.debugDescription)
+        fatalError()
+    }
+    
+    private class func submit(using dataAdder: (MultipartFormData) -> Void, time: NSDate, onFailure: () -> Void) {
         getCsrfToken { (data, error) in
             if let token = data {
-                self.post(dataAdder, time: time, csrf: token)
+                self.post(dataAdder, time: time, csrf: token, onFailure: onFailure)
             } else {
+                onFailure()
                 NSLog("Failed to get CSRF token with error: \(error!)")
             }
         }
     }
     
-    private class func submit(singleValue value: String, time: NSDate, field: String) {
+    private class func submit(singleValue value: String, time: NSDate, field: String, onFailure: () -> Void) {
         submit(using: { data in data.addString(value, field: field) },
-               time: time)
+               time: time, onFailure: onFailure)
     }
     
-    private class func submit(multipleValues values: [String], time: NSDate, field: String) {
+    private class func submit(multipleValues values: [String], time: NSDate, field: String, onFailure: () -> Void) {
         submit(using: { data in values.forEach { data.addString($0, field: field) }},
-               time: time)
+               time: time, onFailure: onFailure)
     }
     
-    class func submit(weight number: NSNumber, weightTime: NSDate) {
-        submit(singleValue: String(number), time: weightTime, field: form.weight)
+    class func submit(weight number: NSNumber, weightTime: NSDate, onFailure: () -> Void) {
+        submit(singleValue: String(number), time: weightTime, field: form.weight, onFailure: onFailure)
     }
-    class func submit(dosage number: NSNumber, medicationTime: NSDate) {
-        submit(singleValue: String(number), time: medicationTime, field: form.dosage)
+    class func submit(dosage number: NSNumber, medicationTime: NSDate, onFailure: () -> Void) {
+        submit(singleValue: String(number), time: medicationTime, field: form.dosage, onFailure: onFailure)
     }
-    class func submit(newSideEffects sideEffects: [String], answerTime: NSDate) {
+    class func submit(newSideEffects sideEffects: [String], answerTime: NSDate, onFailure: () -> Void) {
         submit(multipleValues: sideEffects.map { form.newSideEffectOptions[$0]! },
-               time: answerTime, field: form.newSideEffects)
+               time: answerTime, field: form.newSideEffects, onFailure: onFailure)
     }
-    class func submit(goneSideEffects sideEffects: [String], answerTime: NSDate) {
+    class func submit(goneSideEffects sideEffects: [String], answerTime: NSDate, onFailure: () -> Void) {
         submit(multipleValues: sideEffects.map { form.goneSideEffectOptions[$0]! },
-               time: answerTime, field: form.goneSideEffects)
+               time: answerTime, field: form.goneSideEffects, onFailure: onFailure)
     }
     
-    class func submit(mealTime mealTime: NSDate) {
-        submit(singleValue: form.mealOption, time: mealTime, field: form.meal)
+    class func submit(mealTime mealTime: NSDate, onFailure: () -> Void) {
+        submit(singleValue: form.mealOption, time: mealTime, field: form.meal, onFailure: onFailure)
     }
     
 }
