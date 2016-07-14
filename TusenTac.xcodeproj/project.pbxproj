@@ -91,7 +91,6 @@
 		5F3EB2AA1C3E5F2E000710B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5F3EB2AC1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		5F3EB2AD1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5F3EB2AE1C3E5FD6000710B3 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5F7656211C849FDC00C39A0C /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		5F76562B1C856A3900C39A0C /* onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = onboarding.storyboard; sourceTree = "<group>"; };
 		5F76562D1C856A8F00C39A0C /* StudyIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyIDViewController.swift; sourceTree = "<group>"; };
@@ -544,7 +543,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5F3EB2AA1C3E5F2E000710B3 /* Base */,
-				5F3EB2AE1C3E5FD6000710B3 /* nb */,
 			);
 			name = Localizable.strings;
 			path = helpers;
