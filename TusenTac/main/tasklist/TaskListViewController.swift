@@ -55,7 +55,7 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UserDefaultKey.weightRegistration, object: nil)
     }
     
     func viewWillEnterForeground() {
