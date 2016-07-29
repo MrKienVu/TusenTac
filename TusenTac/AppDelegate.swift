@@ -8,6 +8,9 @@
 
 import UIKit
 import ResearchKit
+import Fabric
+import Crashlytics
+
 
 
 @UIApplicationMain
@@ -51,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         lock()
-        
+        Fabric.with([Crashlytics.self])
         return true
     }
     

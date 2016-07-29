@@ -37,6 +37,8 @@
 		5F7656321C856AD600C39A0C /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7656311C856AD600C39A0C /* PasscodeViewController.swift */; };
 		5FB8EAD31C75C78E000E5F93 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */; };
 		5FB8EAD41C75C78E000E5F93 /* TaskCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */; };
+		9862A3001D4B43F000D78637 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9862A2FE1D4B43F000D78637 /* Fabric.framework */; };
+		9862A3011D4B43F000D78637 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9862A2FF1D4B43F000D78637 /* Crashlytics.framework */; };
 		E4FBB2E21D1BB79000C6B931 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FBB2E11D1BB79000C6B931 /* Alamofire.framework */; };
 		E4FBB2E41D1BB7B900C6B931 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FBB2E31D1BB7B900C6B931 /* Locksmith.framework */; };
 		E4FBB2E61D1BB7C300C6B931 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FBB2E51D1BB7C300C6B931 /* ResearchKit.framework */; };
@@ -98,6 +100,8 @@
 		5F7656311C856AD600C39A0C /* PasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		5FB8EAD11C75C78E000E5F93 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		5FB8EAD21C75C78E000E5F93 /* TaskCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCollectionCell.xib; sourceTree = "<group>"; };
+		9862A2FE1D4B43F000D78637 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		9862A2FF1D4B43F000D78637 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E4FBB2E11D1BB79000C6B931 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E4FBB2E31D1BB7B900C6B931 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		E4FBB2E51D1BB7C300C6B931 /* ResearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ResearchKit.framework; path = Carthage/Build/iOS/ResearchKit.framework; sourceTree = "<group>"; };
@@ -109,8 +113,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4FBB2E61D1BB7C300C6B931 /* ResearchKit.framework in Frameworks */,
+				9862A3011D4B43F000D78637 /* Crashlytics.framework in Frameworks */,
 				E4FBB2E41D1BB7B900C6B931 /* Locksmith.framework in Frameworks */,
 				E4FBB2E21D1BB79000C6B931 /* Alamofire.framework in Frameworks */,
+				9862A3001D4B43F000D78637 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +226,8 @@
 				5F37F9F31C240968000ABF26 /* TusenTacTests */,
 				5F37F9FE1C240968000ABF26 /* TusenTacUITests */,
 				5F37F9DD1C240968000ABF26 /* Products */,
+				9862A2FE1D4B43F000D78637 /* Fabric.framework */,
+				9862A2FF1D4B43F000D78637 /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,6 +326,7 @@
 				5F37F9D91C240968000ABF26 /* Frameworks */,
 				5F37F9DA1C240968000ABF26 /* Resources */,
 				98A799F11D1AAC3B004463AD /* Run Script */,
+				9862A2FD1D4B43D600D78637 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -442,6 +451,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9862A2FD1D4B43D600D78637 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 1a49f8ac5c3d55e60b70aae0874f19758ef75e8f 81668f06c521ab9502915590fb93955abf84bbcc882987056e1308259dbfec96";
+		};
 		98A799F11D1AAC3B004463AD /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,9 +662,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TusenTac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -661,6 +685,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TusenTac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

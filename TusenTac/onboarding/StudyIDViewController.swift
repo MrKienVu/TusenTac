@@ -8,6 +8,7 @@
 
 import UIKit
 import Locksmith
+import Crashlytics
 
 class StudyIDViewController: UIViewController, UITextFieldDelegate {
     
