@@ -54,10 +54,6 @@ class TaskListViewController: UIViewController, UICollectionViewDataSource, UICo
         collection.reloadData()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     func viewWillEnterForeground() {
         collection.reloadData()
     }
